@@ -1,16 +1,11 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from "mongoose";
 
-// Define movie schema
-var threadSchema = new Schema({
-  title: {
-    type: String,
-    unique: true,
-  },
-  name: String,
-  text: String,
-  days: Array,
-  times: Array,
+const Schema = mongoose.Schema;
+
+const ThreadSchema = new Schema({
+    title     : { type: String },
+    text      : { type: String, required: true },
+    createdAt : { type: Date }
 });
 
-// Export Mongoose model
-export default mongoose.model('thread', threadSchema);
+const Note = mongoose.model('Thread', ThreadSchema);

@@ -1,19 +1,18 @@
-import Threads from '../models/threads';
-import moment from 'moment';
+export function listNotes(id) {
+    return Note.find();
+}
 
-// Hardcode the days for the sake of simplicity
-const days = [ 'Today', 'Tomorrow', moment().add(2, 'days').format('ddd, MMM D') ];
-// Same for the times
-const times = [ '9:00 AM', '11:10 AM', '12:00 PM', '1:50 PM', '4:30 PM', '6:00 PM', '7:10 PM', '9:45 PM' ];
+export function createNote(data) {
+    const note = new Note({
+        title: data.title,
+        text: data.text,
+        color: data.color,
+        createdAt: new Date()
+    });
 
-export const index = (req, res, next) => {
-  // Find all movies and return json response
-  Threads.find().lean().exec((err, threads) => res.json(
-    // Iterate through each movie
-    { threads: threads.map(thread => ({
-      ...thread,
-      days,     // and append days
-      times,    // and times to each
-    }))}
-  ));
-};
+    return note.save();
+}
+
+export function deleteNote(id) {
+    return Note.findById(id).remove();
+}

@@ -1,20 +1,60 @@
 import express from 'express';
-import morgan from 'morgan';
-import mongoose from 'mongoose';
-import router from './server/router/router';
+import mongodb from 'mongodb';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost/threads');
-
-// Initialize http server
 const app = express();
 
-// Logger that outputs all requests into the console
-app.use(morgan('combined'));
-// Use v1 as prefix for all API endpoints
-app.use('/v1', router);
+app.use(cors({ origin: '*' }));
+app.use(bodyParser.json());
 
-const server = app.listen(3000, () => {
-  const { address, port } = server.address();
-  console.log(`Listening at http://${address}:${port}`);
+const dbUrl = 'mongodb://localhost/board';
+
+function validate(data) {
+  let errors = {};
+  if (data.title === '') errors.title = "Can't be empty";
+  if (data.cover === '') errors.cover = "Can't be empty";
+  const isValid = Object.keys(errors).length === 0
+  return { errors, isValid };
+}
+
+mongodb.MongoClient.connect(dbUrl, function(err, db) {
+
+  app.get('/api/threads', (req, res) => {
+    db.collection('threads').find({}).toArray((err, threads) => {
+      res.json({ threads });
+    });
+  });
+
+  app.post('/api/threads', (req, res) => {
+    const { errors, isValid } = validate(req.body);
+    if (isValid) {
+      const { title, cover } = req.body;
+      db.collection('threads').insert({ title, cover }, (err, result) => {
+        if (err) {
+          res.status(500).json({ errors: { global: "Something went wrong" }});
+        } else {
+          res.json({ game: result.ops[0] });
+        }
+      });
+    } else {
+      res.status(400).json({ errors });
+    }
+  });
+  
+  
+  // app.delete('/api/games', (req, res => {
+  //  db.collection('games').deleteOne({_id)
+  // }))
+
+  app.use((req, res) => {
+    res.status(404).json({
+      errors: {
+        global: "Still working on it. Please try again later when we implement it"
+      }
+    });
+  })
+
+  app.listen(3000, () => console.log('Server is running on localhost:3000'));
+
 });

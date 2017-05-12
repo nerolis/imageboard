@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Board from './components/board';
 
-import App from './main/main.js'
-import routes from './routers';
+import { provider , Provider} from 'react-redux';
 
-// Reducers import
-// import reducers from './reducers/index.js';
-// Style import
-//import '../styles/index.scss';
+import { createStore, applyMiddleware } from 'redux';
 
-// Store definition with Middleware applying and Rendering of React Document Object Model
-// const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+import reduxThunk from 'redux-thunk';
+import reducers from './reducers/index';
+import {Router} from 'react-router';
+
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 ReactDOM.render(
-    <App />, document.getElementById('root'));
+    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Board/>
+    </Provider>,
+    document.getElementById('root') 
+);
