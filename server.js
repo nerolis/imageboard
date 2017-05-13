@@ -29,12 +29,12 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
   app.post('/api/threads', (req, res) => {
     const { errors, isValid } = validate(req.body);
     if (isValid) {
-      const { title, cover } = req.body;
-      db.collection('threads').insert({ title, cover }, (err, result) => {
+      const { id, title, name, text, image} = req.body;
+      db.collection('threads').insert({ id, title, name, text, image }, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "Something went wrong" }});
         } else {
-          res.json({ game: result.ops[0] });
+          res.json({ thread: result.ops[0] });
         }
       });
     } else {

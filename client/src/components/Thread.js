@@ -1,31 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux'; 
-// import ThreadForm from './ThreadForm';
+import { Image, Item } from 'semantic-ui-react';
 
 class Thread extends React.Component {
-  constructor(props) {
-      super(props)
-      this.state = {
-          isOpened: false
-      }
-  }
-
-  toggleState() {
-      this.setState({isOpened: !this.state.isOpened})
-  }
-
-
   render() {
-            let dropdownText;
-            if(this.state.isOpened) {
-                dropdownText = <div>Opened</div>
-            }
     return (
-        <div onClick={::this.toggleState}>
-            Ei!
-            {dropdownText}
-        </div>
-       
+    <Item>
+      <Item.Image size='small' src={'https://img.memesuper.com/88c59ad922f6f6210c1c4c0543c72498_image-115779-touhou-project-project-know-your-meme-touhou-chen-meme_453-435.png'} />
+      <Item.Content>
+        <Item.Header as='a'>{this.props.title}</Item.Header>
+        <Item.Meta>ID:{Date.now()}</Item.Meta>
+        <Item.Description>
+            {this.props.text}
+        </Item.Description>
+        <Item.Extra>Answers: </Item.Extra>
+      </Item.Content>
+    </Item>
     )
   }
 }
