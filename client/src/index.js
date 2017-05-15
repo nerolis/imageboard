@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Board from './components/board';
+import {Router} from 'react-router';
+
+import Board from './components/Board';
 
 import { provider , Provider} from 'react-redux';
-
 import { createStore, applyMiddleware } from 'redux';
-
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers/index';
-import {Router} from 'react-router';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 

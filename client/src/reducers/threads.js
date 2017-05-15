@@ -1,18 +1,14 @@
-import { FETCH_THREAD } from '../constants/threads';
+import { SET_THREADS, ADD_THREAD } from '../components/actions';
 
-// Начальный стейт для редюсера
-const INITIAL_STATE = {
-    thread: 'null' 
-}
-
-export default function(state = INITIAL_STATE, action) {
-    switch(action.type) {
-        case FETCH_THREAD:
-            return {...state,
-                thread: action.payload
-            
-        };
-        
+export default function threads(state = [], action = {}) {
+  switch(action.type) {
+    case ADD_THREAD:
+      return [
+        ...state,
+        action.thread
+      ];
+    case SET_THREADS:
+      return action.threads;
     default: return state;
-    }
+  }
 }

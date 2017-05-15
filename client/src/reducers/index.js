@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
 
-import threadsReducer from './threads';
+import threads from './threads';
 
-const rootReducer = combineReducers({
-    threads: threadsReducer
-});
 
-export default rootReducer;
+export default combineReducers({
+    threads
+}); 
