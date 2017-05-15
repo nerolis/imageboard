@@ -40,7 +40,7 @@ export function createThread(data) {
   }
 }
 
-
+//todo: через аксиос переделать всё.
 export function fetchThread() {
     return dispatch => {
          axios.get('http://localhost:3000/api/threads', {mode: 'cors'})

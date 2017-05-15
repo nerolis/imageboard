@@ -1,6 +1,6 @@
     import React from 'react';
     import ThreadCard from './ThreadCard';
-
+import {Image, Item, Container, Button} from 'semantic-ui-react';
     export default function ThreadList({threads }) {
     const emptyMessage = (
         <p>Empty</p>
@@ -13,6 +13,7 @@
     );
 
     return (
+        
         <div>
         {threads.length === 0 ? emptyMessage : ThreadList}
         </div>

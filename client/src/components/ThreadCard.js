@@ -1,21 +1,31 @@
 import React from 'react';
-import { Image, Item , Message, Button} from 'semantic-ui-react';
-
+import { Image, Item , Message, Button, Icon, Feed, Embed} from 'semantic-ui-react';
 export default function ThreadCard({thread}) {
   return(
-      
+      // todo: добавить айди, дату
       <Item>
-      <Item.Image size='small' floated src={thread.image} />
+      <Item.Image size='small'  src={thread.image} />
       <Item.Content>
+
         <Item.Header as='a'>{thread.name}
-        </Item.Header>
+        </Item.Header>  
+        
         <Item.Meta>ID:{Date.now()}</Item.Meta>
         <Item.Description>
-         <Message floating warning>
+         <Message
+             
+          
+         className='message'>
+         <p>
          {thread.text}
-          </Message>     
+         </p>
+          </Message>    
         </Item.Description>
-      </Item.Content>
+        <Button onClick={() => select()}>Ответ</Button>
+          <Icon name='like' />
+           <a  className="item">{new Date().toLocaleString()}</a>
+      </Item.Content >
+      
     </Item>
     );
 }

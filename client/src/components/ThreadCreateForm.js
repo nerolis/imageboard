@@ -20,7 +20,7 @@ class ThreadCreateForm extends React.Component {
     .then(() => { this.setState({ done: true })}
     )};
 
-  //todo объединить хандлы в один
+  //todo объединить  в один
   handleNameChange(e) {
     console.log('Изменено name', e.target.value)
     this.setState({name: e.target.value})
@@ -33,6 +33,7 @@ class ThreadCreateForm extends React.Component {
     console.log('Изменено text', e.target.value)
     this.setState({image: e.target.value})
   }
+  // почистить всю эт хауту
     render() {
         return(
         <Form onSubmit={::this.handleSubmit}>

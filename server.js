@@ -12,8 +12,8 @@ const dbUrl = 'mongodb://localhost/board';
 
 function validate(data) {
   let errors = {};
-  if (data.title === '') errors.title = "Can't be empty";
-  if (data.cover === '') errors.cover = "Can't be empty";
+  if (data.name === '') errors.title = "Can't be empty";
+  if (data.text === '') errors.cover = "Can't be empty";
   const isValid = Object.keys(errors).length === 0
   return { errors, isValid };
 }
@@ -25,14 +25,14 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
       res.json({ threads });
     });
   });
-
+// todo: добавить дату
   app.post('/api/threads', (req, res) => {
     const { errors, isValid } = validate(req.body);
     if (isValid) {
       const { id, title, name, text, image} = req.body;
       db.collection('threads').insert({ id, title, name, text, image }, (err, result) => {
         if (err) {
-          res.status(500).json({ errors: { global: "Something went wrong" }});
+          res.status(500).json({ errors: { global: "500" }});
         } else {
           res.json({ thread: result.ops[0] });
         }
@@ -43,14 +43,14 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
   });
   
   
-  // app.delete('/api/games', (req, res => {
-  //  db.collection('games').deleteOne({_id)
+  // app.delete('/api/threads', (req, res => {
+  //  db.collection('threads').deleteOne({_id)
   // }))
 
   app.use((req, res) => {
     res.status(404).json({
       errors: {
-        global: "Still working on it. Please try again later when we implement it"
+        global: "404"
       }
     });
   })
