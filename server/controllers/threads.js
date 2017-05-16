@@ -1,18 +1,17 @@
-export function listNotes(id) {
-    return Note.find();
+export function ThreadList(id) {
+    return Thread.find();
 }
 
-export function createNote(data) {
-    const note = new Note({
+export function createThread(data) {
+    const thread = new Thread({
         title: data.title,
         text: data.text,
-        color: data.color,
-        createdAt: new Date()
+        createdAt: new Thread()
     });
 
-    return note.save();
+    return thread.save();
 }
 
-export function deleteNote(id) {
-    return Note.findById(id).remove();
+export function deleteThread(id) {
+    return Thread.findById(id).remove();
 }

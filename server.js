@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 const dbUrl = 'mongodb://localhost/board';
 
+
 function validate(data) {
   let errors = {};
   if (data.name === '') errors.title = "Can't be empty";
@@ -17,7 +18,6 @@ function validate(data) {
   const isValid = Object.keys(errors).length === 0
   return { errors, isValid };
 }
-
 mongodb.MongoClient.connect(dbUrl, function(err, db) {
 
   app.get('/api/threads', (req, res) => {
@@ -25,12 +25,15 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
       res.json({ threads });
     });
   });
-// todo: добавить дату
+// todo: добавить айди
+  function date() {
+
+      }
   app.post('/api/threads', (req, res) => {
     const { errors, isValid } = validate(req.body);
-    if (isValid) {
-      const { id, title, name, text, image} = req.body;
-      db.collection('threads').insert({ id, title, name, text, image }, (err, result) => {
+    if (isValid) {  
+      const { id, date, title, name, text, image} = req.body;
+      db.collection('threads').insert({id, title, name, text, image, date:new Date().toLocaleString()}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {
@@ -58,3 +61,4 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
   app.listen(3000, () => console.log('Server is running on localhost:3000'));
 
 });
+

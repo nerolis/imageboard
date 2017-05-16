@@ -48,14 +48,13 @@ export function fetchThread() {
                console.log(response.data.threads[0]);
                const threadsObj = response.data.threads[0];
                const data = {
-                      id: threadsObj.id,
-                      name: threadsObj.title,
-                      title: threadsObj.name,
-                      text: threadsObj.text,
-                      image: threadsObj.name
                }
                dispatch(setThreads(response.data.threads));
                          console.log(data);
               } );
     }
+}
+
+export function resetForm() {
+
 }

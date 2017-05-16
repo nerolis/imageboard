@@ -16,7 +16,7 @@ class Board extends React.Component {
       showThreadCreateForm: false,
         }
       }  
-        componentWillMount() {
+        componentDidMount() {
         this.props.fetchThread() 
       }
       
@@ -30,7 +30,7 @@ class Board extends React.Component {
             {        
             (this.state.showThreadCreateForm)
             ? <div>
-              <Button onClick={() => this.setState({showThreadCreateForm: false})}>Close form</Button>
+              <Button  onClick={() => this.setState({showThreadCreateForm: false})}>Close form</Button>
               <ThreadCreateForm />
               </div>
             : <Button onClick={() => this.setState({showThreadCreateForm: true })}>Create Thread</Button>
