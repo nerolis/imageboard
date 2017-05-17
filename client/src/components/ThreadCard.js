@@ -1,25 +1,31 @@
 import React from 'react';
 import { Image, Item , Message, Button, Icon, Feed, Embed} from 'semantic-ui-react';
-export default function ThreadCard({thread}) {
+export default function ThreadCard({ thread }) {
   return(
       // todo: добавить айди, дату
-      <Item className=''>
-      <Item.Image className=''size='small'  src={thread.image} />
-      <Item.Content>
-        <Item.Header as='a'>{thread.name}
-        </Item.Header>  
-        <Item.Meta>ID:{Date.now()}</Item.Meta>
+       <Item>
+       <Item.Header>
+      </Item.Header>
+      <Item.Meta as=''>
+      </Item.Meta>
+      <Item.Image className=''size='small' src={thread.image}/>
+      
+      <Item.Content>        
+                             <a size='small' className=''>{thread.date}</a>
         <Item.Description>
-         <Message
-         className='message'>
-         <p>
-         {thread.text}
-         </p>
-          </Message>    
+         <div
+         className='ui segment'
+         >
+         
+         <p>{thread.text}</p>
+
+          </div> 
+          
         </Item.Description>
-        <Button className="ui primary button" onClick={() => select()}>Ответ</Button>
-          <Icon name='like' />
-           <a  className="item">{thread.date}</a>
+        
+        <Button className="ui primary button" onClick={() => select()}>Reply</Button>
+        <Icon name='like' />
+        
       </Item.Content >
       
     </Item>

@@ -7,7 +7,7 @@ import {fetchThread} from './actions';
 import ThreadList from './ThreadList';
 import ThreadCreateForm from './ThreadCreateForm';
 
-import {Image, Item, Container, Button} from 'semantic-ui-react';
+import {Image, Item, Container, Button, Header} from 'semantic-ui-react';
 
 class Board extends React.Component {
     constructor() {
@@ -22,20 +22,31 @@ class Board extends React.Component {
       
     render() {
       return(
+        <div> 
+             <Header>
+              Menu: 
+              There will be map of threads.
+              Or latest activity on board 
+              
+             </Header>
+             
         <Container>
          <Item.Group>
-        <ThreadList threads={this.props.threads} />   
+         <ThreadList threads={this.props.threads}/>        
+                
+                 {(this.state.showThreadCreateForm)
+                  ? <div>
+                    <Button onClick={() => this.setState({showThreadCreateForm: false})}>Close form</Button>
+                    <ThreadCreateForm />
+                    </div>
+                  : <Button onClick={() => this.setState({showThreadCreateForm: true })}>Create Thread</Button>
+                  }
+         
           </Item.Group>
-            
-            {        
-            (this.state.showThreadCreateForm)
-            ? <div>
-              <Button  onClick={() => this.setState({showThreadCreateForm: false})}>Close form</Button>
-              <ThreadCreateForm />
-              </div>
-            : <Button onClick={() => this.setState({showThreadCreateForm: true })}>Create Thread</Button>
-           }
-        </Container>
+          </Container>
+          </div>
+       
+  
     );
   }
 }

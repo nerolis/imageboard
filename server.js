@@ -10,14 +10,15 @@ app.use(bodyParser.json());
 
 const dbUrl = 'mongodb://localhost/board';
 
-
+// Валидация создания треда. 
 function validate(data) {
   let errors = {};
-  if (data.name === '') errors.title = "Can't be empty";
-  if (data.text === '') errors.cover = "Can't be empty";
+  if (data.name === '') errors.name = "Can't be empty";
+  if (data.text === '') errors.text = "Can't be empty";
   const isValid = Object.keys(errors).length === 0
   return { errors, isValid };
 }
+
 mongodb.MongoClient.connect(dbUrl, function(err, db) {
 
   app.get('/api/threads', (req, res) => {
@@ -26,9 +27,6 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
     });
   });
 // todo: добавить айди
-  function date() {
-
-      }
   app.post('/api/threads', (req, res) => {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
