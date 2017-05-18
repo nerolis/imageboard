@@ -5,16 +5,21 @@ import { createThread, fetchThread } from './actions';
 import {Form, Button, Textarea} from 'semantic-ui-react';
 import Dropzone from 'react-dropzone-component';
   
+  
+  
   class ThreadCreateForm extends React.Component {
     constructor() {
       super()
         this.state = {
             name: 'Chen',
             text: '', 
-            image: undefined,
+            image: '',
             errors: {},
         };
       }
+      
+
+      
   // Как сабскрайб сделать напрямую - не понял, поэтому просто после создания треда, будет происходить новый фетч. TODO: fix it.
   handleSubmit(e) { 
     e.preventDefault()
@@ -24,7 +29,9 @@ import Dropzone from 'react-dropzone-component';
       alert(`not valid - {this.state.name}`)}
       if (this.state.text === ''){
         alert(`not valid - {this.state.text}`)}
-    
+          if (this.state.image === ''){
+                this.state.image = 'https://img.memesuper.com/88c59ad922f6f6210c1c4c0543c72498_image-115779-touhou-project-project-know-your-meme-touhou-chen-meme_453-435.png'
+            }
     const isValid = Object.keys(errors).length === 0
       if (isValid) {
     // Post!
@@ -33,7 +40,7 @@ import Dropzone from 'react-dropzone-component';
         .then(() => this.props.fetchThread())
         // Вот это - для очищения формы. Не знаю, вроде норм.
         this.setState({
-          name: '',
+          name: 'Chen',
           text: '',
           image: '',
         });
@@ -87,6 +94,7 @@ import Dropzone from 'react-dropzone-component';
               </Form.Field>
                     <Button className="ui primary button">Create thread</Button>
          </Form>
+         
     );
   }
 }

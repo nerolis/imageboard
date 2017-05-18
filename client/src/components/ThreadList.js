@@ -7,14 +7,14 @@
     );
 
     const ThreadList = (
-            <div className="">
+            <div className="ui five cards">
            {threads.map(thread => <ThreadCard thread={thread} key={thread._id} />)}
            </div>
     );
 
     return (
         
-        <div>
+        <div className=''>
         {threads.length === 0 ? emptyMessage : ThreadList}
         </div>
     );

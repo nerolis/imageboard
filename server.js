@@ -20,13 +20,15 @@ function validate(data) {
 }
 
 mongodb.MongoClient.connect(dbUrl, function(err, db) {
-
+  
   app.get('/api/threads', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
       res.json({ threads });
     });
   });
+
 // todo: добавить айди
+
   app.post('/api/threads', (req, res) => {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  

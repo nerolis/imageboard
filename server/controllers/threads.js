@@ -6,12 +6,13 @@ export function createThread(data) {
     const thread = new Thread({
         title: data.title,
         text: data.text,
+        color: data.color,
         createdAt: new Thread()
     });
 
-    return thread.save();
+    return note.save();
 }
 
 export function deleteThread(id) {
-    return Thread.findById(id).remove();
+    return Note.findById(id).remove();
 }
