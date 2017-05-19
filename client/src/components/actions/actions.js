@@ -33,7 +33,8 @@ export function createThread(data) {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        
       }
     }).then(handleResponse)
     .then(data => dispatch(addThread(data.threads)));

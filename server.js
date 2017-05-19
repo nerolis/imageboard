@@ -1,10 +1,11 @@
+import path from 'path';
 import express from 'express';
 import mongodb from 'mongodb';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const app = express();
-
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 
@@ -20,7 +21,8 @@ function validate(data) {
 }
 
 mongodb.MongoClient.connect(dbUrl, function(err, db) {
-  
+
+
   app.get('/api/threads', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
       res.json({ threads });
@@ -45,10 +47,17 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
     }
   });
   
-  
+
+
   // app.delete('/api/threads', (req, res => {
   //  db.collection('threads').deleteOne({_id)
   // }))
+
+
+app.get('*', function (req, res) {
+  // and drop 'public' in the middle of here
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
   app.use((req, res) => {
     res.status(404).json({
@@ -57,6 +66,7 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
       }
     });
   })
+
 
   app.listen(3000, () => console.log('Server is running on localhost:3000'));
 

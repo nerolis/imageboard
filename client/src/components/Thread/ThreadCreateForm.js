@@ -1,11 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { createThread, fetchThread } from './actions';
+import { createThread, fetchThread } from '../actions/actions';
 import {Form, Button, Textarea} from 'semantic-ui-react';
 import Dropzone from 'react-dropzone-component';
-  
-  
   
   class ThreadCreateForm extends React.Component {
     constructor() {
@@ -17,8 +15,7 @@ import Dropzone from 'react-dropzone-component';
             errors: {},
         };
       }
-      
-
+    
       
   // Как сабскрайб сделать напрямую - не понял, поэтому просто после создания треда, будет происходить новый фетч. TODO: fix it.
   handleSubmit(e) { 
@@ -30,7 +27,7 @@ import Dropzone from 'react-dropzone-component';
       if (this.state.text === ''){
         alert(`not valid - {this.state.text}`)}
           if (this.state.image === ''){
-                this.state.image = 'https://img.memesuper.com/88c59ad922f6f6210c1c4c0543c72498_image-115779-touhou-project-project-know-your-meme-touhou-chen-meme_453-435.png'
+                this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg'
             }
     const isValid = Object.keys(errors).length === 0
       if (isValid) {

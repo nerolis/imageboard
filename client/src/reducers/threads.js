@@ -1,4 +1,4 @@
-import { SET_THREADS, ADD_THREAD} from '../components/actions';
+import { SET_THREADS, ADD_THREAD} from '../components/actions/actions';
 
 export default function threads(state = [], action = {}) {
   switch(action.type) {

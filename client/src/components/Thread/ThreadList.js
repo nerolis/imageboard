@@ -1,15 +1,15 @@
     import React from 'react';
     import ThreadCard from './ThreadCard';
-
+    import {Item} from 'semantic-ui-react';
     export default function ThreadList({threads }) {
     const emptyMessage = (
         <p>Empty</p>
     );
 
     const ThreadList = (
-            <div className="ui five cards">
+              <Item.Group divided>
            {threads.map(thread => <ThreadCard thread={thread} key={thread._id} />)}
-           </div>
+           </Item.Group>
     );
 
     return (
