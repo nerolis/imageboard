@@ -7,7 +7,7 @@
     );
 
     const ThreadList = (
-              <Item.Group divided>
+              <Item.Group divided relaxed>
            {threads.map(thread => <ThreadCard thread={thread} key={thread._id} />)}
            </Item.Group>
     );

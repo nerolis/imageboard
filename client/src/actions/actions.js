@@ -1,7 +1,6 @@
 import axios from 'axios';
+import { SET_THREADS, SELECT_THREAD } from '../constants/threads';
 
-export const SET_THREADS = 'SET_THREADS';
-export const ADD_THREADS = 'ADD_THREADS';
 
 function handleResponse(response) {
   if (response.ok) {
@@ -12,6 +11,8 @@ function handleResponse(response) {
     throw error;
   }
 }
+
+
 
 export function setThreads(threads) {
   return {
@@ -54,8 +55,4 @@ export function fetchThread() {
                          console.log(data);
               } );
     }
-}
-
-export function resetForm() {
-
 }

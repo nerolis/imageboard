@@ -2,7 +2,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 // Actions
-import {fetchThread} from '../actions/actions';
+import {fetchThread, selectThread} from '../../actions/actions';
 // Styles
 import {Image, Item, Container, Button, Header} from 'semantic-ui-react';
 // Components
@@ -22,7 +22,7 @@ class Threads extends React.Component {
     
     render() {
        console.log('From store', this.props.threads)
-       console.log('Form', this.props.showThreadCreateForm)
+       console.log('State', this.props.likes)
         return(
 
 
@@ -30,10 +30,10 @@ class Threads extends React.Component {
                <ThreadList threads={this.props.threads}/>      
                 {(this.state.showThreadCreateForm)
                 ? <div> 
-                <Button onClick={() => this.setState({showThreadCreateForm: false})}>Close form</Button>
+                <Button basic onClick={() => this.setState({showThreadCreateForm: false})}>Close form</Button>
                <ThreadCreateForm />
                   </div>
-                : <Button onClick={() => this.setState({showThreadCreateForm: true})}>Create thread</Button>
+                : <Button basic onClick={() => this.setState({showThreadCreateForm: true})}>Create thread</Button>
                 }
         </div>
     )
@@ -41,17 +41,16 @@ class Threads extends React.Component {
 }
 
 
-// прокинуть стейт в тред не через пропсы
 function mapStateToProps(state) {
   return {
    threads: state.threads,
-   showThreadCreateForm: state.showThreadCreateForm
   }
 }
 
 export default connect(
   mapStateToProps, {
       fetchThread,
-      
-}
+
+
+} 
 )(Threads)

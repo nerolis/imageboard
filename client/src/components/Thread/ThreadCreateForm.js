@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { createThread, fetchThread } from '../actions/actions';
+import { createThread, fetchThread } from '../../actions/actions';
 import {Form, Button, Textarea} from 'semantic-ui-react';
 import Dropzone from 'react-dropzone-component';
   
