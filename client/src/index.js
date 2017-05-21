@@ -20,6 +20,5 @@ ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <App/>
     </Provider>
-     </BrowserRouter>,
-    document.getElementById('root') 
-);
+     </BrowserRouter>, document.getElementById('root') 
+     );

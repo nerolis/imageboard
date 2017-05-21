@@ -29,6 +29,7 @@ class App extends Component {
 
         <Route exact path="/threads" component={Threads} />
          <Route exact path="/" component={Home} />
+           
           
           <Route handler={NotFound} name="not-found" />
       </div>

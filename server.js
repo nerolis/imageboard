@@ -4,13 +4,15 @@ import mongodb from 'mongodb';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+// import threads from './server/routes/threads'; 
+
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 
 const dbUrl = 'mongodb://localhost/board';
-
+// app.use('/api/threads ', threads);
 // Валидация создания треда. 
 function validate(data) {
   let errors = {};
@@ -26,6 +28,12 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
   app.get('/api/threads', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
       res.json({ threads });
+    });
+  });
+
+    app.get('/api/posts', (req, res) => {
+    db.collection('posts').find({}).toArray((err, posts) => {
+      res.json({ posts });
     });
   });
 
@@ -47,6 +55,21 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
     }
   });
   
+    app.post('/api/posts', (req, res) => {
+    const { errors, isValid } = validate(req.body);
+    if (isValid) {  
+      const { id, date, title, name, text, image} = req.body;
+      db.collection('posts').insert({id, title, name, text, image, date:new Date().toLocaleString()}, (err, result) => {
+        if (err) {
+          res.status(500).json({ errors: { global: "500" }});
+        } else {
+          res.json({ post: result.ops[0] });
+        }
+      });
+    } else {
+      res.status(400).json({ errors });
+    }
+  });
 
 
   // app.delete('/api/threads', (req, res => {

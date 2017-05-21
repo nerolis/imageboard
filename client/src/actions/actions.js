@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_THREADS, SELECT_THREAD } from '../constants/threads';
+import { SET_THREADS, ADD_THREADS} from '../constants/threads';
 
 
 function handleResponse(response) {
@@ -11,8 +11,6 @@ function handleResponse(response) {
     throw error;
   }
 }
-
-
 
 export function setThreads(threads) {
   return {
