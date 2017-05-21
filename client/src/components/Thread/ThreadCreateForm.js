@@ -14,68 +14,54 @@ import Dropzone from 'react-dropzone-component';
             image: '',
             errors: {},
         };
-      }
-    
-      
-  // Как сабскрайб сделать напрямую - не понял, поэтому просто после создания треда, будет происходить новый фетч. TODO: fix it.
-  handleSubmit(e) { 
-    e.preventDefault()
-    // Тестовая валидация
-        let errors = {};
-    if (this.state.name === ''){
-      alert(`not valid - {this.state.name}`)}
-      if (this.state.text === ''){
-        alert(`not valid - {this.state.text}`)}
-          if (this.state.image === ''){
-                this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg'
-            }
-    const isValid = Object.keys(errors).length === 0
-      if (isValid) {
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+     }
+
+  onSubmit(e) { 
+   e.preventDefault()
+    // Дефолтное изображение, if поле с изображением пусто. Тупо, но работает. Временно сойдет.
+    if (this.state.image === '') {
+    this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg';
+    }
     // Post!
-    const { name, text, image} = this.state;
+    const { name, text, image} = this.state; // чтоб не перечислять через this.state
     this.props.createThread({name, text, image})
         .then(() => this.props.fetchThread())
-        // Вот это - для очищения формы. Не знаю, вроде норм.
+        // Вот это - для очищения формы. Вроде норм.
         this.setState({
           name: 'Chen',
           text: '',
           image: '',
         });
      }
+ 
+  onChange(e) {
+     this.setState({ [e.target.name]: e.target.value });
+
   }
-  //TODO: Объединить хендлы в один с помощью этой функции. Правда, я забыл как. Но где-то видел.
-        handleChange = (e) => {
-        }
-        handleNameChange(e) {
-          this.setState({name: e.target.value})
-        }
-        handleTextChange(e) {
-          this.setState({text: e.target.value})
-        }
-        handleImageChange(e) {
-          this.setState({image: e.target.value})
-        }
-        // почистить всю эт хауту
     render() {
       return(
-        <Form onSubmit={::this.handleSubmit}>
+        <Form onSubmit={this.onSubmit}>
               <input
-              
-                  placeholder='Name'
+                  name='name'
+                  placeholder='name'
                   value={this.state.name}
-                  onChange={::this.handleNameChange} >
+                  onChange={this.onChange} >
               </input>
               <Form.Field
+                  name='text'
                   placeholder='Message'
                   control='textarea'
                   rows='3'
                   value={this.state.text}
-                  onChange={::this.handleTextChange}/>
+                  onChange={this.onChange}/>
               <Form.Field>
               <input
+                  name='image'
                   placeholder='URL:'
                   value={this.state.image}
-                  onChange={::this.handleImageChange}>
+                  onChange={this.onChange}>
               </input>
               <Form.Field>
                   <Dropzone
