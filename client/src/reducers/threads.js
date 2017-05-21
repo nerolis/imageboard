@@ -1,4 +1,4 @@
-import { SET_THREADS, ADD_THREAD, SELECT_THREAD} from '../constants/threads';
+import { SET_THREADS, ADD_THREAD} from '../constants/threads';
 
 export default function threads(state = [], action = {}) {
   switch(action.type) {
