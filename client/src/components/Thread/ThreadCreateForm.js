@@ -13,6 +13,7 @@ import Dropzone from 'react-dropzone-component';
             text: '', 
             image: '',
             errors: {},
+            showThreadCreateForm: false,
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -20,10 +21,9 @@ import Dropzone from 'react-dropzone-component';
 
   onSubmit(e) { 
    e.preventDefault()
-    // Дефолтное изображение, if поле с изображением пусто. Тупо, но работает. Временно сойдет.
+    // if поле с изображением пусто. Тупо, но работает. Временно сойдет.
     if (this.state.image === '') {
-    this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg';
-    }
+    this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg';}
     // Post!
     const { name, text, image} = this.state; // чтоб не перечислять через this.state
     this.props.createThread({name, text, image})
@@ -33,15 +33,20 @@ import Dropzone from 'react-dropzone-component';
           name: 'Chen',
           text: '',
           image: '',
+          showThreadCreateForm: false,
         });
      }
- 
+
   onChange(e) {
      this.setState({ [e.target.name]: e.target.value });
 
   }
     render() {
-      return(
+          const {onSubmit} = this.props;
+          const {showThreadCreateForm} = this.state;
+
+     if (showThreadCreateForm) return (
+       <div>
         <Form onSubmit={this.onSubmit}>
               <input
                   name='name'
@@ -77,6 +82,12 @@ import Dropzone from 'react-dropzone-component';
               </Form.Field>
                     <Button className="ui primary button">Create thread</Button>
          </Form>
+         </div>
+           );
+                else return (
+      <Button compact color='blue' onClick={() => this.setState({showThreadCreateForm: true})}>
+        Create thread
+      </Button>
          
     );
   }
