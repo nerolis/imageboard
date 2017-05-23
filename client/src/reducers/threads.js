@@ -6,19 +6,7 @@ export default function threads(state = [], action = {}) {
       return [
         ...state,
         action.thread
-      ];
-      
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+      ];   
     case SET_THREADS:
       return action.threads;
     default: return state;
