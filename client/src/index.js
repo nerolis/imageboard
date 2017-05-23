@@ -5,9 +5,10 @@ import {Router, browserHistory} from 'react-router';
 import { Provider} from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
-import { BrowserRouter } from 'react-router-dom';   
+import { BrowserRouter } from 'react-router-dom'; 
+import { composeWithDevTools } from 'redux-devtools-extension';
 // Reducers
-import reducers from './reducers/index';
+import reducers from './reducers/rootReducer';
 // Styles
 import './styles/index.scss';
 // Components

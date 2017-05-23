@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone-component';
-import {connect} from 'react-redux';
-import { createPost, fetchPost } from '../../actions/posts';
-class ThreadAddPost extends Component {
+
+ class ThreadAddPost extends Component {
   constructor() {
     super();
     this.state = {
@@ -25,7 +24,13 @@ class ThreadAddPost extends Component {
     const { name, text, image} = this.state; // чтоб не перечислять через this.state
     this.props.createPost({name, text, image})
         .then(() => this.props.fetchPost())
-        // Вот это - для очищения формы. Вроде норм.
+          .then( () => {
+            this.props.addFlashMessage({
+              type: 'Succes', 
+              text: 'Post added',
+            })
+          })
+      // Вот это - для очищения формы. Вроде норм.
         this.setState({
           name: 'Chen',
           text: '',
@@ -38,9 +43,8 @@ class ThreadAddPost extends Component {
   }
   
     render() {
-    
-    const {onSubmit} = this.props;
-    const {showPostingForm} = this.state;
+      const {onSubmit} = this.props;
+      const {showPostingForm} = this.state;
 
     if (showPostingForm) return (
       <div>
@@ -68,11 +72,12 @@ class ThreadAddPost extends Component {
                   value={this.state.image}
                   onChange={this.onChange}>
               </input>
-                <div className="field"> 
+              <Form.Field>
+                   <div className="field"> 
                     {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}
                 </div>
-                   <Button color='blue' basic compact size='tiny' onClick={this.onSubmit}>Отправить</Button>
-        
+              </Form.Field>
+                    <Button className="ui primary button">Reply</Button>
         </Form>
       
       
@@ -86,4 +91,4 @@ class ThreadAddPost extends Component {
   }
 }
 
-export default connect(null, {createPost, fetchPost})(ThreadAddPost);
+export default ThreadAddPost;

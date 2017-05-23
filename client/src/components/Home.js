@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Feed, Icon, List, Content, Header} from 'semantic-ui-react';
+import {Feed, Icon, List, Content, Header, Container} from 'semantic-ui-react';
 class Home extends Component {
   render() {
     return (
@@ -7,7 +7,7 @@ class Home extends Component {
         // Hardcode stage presentation, there will be latest activity on the board.
         // hm, in fact, also with list of threads that was updated. with some feed.
 
-      <div className=''>
+      <Header>
          <List divided relaxed selection>
     <List.Item>
       <List.Icon name='github' size='large' verticalAlign='middle' />
@@ -33,7 +33,7 @@ class Home extends Component {
     
   </List>
 
-  </div>
+  </Header>
     );
   }
 }

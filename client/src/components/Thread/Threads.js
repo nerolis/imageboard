@@ -1,34 +1,32 @@
 // Modules
 import React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 // Actions
-import {fetchThread, selectThread} from '../../actions/actions';
+import {fetchThread} from '../../actions/actions';
 import {fetchPost} from '../../actions/posts';
+import { addFlashMessage } from '../../actions/flashMessages';
 // Styles
 import {Image, Item, Container, Button, Header} from 'semantic-ui-react';
 // Components
 import ThreadList from './ThreadList';
 import PostList from '../Posts/PostList';
 import ThreadCreateForm from './ThreadCreateForm';
-import {Redirect} from 'react-router-dom';
 
-class Threads extends React.Component {
-        componentDidMount() {
-       this.props.fetchThread()
-       this.props.fetchPost()
-  
-   }
+  class Threads extends React.Component {
+         componentDidMount() {
+          this.props.fetchThread()
+          this.props.fetchPost()
+  }
+
     render() {
-       console.log('Threads Store:', this.props.threads)
-       console.log('Posts Store:', this.props.posts)
-        return(
+      return(
       <div className=''>
-          <ThreadList threads={this.props.threads}/>      
+          <ThreadList threads={this.props.threads} posts={this.props.posts}/>    
       </div>
     )
   }
 }
-
 function mapStateToProps(state) {
   return {
    threads: state.threads,
@@ -37,10 +35,10 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-  mapStateToProps, {
-      fetchThread,
-      fetchPost,
-
-
+  mapStateToProps, 
+{
+     fetchPost,
+     fetchThread,
+     addFlashMessage,
 } 
 )(Threads)

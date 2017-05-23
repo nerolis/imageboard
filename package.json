@@ -50,6 +50,7 @@
     "sass-loader": "^6.0.5",
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.68.3",
+    "shortid": "^2.2.8",
     "style-loader": "^0.17.0",
     "url-loader": "^0.5.8",
     "validator": "^7.0.0",
