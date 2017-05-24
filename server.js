@@ -14,10 +14,11 @@ app.use(bodyParser.json());
 const dbUrl = 'mongodb://localhost/board';
 // app.use('/api/threads ', threads);
 // Валидация создания треда. 
+
 function validate(data) {
   let errors = {};
   if (data.name === '') errors.name = "Can't be empty";
-  if (data.text === '') errors.text = "Can't be empty";
+  // if (data.text === '') errors.text = "Can't be empty";
   const isValid = Object.keys(errors).length === 0
   return { errors, isValid };
 }
@@ -31,7 +32,7 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
     });
   });
 
-    app.get('/api/posts', (req, res) => {
+   app.get('/api/posts', (req, res) => {
     db.collection('posts').find({}).toArray((err, posts) => {
       res.json({ posts });
     });
@@ -51,8 +52,8 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
         }
       });
     } else {
-      res.status(400).json({ errors });
-    }
+      res.status(400).json({ errors });  
+  }
   });
   
     app.post('/api/posts', (req, res) => {
