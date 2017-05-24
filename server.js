@@ -73,13 +73,12 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
   });
 
 
-  // app.delete('/api/threads', (req, res => {
-  //  db.collection('threads').deleteOne({_id)
-  // }))
+//app.delete('/api/threads', (req, res => {
+ //db.collection('threads').deleteOne({_id) 
 
 
+// without this f5 won't work with router! 
 app.get('*', function (req, res) {
-  // and drop 'public' in the middle of here
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
