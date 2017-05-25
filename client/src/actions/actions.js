@@ -12,7 +12,6 @@ export function selectSubThread(subThread) {
     subThread
   }
 
-
 }
 
 export function invalidateSubThread(subThread) {
@@ -37,10 +36,6 @@ function receivePosts(subThread, json) {
     receivedAt: Date.now()
   }
 }
-
-
-
-
 
 
 function handleResponse(response) {
@@ -73,25 +68,20 @@ export function createThread(data) {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
-        
+        "Content-Type": "application/json",    
       }
     }).then(handleResponse)
-    .then(data => dispatch(addThread(data.threads)));
+    .then(data => dispatch(addThread(data.threads)))
   }
 }
-
 //todo: через аксиос переделать всё.
 export function fetchThread() {
     return dispatch => {
          axios.get('http://localhost:3000/api/threads', {mode: 'cors'})
             .then(response => {
-               console.log(response.data.threads[0]);
-               const threadsObj = response.data.threads[0];
-               const data = {
-               }
-               dispatch(setThreads(response.data.threads));
-                         console.log(data);
-              } );
+               dispatch(setThreads(response.data.threads))
+                
+               
+      });
     }
 }

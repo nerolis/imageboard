@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone-component';
+import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/posts';
 
  class ThreadAddPost extends Component {
   constructor() {

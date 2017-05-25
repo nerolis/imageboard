@@ -20,7 +20,7 @@ class ThreadCreateForm extends React.Component {
    e.preventDefault()
     // if поле с изображением пусто. Тупо, но работает. Временно сойдет.
     if (this.state.image === '') {
-    this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg';}
+    this.state.image = 'https://s-media-cache-ak0.pinimg.com/736x/27/41/d4/2741d4a50c83ba4c9dbae21618112e94.jpg'}
     // Post!
     const { name, text, image} = this.state; // чтоб не перечислять через this.state
     this.props.createThread({name, text, image})

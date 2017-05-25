@@ -15,6 +15,8 @@ import './styles/index.scss';
 import routes from './routers';
 import App from './components/App'
 
+
+
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 ReactDOM.render(
     <BrowserRouter>

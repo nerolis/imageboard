@@ -14,8 +14,10 @@ import PostCard from './PostCard';
      return(
         <div>                                
          <Item.Group divided relaxed>     
-          {posts.map(post => 
-            <PostCard post={post} key={post._id}  
+          {posts.map(post =>  // {posts.slice(0, 3).map(post => оставлю здесь. очень плохой способ, надо думать.
+            <PostCard 
+              post={post}
+              key={post._id}  
               createPost={this.props.createPost}
               fetchPost={this.props.fetchPost}
               addFlashMessage={this.props.addFlashMessage}

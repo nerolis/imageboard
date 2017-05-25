@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom';
 import {fetchThread} from '../../actions/actions';
 import {fetchPost} from '../../actions/posts';
 import { addFlashMessage } from '../../actions/flashMessages';
+import { selectThread, fetchPostsIfNeeded, invalidateThread } from '../../actions/fetchThreads';
 // Styles
 import {Image, Item, Container, Button, Header} from 'semantic-ui-react';
 // Components
@@ -13,10 +14,12 @@ import ThreadList from './ThreadList';
 import PostList from '../Posts/PostList';
 import ThreadCreateForm from './ThreadCreateForm';
 
+
   class Threads extends React.Component {
-         componentDidMount() {
+         componentWillMount() {
+           
           this.props.fetchThread()
-          this.props.fetchPost()
+          this.props.fetchPost()     
   }
 
     render() {

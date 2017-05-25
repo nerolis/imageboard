@@ -3,7 +3,7 @@ import express from 'express';
 import mongodb from 'mongodb';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-
+import autoIncrement from 'mongodb-autoincrement';
 // import threads from './server/routes/threads'; 
 
 const app = express();
@@ -23,10 +23,15 @@ function validate(data) {
   return { errors, isValid };
 }
 
-mongodb.MongoClient.connect(dbUrl, function(err, db) {
-
+  mongodb.MongoClient.connect(dbUrl, function(err, db) {
 
   app.get('/api/threads', (req, res) => {
+    db.collection('threads').find({}).toArray((err, threads) => {
+      res.json({ threads });
+    });
+  });
+
+   app.get('/api/thread:id', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
       res.json({ threads });
     });
@@ -41,10 +46,11 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
 // todo: добавить айди
 
   app.post('/api/threads', (req, res) => {
+    autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
-      const { id, date, title, name, text, image} = req.body;
-      db.collection('threads').insert({id, title, name, text, image, date:new Date().toLocaleString()}, (err, result) => {
+      const {id, date, title, name, text, image} = req.body;
+      db.collection('threads').insert({id: autoIndex, title, name, text, image, date:new Date().toLocaleString()}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {
@@ -54,13 +60,15 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
     } else {
       res.status(400).json({ errors });  
   }
-  });
+});
+  })
   
     app.post('/api/posts', (req, res) => {
+      autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
       const { id, date, title, name, text, image} = req.body;
-      db.collection('posts').insert({id, title, name, text, image, date:new Date().toLocaleString()}, (err, result) => {
+      db.collection('posts').insert({id: autoIndex, title, name, text, image, date:new Date().toLocaleString()}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {
@@ -71,14 +79,16 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
       res.status(400).json({ errors });
     }
   });
+    })
 
 
 //app.delete('/api/threads', (req, res => {
  //db.collection('threads').deleteOne({_id) 
 
 
-// without this f5 won't work with router! 
+
 app.get('*', function (req, res) {
+  // and drop 'public' in the middle of here
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
