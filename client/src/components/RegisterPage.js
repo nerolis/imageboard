@@ -5,12 +5,14 @@ import {Form, Button, Container} from 'semantic-ui-react';
 // import { connect } from 'react-redux';
 //import { login } from '';
 
-class LoginPage extends Component { // В принципе, для анонимной борды это не нужно, но буду юзать как админку. Плюс кое-какой  эксп.
+class RegisterPage extends Component { // В принципе, для анонимной борды это не нужно, но буду юзать как админку. Плюс кое-какой  эксп.
     constructor(props) {
         super(props)
         this.state = {
             username: '',
+            email: '',
             password: '',
+            passwordConfirmation: '',
             // error: {},
             // isLoading: false
         }
@@ -20,10 +22,9 @@ class LoginPage extends Component { // В принципе, для аноним�
     
     onSubmit(e) {
         e.preventDefault();
-
         // if (validate) {
-        console.log('submitted', 'user:', this.state.username, 'pass:', this.state.password);
-        this.setState({ username: '', password: '' }) // reset form
+            console.log('submitted')
+        this.setState({ username: '', password: '', passwordConfirmation: '', email: ''  }) // reset form
         //}
     }
     
@@ -34,7 +35,7 @@ class LoginPage extends Component { // В принципе, для аноним�
   render() {
     return ( 
             <Container>
-            
+            <h1>Register</h1>
           <Form onSubmit={this.onSubmit}>
           
           <TextFieldGroup
@@ -44,12 +45,25 @@ class LoginPage extends Component { // В принципе, для аноним�
            value={this.state.username}
            onChange={this.onChange}
            />
-          
+          <TextFieldGroup
+           label='E-mail'
+           type='text'
+           field='email'
+           value={this.state.email}
+           onChange={this.onChange}
+           />
            <TextFieldGroup
            label='Password'
            type='password'
            field='password'
            value={this.state.password}
+           onChange={this.onChange}
+           />
+                      <TextFieldGroup
+           label="Password Confirmation"
+           type='password'
+           field='passwordConfirmation'
+           value={this.state.passwordConfirmation}
            onChange={this.onChange}
            />
              <button className="ui primary button">Login</button>
@@ -59,4 +73,4 @@ class LoginPage extends Component { // В принципе, для аноним�
   }
 }
 
-export default LoginPage;
+export default RegisterPage;

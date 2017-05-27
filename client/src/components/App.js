@@ -7,6 +7,7 @@ import Thread from './Thread/Thread';
 import Home from './Home';
 import NotFound from './NotFound';
 import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 import FlashMessagesList from './features/flash/FlashMessagesList';
 import {Menu, Dropdown, Item, Segment} from 'semantic-ui-react';
 // Styles
@@ -40,6 +41,7 @@ class App extends Component {
          <Route exact path="/" component={Home} />
          <Route exact path="/login" component={LoginPage} />
           <Route handler={NotFound} name="not-found" />
+          <Route exact path='/register' component={RegisterPage} />
       </div>
     );
   }
