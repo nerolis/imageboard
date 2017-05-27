@@ -77,7 +77,7 @@ export function createThread(data) {
 //todo: через аксиос переделать всё.
 export function fetchThread() {
     return dispatch => {
-         axios.get('http://localhost:3000/api/threads', {mode: 'cors'})
+         axios.get('http://localhost:3000/api/threads/', {mode: 'cors'})
             .then(response => {
                dispatch(setThreads(response.data.threads))
                 
@@ -85,3 +85,15 @@ export function fetchThread() {
       });
     }
 }
+
+export function fetchSelectThread() {
+    return dispatch => {
+         axios.get(`localhost:3000/api/threads/${thread.id}`), {mode: 'cors'}
+            .then(response => {
+               dispatch(setThreads(response.data.threads))
+                
+               
+      });
+    }
+}
+

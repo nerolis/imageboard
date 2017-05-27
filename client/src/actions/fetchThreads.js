@@ -4,7 +4,7 @@ export const SELECT_THREAD = 'SELECT_THREAD'
 export const INVALIDATE_THREAD = 'INVALIDATE_THREAD'
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-// Подписка на обновление?
+// Подписка на обновление? http://redux.js.org/docs/advanced/AsyncActions.html
 export function selectThread(thread) {
   return {
     type: SELECT_THREAD,

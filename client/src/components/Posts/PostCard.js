@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} from 'semantic-ui-react';
-import ThreadAddPost from '../Thread/ThreadAddPost';
+import ThreadReply from '../Thread/ThreadReply';
 // Styles
 // import postForm from '.../styles/postForm.scss';
 class PostCard extends React.Component {
@@ -19,13 +19,13 @@ class PostCard extends React.Component {
               <p>{post.name}</p>
               {post.date}
               </Item.Header>
-              <Item.Description  className='extra coqweqwaeaedasdntent'>
+              <Item.Description  className='extra content'>
                 <Message color='blue'>
                 {post.text}
                 </Message>
                 Answers: <a>>{Date.now()}</a> 
               </Item.Description>
-                   <ThreadAddPost thread={id} // FIX: тупое дублирование, ЭТО нужно чтоб вывести show/reply баттон на превью постов в треде.
+                   <ThreadReply thread={id} // FIX: тупое дублирование, ЭТО нужно чтоб вывести show/reply баттон на превью постов в треде.
                         createPost={this.props.createPost}
                         fetchPost={this.props.fetchPost}
                         addFlashMessage={this.props.addFlashMessage}

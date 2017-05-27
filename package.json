@@ -7,6 +7,7 @@
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --content-base public --history-api-fallback ",
     "build": "webpack",
     "start": "babel-node server.js",
+    "start-test": "babel-node ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

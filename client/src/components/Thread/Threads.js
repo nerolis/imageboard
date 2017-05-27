@@ -17,7 +17,6 @@ import ThreadCreateForm from './ThreadCreateForm';
 
   class Threads extends React.Component {
          componentWillMount() {
-           
           this.props.fetchThread()
           this.props.fetchPost()     
   }

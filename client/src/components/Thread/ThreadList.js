@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // Components
-import ThreadCard from './ThreadCard';
+import ThreadView from './ThreadView';
 import {Item, Button, Menu, Container, Header} from 'semantic-ui-react';
 import ThreadCreateForm from './ThreadCreateForm';
 // Actions
 import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchThread, createThread} from '../../actions/actions';
 import {fetchPost, createPost} from '../../actions/posts';
+import { Redirect } from 'react-router';
     
 class ThreadList extends React.Component {
        constructor() {
@@ -23,11 +24,12 @@ class ThreadList extends React.Component {
           <Container fluid>
            {
           (this.state.currentThread)
-            ? <Header size='medium'>Thread: №{this.state.currentThread}</Header>
-            : <ThreadCreateForm  onSubmit={(threads) => this.setState({ threads })}
-                        createThread={createThread}
-                        fetchThread={fetchThread}
-                        addFlashMessage={addFlashMessage}                   
+            ? <Header size='large'>Thread: №{this.state.currentThread}</Header>
+            : <ThreadCreateForm 
+                    onSubmit={(threads) => this.setState({ threads })}
+                    createThread={createThread}
+                    fetchThread={fetchThread}
+                    addFlashMessage={addFlashMessage}                   
               />
         }
             {this.renderThreads.bind(this)()}
@@ -44,7 +46,7 @@ class ThreadList extends React.Component {
                      })
                     .map(thread =>
  // IDEA: Разделить тредлист с постлистом, чтоб коннект был и там, и там. То, имхо, выходит слишком непонятно.
-                    <ThreadCard
+                    <ThreadView
                         posts={posts}
                         createPost={createPost}
                         fetchPost={fetchPost}

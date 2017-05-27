@@ -14,7 +14,7 @@ import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/sr
       showPostingForm: false
     }
         this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);  
   }
   onSubmit(e) {
    e.preventDefault()
@@ -80,14 +80,15 @@ import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/sr
               </Form.Field>
                     <Button className="ui primary button">Reply</Button>
         </Form>
-      
-      
+        
       </div>
     );
     else return (
       <Button color='blue' basic compact size='tiny' onClick={() => this.setState({showPostingForm: true})}>
         Reply
       </Button>
+      
+      
     )
   }
 }

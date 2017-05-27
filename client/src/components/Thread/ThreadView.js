@@ -1,12 +1,14 @@
 import React from 'react';
 // Components
 import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} from 'semantic-ui-react';
-import ThreadAddPost from './ThreadAddPost';
+import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
 // Styles
 // import postForm from '.../styles/postForm.scss';
 
-class ThreadCard extends React.Component {
+class ThreadView extends React.Component {
+  //   selectThread = () => { .
+  // }
   render() {
     const {thread, image, select, text, name, id} = this.props;
       return(
@@ -28,8 +30,9 @@ class ThreadCard extends React.Component {
                    <Item.Extra as='h4'>
                      <a>>{Date.now()}</a> 
                    </Item.Extra>
-               <Button onClick={() => select(thread.id)} compact basic size='small' icon='reply' />
-               <ThreadAddPost
+               <Button onClick={() => select(thread.id)} compact basic size='small' icon='reply' // зарефакторить через редирект и фетч. но сначала базу подправить, это как-то через нестед(три) делается
+                />
+               <ThreadReply
                     thread={id}
                     createPost={this.props.createPost}
                     fetchPost={this.props.fetchPost}
@@ -55,4 +58,4 @@ class ThreadCard extends React.Component {
   }
 }
 
-export default ThreadCard;
+export default ThreadView;

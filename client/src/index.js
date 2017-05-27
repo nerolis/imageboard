@@ -12,7 +12,6 @@ import reducers from './reducers/rootReducer';
 // Styles
 import './styles/index.scss';
 // Components
-import routes from './routers';
 import App from './components/App'
 
 

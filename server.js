@@ -31,11 +31,11 @@ function validate(data) {
     });
   });
 
-   app.get('/api/thread:id', (req, res) => {
-    db.collection('threads').find({}).toArray((err, threads) => {
-      res.json({ threads });
+   app.get('/api/threads/:threadsId', (req, res) => {
+    db.collection('threads').findOne({id: Number(req.params.threadsId)})
+      .then(threads => res.send(threads))
+        .catch(console.error)
     });
-  });
 
    app.get('/api/posts', (req, res) => {
     db.collection('posts').find({}).toArray((err, posts) => {
@@ -63,7 +63,7 @@ function validate(data) {
 });
   })
   
-    app.post('/api/posts', (req, res) => {
+      app.post('/api/posts', (req, res) => {
       autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
@@ -80,6 +80,25 @@ function validate(data) {
     }
   });
     })
+
+// app.post('/api/posts', (req, res) => {
+//   const threadId = req.body.threadId;
+//   const post = req.body.newPost;
+//   db.collection('posts').insertOne({ post }).then(result => {
+//     db.collection('threads').findAndModify(
+//       {_id: threadId},
+//       [],
+//       {$push: {postIds: result.insertedId}},
+//       { new: true}
+//     ).then(doc => 
+//       res.send({
+//         updatedThread: doc.value,
+//         newPost: {_id: result.insertedId, post}
+//       })
+//     )
+//   })
+//   .catch(console.error)
+// })
 
 
 //app.delete('/api/threads', (req, res => {
