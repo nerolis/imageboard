@@ -3,6 +3,7 @@ import React from 'react';
 import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} from 'semantic-ui-react';
 import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
+import {Link} from 'react-router-dom';
 // Styles
 // import postForm from '.../styles/postForm.scss';
 
@@ -29,9 +30,10 @@ class ThreadView extends React.Component {
               </Item.Description>
                    <Item.Extra as='h4'>
                      <a>>{Date.now()}</a> 
-                   </Item.Extra>
-               <Button onClick={() => select(thread.id)} compact basic size='small' icon='reply' // зарефакторить через редирект и фетч. но сначала базу подправить, это как-то через нестед(три) делается
-                />
+                   </Item.Extra> 
+                      {/* <Link to={`/thread/${thread.id}`}> */} 
+                        <Button onClick={() => select(thread.id)} compact basic size='small' icon='reply' />
+                      {/* </Link>  */} 
                <ThreadReply
                     thread={id}
                     createPost={this.props.createPost}
