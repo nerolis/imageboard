@@ -46,10 +46,11 @@ function validate(data) {
   mongodb.MongoClient.connect(dbUrl, function(err, db) {
 
   app.use('/api', authRoute);
-  app.get('/test', checkToken, (req, res) => {
+  app.get('/test', checkToken, (req, res) => { // token
     res.json('test')
   });
 
+  // todo: refactor через роутер
   app.get('/api/threads', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
       res.json({ threads });

@@ -29,6 +29,7 @@ class LoginPage extends Component { // В принципе, для аноним�
         const { login, password} = this.state;
         this.props.loginAuth({login, password})
         this.setState({ redirectToReferrer: true }) // простейший редирект при логине. TODO: через редакс переделать + jwt токен
+        {alert('successful log-in. redirect')}
     }
     
     onChange(e) {

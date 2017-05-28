@@ -6,7 +6,7 @@ export function loginAuth(data) {
     }
 }
 
- export function updateData(){
-    //update state if needed
+ export function authToken(){
+    // Заготовочка для токена
     
  }
