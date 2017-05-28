@@ -1,41 +1,8 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import session from 'express-session';
-import path from 'path';
-import mongodb from 'mongodb';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import autoIncrement from 'mongodb-autoincrement';
-import morgan from 'morgan';
-import bluebird from 'bluebird';
-import authRoute from './server/routes/auth';
-import config from './server/config';
-import errorHandler from './server/middlewares/errorHandler'; // must be last
-import checkToken from './server/middlewares/checkToken';
-mongoose.Promise = bluebird;
-mongoose.connect(config.database, err => {
-  if (err) {
-    throw err
-  }
-  console.log('db connected')
-})
-
-const app = express();
-app.use(morgan('combined'));
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(cors({ origin: '*' }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: config.secret
-}))
-
-const dbUrl = 'mongodb://localhost/board';
-
-
-function validate(data) {
+  import express from 'express';
+  import autoIncrement from 'mongodb-autoincrement';
+  let router = express.Router();
+  
+  function validate(data) {
   let errors = {};
   if (data.name === '') errors.name = "Can't be empty";
   // if (data.text === '') errors.text = "Can't be empty";
@@ -43,32 +10,25 @@ function validate(data) {
   return { errors, isValid };
 }
 
-  mongodb.MongoClient.connect(dbUrl, function(err, db) {
-
-  app.use('/api', authRoute);
-  app.get('/test', checkToken, (req, res) => {
-    res.json('test')
-  });
-
-  app.get('/api/threads', (req, res) => {
+  router.get('/api/threads', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
       res.json({ threads });
     });
   });
 
-   app.get('/api/threads/:threadsId', (req, res) => {
+   router.get('/api/threads/:threadsId', (req, res) => {
     db.collection('threads').findOne({id: Number(req.params.threadsId)})
       .then(threads => res.send(threads))
         .catch(console.error)
     });
 
-   app.get('/api/posts', (req, res) => {
+   router.get('/api/posts', (req, res) => {
     db.collection('posts').find({}).toArray((err, posts) => {
       res.json({ posts });
     });
   });
 
-  app.post('/api/threads', (req, res) => {
+  router.post('/api/threads', (req, res) => {
     autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
@@ -86,7 +46,7 @@ function validate(data) {
 });
   })
   
-      app.post('/api/posts', (req, res) => {
+      router.post('/api/posts', (req, res) => {
       autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
@@ -104,7 +64,7 @@ function validate(data) {
   });
     })
 
-// app.post('/api/posts', (req, res) => {
+// router.post('/api/posts', (req, res) => {
 //   const threadId = req.body.threadId;
 //   const post = req.body.newPost;
 //   db.collection('posts').insertOne({ post }).then(result => {
@@ -123,21 +83,4 @@ function validate(data) {
 //   .catch(console.error)
 // })
 
-app.get('*', function (req, res) {
-  // and drop 'public' in the middle of here
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-
-app.use(errorHandler);
-  app.use((req, res) => {
-    res.status(404).json({
-      errors: {
-        global: "404"
-      }
-    });
-  })
-
-
-  app.listen(3000, () => console.log('Server is running on localhost:3000'));
-
-});
+export default router;
