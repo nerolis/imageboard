@@ -1,19 +1,39 @@
-import path from 'path';
 import express from 'express';
+import mongoose from 'mongoose';
+import session from 'express-session';
+import path from 'path';
 import mongodb from 'mongodb';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import autoIncrement from 'mongodb-autoincrement';
-// import threads from './server/routes/threads'; 
+import morgan from 'morgan';
+import bluebird from 'bluebird';
+import authRoute from './server/routes/auth';
+import config from './server/config';
+import errorHandler from './server/middlewares/errorHandler'; // must be last
+
+mongoose.Promise = bluebird;
+mongoose.connect(config.database, err => {
+  if (err) {
+    throw err
+  }
+  console.log('db connected')
+})
 
 const app = express();
+app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: config.secret
+}))
 
 const dbUrl = 'mongodb://localhost/board';
-// app.use('/api/threads ', threads);
-// Валидация создания треда. 
+
 
 function validate(data) {
   let errors = {};
@@ -24,6 +44,8 @@ function validate(data) {
 }
 
   mongodb.MongoClient.connect(dbUrl, function(err, db) {
+
+  app.use('/api', authRoute);
 
   app.get('/api/threads', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
@@ -42,8 +64,6 @@ function validate(data) {
       res.json({ posts });
     });
   });
-
-// todo: добавить айди
 
   app.post('/api/threads', (req, res) => {
     autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
@@ -100,17 +120,12 @@ function validate(data) {
 //   .catch(console.error)
 // })
 
-
-//app.delete('/api/threads', (req, res => {
- //db.collection('threads').deleteOne({_id) 
-
-
-
 app.get('*', function (req, res) {
   // and drop 'public' in the middle of here
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
+app.use(errorHandler);
   app.use((req, res) => {
     res.status(404).json({
       errors: {

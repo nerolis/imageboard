@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 
 const ThreadSchema = new Schema({
     id        : { type: String},
-    name     : { type: String},
+    name      : { type: String},
     text      : { type: String},
     image     : { type: String},
+    slug      : { type: String, required: true},
     createdAt : { type: Date, defalt: Date.now},
     posts: [{ body: String, date: Date }]
 });
