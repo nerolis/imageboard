@@ -24,7 +24,7 @@ class RegisterPage extends Component { // В принципе, для анони
         e.preventDefault();
         // if (validate) {
             console.log('submitted')
-        this.setState({ username: '', password: '', passwordConfirmation: '', email: ''  }) // reset form
+           this.setState({ username: '', password: '', passwordConfirmation: '', email: ''  }) // reset form
         //}
     }
     

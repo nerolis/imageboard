@@ -1,6 +1,6 @@
 // Modules
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route} from 'react-router-dom';
 // Components
 import Threads from './Thread/Threads';
 import Thread from './Thread/Thread';
@@ -9,7 +9,7 @@ import NotFound from './NotFound';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import FlashMessagesList from './features/flash/FlashMessagesList';
-import {Menu, Dropdown, Item, Segment} from 'semantic-ui-react';
+import {Menu, Dropdown, Item, Segment, Button} from 'semantic-ui-react';
 // Styles
 
 
@@ -25,16 +25,19 @@ class App extends Component {
 
     <div className="ui container">
         <div className="ui inverted five item menu">
-         <Menu.Item>
+         <Menu.Item >
           <img size='medium' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
-
         </Menu.Item>
-        
        <ActiveLink activeOnlyWhenExact to="/" label="null" />
        <ActiveLink activeOnlyWhenExact to="/threads" label="list" /> 
             <FlashMessagesList />
          <ActiveLink activeOnlyWhenExact to="/threads/:threadId'" label="selected" />      
+           <Dropdown item text='Log-In'>
+        <Dropdown.Menu>
          <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
+         <ActiveLink activeOnlyWhenExact to="/register" label="Register" /> 
+        </Dropdown.Menu>
+      </Dropdown>
         </div>
         <Route exact path="/threads" component={Threads} />
           <Route exact path='threads/:threadId' component={Thread}  />

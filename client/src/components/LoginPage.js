@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TextFieldGroup from './features/TextFieldGroup';
 import {Form, Button, Container} from 'semantic-ui-react';
+import { loginAuth} from '../actions/login';
+import { Link, Route, browserHistory } from 'react-router-dom';
+import {Redirect} from 'react-router';
 
 // import { connect } from 'react-redux';
 //import { login } from '';
 
 class LoginPage extends Component { // В принципе, для анонимной борды это не нужно, но буду юзать как админку. Плюс кое-какой  эксп.
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
-            username: '',
+            login: '',
             password: '',
-            // error: {},
-            // isLoading: false
+             error: {},
+             isLoading: false,
+             redirectToReferrer: false
+             
         }
             this.onSubmit = this.onSubmit.bind(this);
             this.onChange = this.onChange.bind(this);
@@ -20,11 +26,9 @@ class LoginPage extends Component { // В принципе, для аноним�
     
     onSubmit(e) {
         e.preventDefault();
-
-        // if (validate) {
-        console.log('submitted', 'user:', this.state.username, 'pass:', this.state.password);
-        this.setState({ username: '', password: '' }) // reset form
-        //}
+        const { login, password} = this.state;
+        this.props.loginAuth({login, password})
+        this.setState({ redirectToReferrer: true }) // простейший редирект при логине. TODO: через редакс переделать + jwt токен
     }
     
     onChange(e) {
@@ -32,16 +36,23 @@ class LoginPage extends Component { // В принципе, для аноним�
     }
 
   render() {
+     const { from } = this.props.location.state || { from: { pathname: '/' } }
+     const { redirectToReferrer } = this.state
+          if (redirectToReferrer) {
+      return (
+        <Redirect to={from}/> // https://reacttraining.com/react-router/web/example/auth-workflow
+      )
+    }
     return ( 
             <Container>
-            
+           <h1>Login</h1>
           <Form onSubmit={this.onSubmit}>
           
           <TextFieldGroup
            label='Username'
            type='text'
-           field='username'
-           value={this.state.username}
+           field='login'
+           value={this.state.login}
            onChange={this.onChange}
            />
           
@@ -59,4 +70,5 @@ class LoginPage extends Component { // В принципе, для аноним�
   }
 }
 
-export default LoginPage;
+
+export default connect(null, {loginAuth})(LoginPage);
