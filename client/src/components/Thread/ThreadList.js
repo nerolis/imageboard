@@ -45,6 +45,7 @@ class ThreadList extends React.Component {
                      else return (thread.id == this.state.currentThread);
                      })
                     .map(thread =>
+                    
  // IDEA: Разделить тредлист с постлистом, чтоб коннект был и там, и там. То, имхо, выходит слишком непонятно.
                     <ThreadView
                         posts={posts}

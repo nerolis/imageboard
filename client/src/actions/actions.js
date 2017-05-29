@@ -80,6 +80,7 @@ export function fetchThread() {
          axios.get('http://localhost:3000/api/threads/', {mode: 'cors'})
             .then(response => {
                dispatch(setThreads(response.data.threads))
+                       console.log('test:', response.data.threads)
                 
                
       });

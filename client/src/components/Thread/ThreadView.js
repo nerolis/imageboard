@@ -11,7 +11,7 @@ class ThreadView extends React.Component {
   //   selectThread = () => { .
   // }
   render() {
-    const {thread, image, select, text, name, id} = this.props;
+    const {thread, image, select, text, name, id, comments, user_id} = this.props;
       return(
       <Item>   
         <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={thread.image} alt='no img' />}>

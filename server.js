@@ -53,7 +53,7 @@ function validate(data) {
   // todo: refactor через роутер
   app.get('/api/threads', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
-      res.json({ threads });
+      res.json({ threads});
     });
   });
 
