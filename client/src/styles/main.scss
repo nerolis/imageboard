@@ -1,1 +1,7 @@
-    
+@media (min-height: 200) {
+  .ui.footer.form-page { /* Increased specificity for SO snippet priority */
+    position: absolute;
+    bottom: 550;
+    width: 1%;
+  }
+}

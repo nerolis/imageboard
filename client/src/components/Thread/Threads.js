@@ -8,7 +8,8 @@ import {fetchPost} from '../../actions/posts';
 import { addFlashMessage } from '../../actions/flashMessages';
 import { selectThread, fetchPostsIfNeeded, invalidateThread } from '../../actions/fetchThreads';
 // Styles
-import {Image, Item, Container, Button, Header, MessageList} from 'semantic-ui-react';
+import mainscss from '../../styles/main.scss';
+import {Image, Item, Container, Button, Header, MessageList, Advertisement, Icon} from 'semantic-ui-react';
 // Components
 import ThreadList from './ThreadList';
 import PostList from '../Posts/PostList';
@@ -23,8 +24,21 @@ import Dev from './Dev';
     render() {
       console.log('from threads', this.props.threads)
       return(
-      <div className=''>
+      <div className='ui container'>
           <ThreadList threads={this.props.threads} posts={this.props.posts}/>    
+         
+         
+         
+         
+         
+         
+         
+         
+          <div className="ui vertical footer segment form-page">
+           <div className="ui container">
+          </div>
+          </div>
+      
       </div>
 
     )

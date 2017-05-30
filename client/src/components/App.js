@@ -31,18 +31,18 @@ class App extends Component {
         </Menu.Item>
        <ActiveLink activeOnlyWhenExact to="/" label="null" />
        <ActiveLink activeOnlyWhenExact to="/threads" label="list" /> 
-
+        <ActiveLink activeOnlyWhenExact to="/dev" label="Dev" />
            <Dropdown item text='Log-In'>
         <Dropdown.Menu>
          <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
          <ActiveLink activeOnlyWhenExact to="/register" label="Register" /> 
-             <ActiveLink activeOnlyWhenExact to="/dev" label="Dev" />
+      
         </Dropdown.Menu>
       </Dropdown>
         </div>
         <Route exact path="/dev" component={Dev} />
         <Route exact path="/threads" component={Threads} />
-          <Route path='/threads/:threadId' component={Threads}/>
+          <Route exact path='/threads/:threadId' component={Threads}/>
          <Route exact path="/" component={Home} />
          <Route exact path="/login" component={LoginPage} />
           <Route handler={NotFound} name="not-found" />

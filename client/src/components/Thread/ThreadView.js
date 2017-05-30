@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} from 'semantic-ui-react';
+import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Dimmer} from 'semantic-ui-react';
 import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
 import {Link, Redirect} from 'react-router-dom';
@@ -17,12 +17,14 @@ class ThreadView extends React.Component {
     const {thread, image, select, text, name, id, comments, user_id} = this.props;
       return(
       <Item>   
-        <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={thread.image} alt='no img' />}>
+      
+        <Modal closeIcon size='small' basic trigger={<Item.Image size='small' src={thread.image} alt='no img' />}>
             <Modal.Content image>
                <Item.Image src={thread.image} />
            </Modal.Content>
        </Modal>
         <Item.Content>
+        
               №{thread.id}
               <Item.Header as='' className='extra content'>
               {thread.name}
@@ -56,9 +58,6 @@ class ThreadView extends React.Component {
                 <div className=''>
         <Button.Group attached='bottom' basic size='small'>
               <Button  icon='like' />
-              <Button icon='comment outline' />
-              <Button icon='hide' />
-              <Button icon='edit' />
         </Button.Group>
                </div>
       </Item>
