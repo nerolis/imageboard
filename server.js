@@ -12,6 +12,7 @@ import authRoute from './server/routes/auth';
 import config from './server/config';
 import errorHandler from './server/middlewares/errorHandler'; // must be last
 import checkToken from './server/middlewares/checkToken';
+var cool = require('cool-ascii-faces');
 mongoose.Promise = bluebird;
 mongoose.connect(config.database, err => {
   if (err) {
@@ -32,6 +33,7 @@ app.use(session({
   secret: config.secret
 }))
 
+app.set('port', (process.env.PORT || 5000));
 const dbUrl = 'mongodb://localhost/board';
 
 
@@ -139,6 +141,8 @@ app.use(errorHandler);
   })
 
 
-  app.listen(3000, () => console.log('Server is running on localhost:3000'));
+  app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 });
