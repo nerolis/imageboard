@@ -22,15 +22,16 @@ const ActiveLink = ({ label, to, activeOnlyWhenExact }) => (
 class App extends Component {
   render() {
     return (
-
+      
     <div className="ui container">
+                           <FlashMessagesList />
         <div className="ui inverted six item menu">
          <Menu.Item >
           <img size='large' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
         </Menu.Item>
        <ActiveLink activeOnlyWhenExact to="/" label="null" />
        <ActiveLink activeOnlyWhenExact to="/threads" label="list" /> 
-            <FlashMessagesList />
+
            <Dropdown item text='Log-In'>
         <Dropdown.Menu>
          <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
@@ -46,6 +47,7 @@ class App extends Component {
           <Route handler={NotFound} name="not-found" />
           <Route exact path='/register' component={RegisterPage} />
       </div>
+      
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';;
 import {Item, Button, Menu, Container, Header} from 'semantic-ui-react';
-import PostCard from './PostCard';
+import PostView from './PostView';
 
  class PostList extends React.Component {
     constructor() {
@@ -11,11 +11,13 @@ import PostCard from './PostCard';
   }
   render() {
     const posts = this.props.posts
+    const thread = this.props.thread
      return(
         <div>                                
          <Item.Group divided relaxed>     
-          {posts.map(post =>  // {posts.slice(0, 3).map(post => оставлю здесь. очень плохой способ, надо думать.
-            <PostCard 
+             {posts.filter(post => thread.id == post.reply_id).map(post =>
+            <PostView
+              thread={this.props.thread}
               post={post}
               key={post._id}  
               createPost={this.props.createPost}

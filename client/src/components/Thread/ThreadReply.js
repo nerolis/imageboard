@@ -10,20 +10,23 @@ import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/sr
       name: 'Chen',
       text: '',
       image: '',
+      reply_id: '',
       errors: {},
       showPostingForm: false
     }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);  
   }
+
   onSubmit(e) {
    e.preventDefault()
     // if поле с изображением пусто. Тупо, но работает. Временно сойдет.
+    this.state.reply_id = this.props.thread.id // id > select
     if (this.state.image === '') {
     this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg';}
     // Post!
-    const { name, text, image} = this.state; // чтоб не перечислять через this.state
-    this.props.createPost({name, text, image})
+    const { name, text, image, reply_id} = this.state; // чтоб не перечислять через this.state
+    this.props.createPost({name, text, image, reply_id})
         .then(() => this.props.fetchPost())
           .then( () => {
             this.props.addFlashMessage({
@@ -36,7 +39,7 @@ import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/sr
           name: 'Chen',
           text: '',
           image: '',
-          showThreadCreateForm: false,
+          showPostingForm: false,
         });
      }
     onChange(e) {

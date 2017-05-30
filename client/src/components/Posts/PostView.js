@@ -3,9 +3,9 @@ import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} 
 import ThreadReply from '../Thread/ThreadReply';
 // Styles
 // import postForm from '.../styles/postForm.scss';
-class PostCard extends React.Component {
+class PostView extends React.Component {
   render() {
-    const {post, image, select, text, name, id} = this.props;
+    const {thread, image, select, text, name, id, comments, user_id, post} = this.props;
   return(
       <Item>   
       <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={post.image} alt='no img' />}>
@@ -24,15 +24,15 @@ class PostCard extends React.Component {
                 {post.text}
                 </Message>
                 Answers: <a>>{Date.now()}</a> 
-              </Item.Description>
-                   <ThreadReply thread={id} // FIX: тупое дублирование, ЭТО нужно чтоб вывести show/reply баттон на превью постов в треде.
-                        createPost={this.props.createPost}
-                        fetchPost={this.props.fetchPost}
-                        addFlashMessage={this.props.addFlashMessage}
-                    />                        
+              </Item.Description>      
+                 <ThreadReply
+                    thread={this.props.thread}
+                    createPost={this.props.createPost}
+                    fetchPost={this.props.fetchPost}
+                    addFlashMessage={this.props.addFlashMessage} />       
         </Item.Content>
       </Item>
      );
   }
 }
-export default PostCard;
+export default PostView;

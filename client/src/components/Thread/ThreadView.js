@@ -27,6 +27,7 @@ class ThreadView extends React.Component {
               {thread.date}
               <Item.Description  className='extra content'>
                 {thread.text}
+
               </Item.Description>
                    <Item.Extra as='h4'>
                      <a>>{Date.now()}</a> 
@@ -35,12 +36,13 @@ class ThreadView extends React.Component {
                         <Button onClick={() => select(thread.id)} compact basic size='small' icon='reply' />
                       {/* </Link>  */} 
                <ThreadReply
-                    thread={id}
+                    thread={this.props.thread}
                     createPost={this.props.createPost}
                     fetchPost={this.props.fetchPost}
                     addFlashMessage={this.props.addFlashMessage}
                />
                <PostList 
+                    thread={this.props.thread}
                     posts={this.props.posts}
                     createPost={this.props.createPost}
                     fetchPost={this.props.fetchPost}
