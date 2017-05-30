@@ -22,6 +22,7 @@ mongoose.connect(config.database, err => {
 })
 
 const app = express();
+app.set('port', (process.env.PORT || 3000));
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors({ origin: '*' }));
@@ -33,7 +34,6 @@ app.use(session({
   secret: config.secret
 }))
 
-app.set('port', (process.env.PORT || 5000));
 const dbUrl = 'mongodb://localhost/board';
 
 
@@ -141,8 +141,8 @@ app.use(errorHandler);
   })
 
 
-  app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
 
 });
