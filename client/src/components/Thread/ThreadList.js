@@ -8,7 +8,7 @@ import ThreadCreateForm from './ThreadCreateForm';
 import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchThread, createThread} from '../../actions/actions';
 import {fetchPost, createPost} from '../../actions/posts';
-import { Redirect } from 'react-router';
+import { Redirect, Link} from 'react-router';
     
 class ThreadList extends React.Component {
        constructor() {
@@ -44,9 +44,10 @@ class ThreadList extends React.Component {
                     if (!this.state.currentThread) return true;
                      else return (thread.id == this.state.currentThread);
                      })
-                    .map(thread =>
+                    .map(thread => 
                     
  // IDEA: Разделить тредлист с постлистом, чтоб коннект был и там, и там. То, имхо, выходит слишком непонятно.
+                    
                     <ThreadView
                         posts={posts}
                         createPost={createPost}

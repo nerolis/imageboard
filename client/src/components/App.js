@@ -42,6 +42,7 @@ class App extends Component {
         </div>
         <Route exact path="/dev" component={Dev} />
         <Route exact path="/threads" component={Threads} />
+          <Route path='/threads/:threadId' component={Threads}/>
          <Route exact path="/" component={Home} />
          <Route exact path="/login" component={LoginPage} />
           <Route handler={NotFound} name="not-found" />

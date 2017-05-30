@@ -3,7 +3,10 @@ import React from 'react';
 import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} from 'semantic-ui-react';
 import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import {Route} from 'react-router';
+import Threads from './Threads';
+import threads from '../../../../../../../../Users/Kircheis/yychan/client/src/reducers/threads';
 // Styles
 // import postForm from '.../styles/postForm.scss';
 
@@ -25,6 +28,7 @@ class ThreadView extends React.Component {
               {thread.name}
               </Item.Header>
               {thread.date}
+              
               <Item.Description  className='extra content'>
                 {thread.text}
 
@@ -32,9 +36,9 @@ class ThreadView extends React.Component {
                    <Item.Extra as='h4'>
                      <a>>{Date.now()}</a> 
                    </Item.Extra> 
-                      {/* <Link to={`/thread/${thread.id}`}> */} 
+                       <Link to={`/threads/${thread.id}`}>
                         <Button onClick={() => select(thread.id)} compact basic size='small' icon='reply' />
-                      {/* </Link>  */} 
+                       </Link>  
                <ThreadReply
                     thread={this.props.thread}
                     createPost={this.props.createPost}
@@ -58,6 +62,7 @@ class ThreadView extends React.Component {
         </Button.Group>
                </div>
       </Item>
+
     );
   }
 }
