@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Link, Route} from 'react-router-dom';
 // Components
 import Threads from './Thread/Threads';
+import ThreadList from './Thread/ThreadList';
+import ThreadView from './Thread/ThreadView';
 import Home from './Home';
 import NotFound from './NotFound';
 import LoginPage from './LoginPage';
@@ -18,9 +20,13 @@ const ActiveLink = ({ label, to, activeOnlyWhenExact }) => (
     <Link className={match ? 'active item' : 'item'} to={to}>{label}</Link>
   )} />
 );
-
+const User = ({ match }) => {
+  return <h1>{console.log('Params match')} {match.params.thread.id}!</h1>
+}
 class App extends Component {
+  
   render() {
+    
     return (
       
     <div className="ui container">
@@ -31,7 +37,6 @@ class App extends Component {
         </Menu.Item>
        <ActiveLink activeOnlyWhenExact to="/" label="null" />
        <ActiveLink activeOnlyWhenExact to="/threads" label="list" /> 
-        <ActiveLink activeOnlyWhenExact to="/dev" label="Dev" />
            <Dropdown item text='Log-In'>
         <Dropdown.Menu>
          <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
@@ -40,17 +45,21 @@ class App extends Component {
         </Dropdown.Menu>
       </Dropdown>
         </div>
-        <Route exact path="/dev" component={Dev} />
-        <Route exact path="/threads" component={Threads} />
-          <Route exact path='/threads/:threadId' component={Threads}/>
+        <Route  path="/dev" component={Dev} />
+         <Route path="/threads/:threadId" render={() => <div>{console.log('Thread opened console from route')}</div>}/>
+        <Route path="/threads" component={Threads}/>
          <Route exact path="/" component={Home} />
-         <Route exact path="/login" component={LoginPage} />
+         <Route  path="/login" component={LoginPage} />
           <Route handler={NotFound} name="not-found" />
-          <Route exact path='/register' component={RegisterPage} />
+          <Route  path='/register' component={RegisterPage} />
       </div>
+
+      
       
     );
+    
   }
+  
 }
 
 export default App;

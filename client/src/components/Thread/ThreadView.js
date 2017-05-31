@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link, Route} from 'react-router-dom';
 // Components
 import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Dimmer} from 'semantic-ui-react';
 import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
-import {Link, Redirect} from 'react-router-dom';
-import {Route} from 'react-router';
 import Threads from './Threads';
+import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 import threads from '../../../../../../../../Users/Kircheis/yychan/client/src/reducers/threads';
 // Styles
 // import postForm from '.../styles/postForm.scss';
@@ -14,7 +14,7 @@ class ThreadView extends React.Component {
   //   selectThread = () => { .
   // }
   render() {
-    const {thread, image, select, text, name, id, comments, user_id} = this.props;
+    const {thread, image, select, text, name, id, comments, user_id, href} = this.props;
       return(
       <Item>   
       
@@ -24,16 +24,13 @@ class ThreadView extends React.Component {
            </Modal.Content>
        </Modal>
         <Item.Content>
-        
-              №{thread.id}
+              {thread.id}
               <Item.Header as='' className='extra content'>
               {thread.name}
               </Item.Header>
               {thread.date}
-              
               <Item.Description  className='extra content'>
                 {thread.text}
-
               </Item.Description>
                    <Item.Extra as='h4'>
                      <a>>{Date.now()}</a> 
@@ -60,7 +57,9 @@ class ThreadView extends React.Component {
               <Button  icon='like' />
         </Button.Group>
                </div>
+     
       </Item>
+
 
     );
   }

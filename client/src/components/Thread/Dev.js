@@ -5,7 +5,7 @@ import {fetchPost, createPost} from '../../actions/posts';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Segment, Input, Form, Button} from 'semantic-ui-react';
-
+import ThreadList from './ThreadList';
 class Dev extends React.Component {
  constructor() {
           super()

@@ -12,6 +12,8 @@ import authRoute from './server/routes/auth';
 import config from './server/config';
 import errorHandler from './server/middlewares/errorHandler'; // must be last
 import checkToken from './server/middlewares/checkToken';
+import {StaticRouter} from 'react-router';
+import {ReactDOMServer} from 'react-dom-server'
 var cool = require('cool-ascii-faces');
 mongoose.Promise = bluebird;
 mongoose.connect(config.database, err => {
@@ -37,6 +39,34 @@ app.use(session({
 const dbUrl = 'mongodb://localhost/board';
 
 
+const context = {}
+const markup = ReactDOMServer.renderToString(
+  <StaticRouter
+    location={req.url}
+    context={context}
+  >
+    <App/>
+  </StaticRouter>
+)
+
+if (context.url) {
+  // Somewhere a `<Redirect>` was rendered
+  redirect(301, context.url)
+} else {
+  // we're good, send the response
+}
+
+const RedirectWithStatus = ({ from, to, status }) => (
+  <Route render={({ staticContext }) => {
+    // there is no `staticContext` on the client, so
+    // we need to guard against that here
+    if (staticContext)
+      staticContext.status = status
+    return <Redirect from={from} to={to}/>
+  }}/>
+)
+
+
 function validate(data) {
   let errors = {};
   if (data.name === '') errors.name = "Can't be empty";
@@ -58,6 +88,22 @@ function validate(data) {
       res.json({ threads});
     });
   });
+
+  app.get(['/', '/threads/:threadsId'], (req, res) => {
+  serverRender(req.params.threadId)
+    .then(({ initialMarkup, initialData }) => {
+      res.render('index', {
+        initialMarkup,
+        initialData
+      });
+    })
+
+
+    .catch(error => {
+      console.error(error);
+      res.status(404).send('Bad Request');
+    });
+});
 
    app.get('/api/threads/:threadsId', (req, res) => {
     db.collection('threads').findOne({id: Number(req.params.threadsId)})

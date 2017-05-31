@@ -24,7 +24,7 @@ import Dev from './Dev';
     render() {
       console.log('from threads', this.props.threads)
       return(
-      <div className='ui container'>
+      <Container>
           <ThreadList threads={this.props.threads} posts={this.props.posts}/>    
          
          
@@ -39,7 +39,7 @@ import Dev from './Dev';
           </div>
           </div>
       
-      </div>
+      </Container>
 
     )
   }
