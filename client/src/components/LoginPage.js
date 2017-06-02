@@ -8,8 +8,6 @@ import {Redirect} from 'react-router';
 import validateInput from './features/signin';
 import { addFlashMessage } from '../actions/flashMessages';
 import Input from 'react-toolbox/lib/input';
-// import { connect } from 'react-redux';
-//import { login } from '';
 
 class LoginPage extends Component { // В принципе, для анонимной борды это не нужно, но буду юзать как админку. Плюс кое-какой  эксп.
     constructor() {
@@ -19,6 +17,7 @@ class LoginPage extends Component { // В принципе, для аноним�
             password: '',
             errors: {},
             isLoading: false,
+            invalid: false,
             redirectToReferrer: false
              
         }
@@ -49,10 +48,11 @@ class LoginPage extends Component { // В принципе, для аноним�
       }
     }
     onChange = (name, value) => {
-          this.setState({...this.state, [name]: value} )}
+          this.setState({...this.state, [name]: value} )
+        }
 
   render() {
-     const { errors, login, password, isLoading } = this.state;
+     const { errors, login, password, isLoading, invalid} = this.state;
      const { from } = this.props.location.state || { from: { pathname: '/' } }
      const { redirectToReferrer } = this.state
           if (redirectToReferrer) {
@@ -63,9 +63,9 @@ class LoginPage extends Component { // В принципе, для аноним�
        <Form onSubmit={this.onSubmit}>
       { errors.form && <Message color='red' className="alert">{errors.form}</Message> }  
       <section>
-      <Input  error={errors.login} label='Username' type='text' name='login' value={login} onChange={this.onChange.bind(this, 'login')} />
+      <Input error={errors.login} label='Username' type='text' name='login' value={login} onChange={this.onChange.bind(this, 'login')} />
       <Input error={errors.password} label='Password' type='password' name='password' value={password} onChange={this.onChange.bind(this, 'password')} />
-      <Button>Login</Button>
+       <Button color='blue' disabled={isLoading || invalid}>Sign up</Button>
       </section>
      </Form>
     );

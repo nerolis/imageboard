@@ -74,7 +74,7 @@ class RegisterPage extends Component { // В принципе, для анони
           this.setState({...this.state, [name]: value} )}
 
   render() {
-        const { errors, login, password, passwordConfirmation, email, isLoading } = this.state;
+        const { errors, login, password, passwordConfirmation, email, isLoading, invalid} = this.state;
          const { from } = this.props.location.state || { from: { pathname: '/' } }
          const { redirectToReferrer } = this.state
           if (redirectToReferrer) { return (<Redirect to={from}/>) }
@@ -90,7 +90,7 @@ class RegisterPage extends Component { // В принципе, для анони
       <Input required error={errors.passwordConfirmation} label='Confirm password' type='password' name='passwordConfirmation'
              value={passwordConfirmation} onChange={this.onChange.bind(this, 'passwordConfirmation')} />
       
-       <Button color='blue' disabled={this.state.isLoading || this.state.invalid}>Sign up</Button>
+       <Button color='blue' disabled={isLoading || invalid}>Sign up</Button>
       
       </section>
           </Form>
