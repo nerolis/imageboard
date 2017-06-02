@@ -10,10 +10,7 @@ export const signup = async (req, res, next) => {
   try {
     user = await User.create(credentials);
   } catch ({ message }) {
-    return next({
-      status: 400,
-      message
-    });
+     return res.status(400).json({ errors: { form: 'Username/e-mail already exist'}}) // todo, сделать для емейла, логина. 
   }
 
   res.json(user);
@@ -25,19 +22,13 @@ export const signin = async (req, res, next) => {
   const user = await User.findOne({ login });
 
   if (!user) {
-    return next({
-      status: 400,
-      message: 'User not found'
-    });
+    return res.status(401).json({ errors: { form: 'Username not found'}})
   }
 
   try {
     const result = await user.comparePasswords(password);
-  } catch (e) {
-    return next({
-      status: 400,
-      message: 'Bad Credentials'
-    });
+    } catch (e) {
+        return res.status(401).json({ errors: { form: 'Wrong password'}})
   }
 
   const token = jwt.sign({ _id: user._id }, config.secret);

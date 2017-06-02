@@ -14,10 +14,10 @@ function handleResponse(response) {
 export function loginAuth(data) {
     return dispatch => {
         return axios.post('http://localhost:3000/api/auth', data).then(res => {
-            console.log('log-in')
         })
     }
 }
+
 
 // export function isUserExists(login) {
 //   return dispatch => {

@@ -7,10 +7,11 @@ export default function validateInput(data) {
   if (Validator.isEmpty(data.login)) {
     errors.login = 'This field is required';
   }
-
+  
   if (Validator.isEmpty(data.password)) {
     errors.password = 'This field is required';
   }
+
 
   return {
     errors,
