@@ -12,8 +12,6 @@ import authRoute from './server/routes/auth';
 import config from './server/config';
 import errorHandler from './server/middlewares/errorHandler'; // must be last
 import checkToken from './server/middlewares/checkToken';
-import {StaticRouter} from 'react-router';
-import {ReactDOMServer} from 'react-dom-server'
 var cool = require('cool-ascii-faces');
 mongoose.Promise = bluebird;
 mongoose.connect(config.database, err => {
@@ -39,38 +37,12 @@ app.use(session({
 const dbUrl = 'mongodb://localhost/board';
 
 
-const context = {}
-const markup = ReactDOMServer.renderToString(
-  <StaticRouter
-    location={req.url}
-    context={context}
-  >
-    <App/>
-  </StaticRouter>
-)
-
-if (context.url) {
-  // Somewhere a `<Redirect>` was rendered
-  redirect(301, context.url)
-} else {
-  // we're good, send the response
-}
-
-const RedirectWithStatus = ({ from, to, status }) => (
-  <Route render={({ staticContext }) => {
-    // there is no `staticContext` on the client, so
-    // we need to guard against that here
-    if (staticContext)
-      staticContext.status = status
-    return <Redirect from={from} to={to}/>
-  }}/>
-)
 
 
 function validate(data) {
   let errors = {};
   if (data.name === '') errors.name = "Can't be empty";
-  // if (data.text === '') errors.text = "Can't be empty";
+  if (data.text === '') errors.text = "Can't be empty";
   const isValid = Object.keys(errors).length === 0
   return { errors, isValid };
 }

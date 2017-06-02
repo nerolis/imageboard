@@ -24,9 +24,9 @@ class ThreadView extends React.Component {
            </Modal.Content>
        </Modal>
         <Item.Content>
-              {thread.id}
+              №{thread.id} 
               <Item.Header as='' className='extra content'>
-              {thread.name}
+                 {thread.name}
               </Item.Header>
               {thread.date}
               <Item.Description  className='extra content'>

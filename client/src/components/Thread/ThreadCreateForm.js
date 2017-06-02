@@ -18,8 +18,13 @@ class ThreadCreateForm extends React.Component {
      }
   onSubmit(e) { 
    e.preventDefault()
-    // if поле с изображением пусто. Тупо, но работает. Временно сойдет.
-    if (this.state.image === '') {
+    // Временная валидация.
+    let errors = {};
+      if (this.state.name === '') errors.name = "name can't be empty";
+      if (this.state.text === '') errors.text = "OP-post can't be empty";
+        this.setState({ errors })
+     
+      if (this.state.image === '') {
     this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg';}
     // Post!
     const { name, text, image} = this.state; // чтоб не перечислять через this.state
@@ -49,12 +54,14 @@ class ThreadCreateForm extends React.Component {
      if (showThreadCreateForm) return (
        <div>
         <Form onSubmit={this.onSubmit}>
+               <span>{this.state.errors.name}</span>
               <input
                   name='name'
                   placeholder='name'
                   value={this.state.name}
                   onChange={this.onChange} >
               </input>
+               <span>{this.state.errors.name}</span>
               <Form.Field
                   name='text'
                   placeholder='Message'
