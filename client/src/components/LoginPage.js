@@ -5,7 +5,9 @@ import {Form, Button, Container} from 'semantic-ui-react';
 import { loginAuth} from '../actions/login';
 import { Link, Route, browserHistory } from 'react-router-dom';
 import {Redirect} from 'react-router';
-
+import validateInput from './features/signin';
+import { addFlashMessage } from '../actions/flashMessages';
+import Input from 'react-toolbox/lib/input';
 // import { connect } from 'react-redux';
 //import { login } from '';
 
@@ -15,29 +17,43 @@ class LoginPage extends Component { // В принципе, для аноним�
         this.state = {
             login: '',
             password: '',
-             error: {},
-             isLoading: false,
-             redirectToReferrer: false
+            errors: {},
+            isLoading: false,
+            redirectToReferrer: false
              
         }
             this.onSubmit = this.onSubmit.bind(this);
-            this.onChange = this.onChange.bind(this);
+            // this.onChange = this.onChange.bind(this);
     }
-    
-    onSubmit(e) {
-        e.preventDefault();
-        const { login, password} = this.state;
-        this.props.loginAuth({login, password}).then(() => {
-            this.setState({ redirectToReferrer: true }) // простейший редирект при логине. TODO: через редакс переделать + jwt токен
-             console.log('log-in and redirect complete', this.state.redirectToReferrer)
-        })
-    }
-    
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+    isValid() {
+        const { errors, isValid } = validateInput(this.state);
+        if (!isValid) {
+        this.setState({ errors });
+        }
+        return isValid;
     }
 
+    onSubmit(e) {
+        e.preventDefault();
+         if (this.isValid()) {
+        this.setState({ errors: {}, isLoading: true });
+        const { login, password} = this.state;
+        this.props.loginAuth({login, password}).then(() => {
+            this.props.addFlashMessage({
+              type: 'Succes', 
+              text: 'Redirect...',
+            })
+          })
+        .then(() => {
+            this.setState({ redirectToReferrer: true }) 
+        }),  (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+      }
+    }
+    onChange = (name, value) => {
+          this.setState({...this.state, [name]: value});}
+
   render() {
+     const { errors, login, password, isLoading } = this.state;
      const { from } = this.props.location.state || { from: { pathname: '/' } }
      const { redirectToReferrer } = this.state
           if (redirectToReferrer) {
@@ -46,31 +62,16 @@ class LoginPage extends Component { // В принципе, для аноним�
       )
     }
     return ( 
-            <Container>
-           <h1>Login</h1>
-          <Form onSubmit={this.onSubmit}>
-          
-          <TextFieldGroup
-           label='Username'
-           type='text'
-           field='login'
-           value={this.state.login}
-           onChange={this.onChange}
-           />
-          
-           <TextFieldGroup
-           label='Password'
-           type='password'
-           field='password'
-           value={this.state.password}
-           onChange={this.onChange}
-           />
-             <button className="ui primary button">Login</button>
-          </Form>
-            </Container>
+        <Form onSubmit={this.onSubmit}>
+      <section>
+      <Input  label='Username' type='text' name='login' value={login} onChange={this.onChange.bind(this, 'login')} />
+      <Input error={errors.password} label='Password' type='password' name='password' value={password} onChange={this.onChange.bind(this, 'password')} />
+      <Button>Login</Button>
+      </section>
+     </Form>
     );
   }
 }
 
 
-export default connect(null, {loginAuth})(LoginPage);
+export default connect(null, {loginAuth, addFlashMessage})(LoginPage);

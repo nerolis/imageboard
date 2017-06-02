@@ -58,15 +58,16 @@ onSubmit(e) {
 
   render() {
          const { errors } = this.state;
-              const { from } = this.props.location.state || { from: { pathname: '/' } }
-     const { redirectToReferrer } = this.state
+         const { from } = this.props.location.state || { from: { pathname: '/' } }
+         const { redirectToReferrer } = this.state
           if (redirectToReferrer) {
-      return (
-        <Redirect to={from}/> // https://reacttraining.com/react-router/web/example/auth-workflow
-      )
-    }
+                return (
+                    <Redirect to={from}/> // https://reacttraining.com/react-router/web/example/auth-workflow
+                )
+                }
          
-    return ( 
+            return ( 
+                
             <Container>
             <h1>Register</h1>
           <Form onSubmit={this.onSubmit}>

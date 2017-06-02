@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Link, Route, browserHistory} from 'react-router-dom';
 
 
 function handleResponse(response) {
@@ -20,6 +19,11 @@ export function loginAuth(data) {
     }
 }
 
+// export function isUserExists(login) {
+//   return dispatch => {
+//     return axios.get(`/api/users/${login}`);
+//   }
+// }
 
 
  export function authToken(){
