@@ -1,8 +1,6 @@
 import React from 'react';
 // Components
 import {Form, Button, Textarea, Message} from 'semantic-ui-react';
-import Dropzone from 'react-dropzone-component';
-  
 class ThreadCreateForm extends React.Component {
     constructor() {
       super()
@@ -77,12 +75,6 @@ class ThreadCreateForm extends React.Component {
                   onChange={this.onChange}>
               </input>
               <Form.Field>
-                  <Dropzone
-                  config={{ postUrl: 'no-url' }}
-                  eventHandlers={{
-                  addedfile: (file) => this.setState({ image: file })
-                  }}
-                  djsConfig={{ autoProcessQueue: false }}/>
               </Form.Field>
                 <div className="field"> 
                     {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}

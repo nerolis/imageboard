@@ -47,8 +47,7 @@ class ThreadList extends React.Component {
             if (!this.state.currentThread) return true;
             else return (thread.id == this.state.currentThread);
             })
-            .map(thread => <ThreadView
-              
+            .map(thread => <ThreadView       // Мапаю threadview, вывожу в threads       
                 posts={posts}
                 createPost={createPost}
                 fetchPost={fetchPost}
@@ -57,7 +56,11 @@ class ThreadList extends React.Component {
                 key={thread._id}
                 select={(currentThread) => this.setState({ currentThread })}
             />)}
+
+            
         </Item.Group>
+
+        
         )}
  }
 

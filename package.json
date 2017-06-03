@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --content-base public --history-api-fallback ",
     "build": "webpack",
-    "start": "babel-node server.js",
+    "start": "./node_modules/.bin/babel-node server",
     "start-test": "babel-node ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,7 @@
     "postcss-loader": "^2.0.5"
   },
   "engines": {
-    "node": "6.10.3"
+    "node": "7.9.0"
   },
   "dependencies": {
     "axios": "^0.16.1",
@@ -51,7 +51,9 @@
     "path": "^0.12.7",
     "postcss": "^6.0.1",
     "postcss-cssnext": "^2.11.0",
+    "postcss-each": "^0.10.0",
     "postcss-import": "^10.0.0",
+    "postcss-mixins": "^6.0.0",
     "react": "^15.5.4",
     "react-css-themr": "^2.1.2",
     "react-dom": "^15.5.4",

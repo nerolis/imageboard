@@ -34,7 +34,7 @@ app.use(session({
   secret: config.secret
 }))
 
-const dbUrl = 'mongodb://localhost/board';
+const dbUrl = 'mongodb://nerolis:1583123f@ds161041.mlab.com:61041/yyychan';
 
 
 

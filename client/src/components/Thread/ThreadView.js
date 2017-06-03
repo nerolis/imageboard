@@ -6,7 +6,6 @@ import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
 import Threads from './Threads';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-import threads from '../../../../../../../../Users/Kircheis/yychan/client/src/reducers/threads';
 // Styles
 // import postForm from '.../styles/postForm.scss';
 

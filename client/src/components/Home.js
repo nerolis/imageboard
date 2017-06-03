@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {Feed, Icon, List, Content, Header, Container} from 'semantic-ui-react';
+import ThreadList from './Thread/ThreadList';
+import PostList from './Posts/PostList';
+import Threads from './Thread/Threads';
 class Home extends Component {
   render() {
+        const {thread, image, select, text, name, id, comments, user_id, href} = this.props;
     return (
 
         // Hardcode stage presentation, there will be latest activity on the board.
@@ -27,7 +31,7 @@ class Home extends Component {
       <List.Icon name='github' size='large' verticalAlign='middle' />
       <List.Content>
         <List.Header as='a'>/TO/</List.Header>
-        <List.Description as='a'>Updated 666 hours ago</List.Description>
+        <List.Description as='a'>666</List.Description>
       </List.Content>
     </List.Item>
     
