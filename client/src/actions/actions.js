@@ -64,7 +64,7 @@ export function addThread(threads) {
 
 export function createThread(data) {
   return dispatch => {
-    return fetch('http://localhost:3000/api/threads', {
+    return fetch('https://yyychan.herokuapp.com/api/threads', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -77,7 +77,7 @@ export function createThread(data) {
 //todo: через аксиос переделать всё.
 export function fetchThread() {
     return dispatch => {
-         axios.get('http://localhost:3000/api/threads/', {mode: 'cors'})
+         axios.get('https://yyychan.herokuapp.com/api/threads', {mode: 'cors'})
             .then(response => {
                dispatch(setThreads(response.data.threads))
                        console.log('fetchThread:', response.data.threads)
@@ -89,7 +89,7 @@ export function fetchThread() {
 
 export function fetchSelectThread() {
     return dispatch => {
-         axios.get(`localhost:3000/api/threads/${thread.id}`), {mode: 'cors'}
+         axios.get(`https://yyychan.herokuapp.com/api/threads/${thread.id}`), {mode: 'cors'}
             .then(response => {
                dispatch(setThreads(response.data.threads))
                 

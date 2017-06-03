@@ -27,7 +27,7 @@ export function addPost(posts) {
 
 export function createPost(data) {
   return dispatch => {
-    return fetch('http://localhost:3000/api/posts', {
+    return fetch('https://yyychan.herokuapp.com/api/posts', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -42,7 +42,7 @@ export function createPost(data) {
 //todo: через аксиос переделать всё.
 export function fetchPost() {
     return dispatch => {
-         axios.get('http://localhost:3000/api/posts', {mode: 'cors'})
+         axios.get('https://yyychan.herokuapp.com/api/posts', {mode: 'cors'})
             .then(response => {
                console.log(response.data.posts[0]);
                const postsObj = response.data.posts[0];

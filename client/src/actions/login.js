@@ -13,7 +13,7 @@ function handleResponse(response) {
 
 export function loginAuth(data) {
     return dispatch => {
-        return axios.post('http://localhost:3000/api/auth', data).then(res => {
+        return axios.post('https://yyychan.herokuapp.com/api/auth', data).then(res => {
         })
     }
 }

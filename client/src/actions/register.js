@@ -1,7 +1,7 @@
 import axios from 'axios';
 export function register(data) {
     return dispatch => {
-        return axios.post('http://localhost:3000/api/register', data).then(res => {
+        return axios.post('https://yyychan.herokuapp.com/api/register', data).then(res => {
         })
     }
 }
