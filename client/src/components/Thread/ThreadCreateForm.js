@@ -1,6 +1,7 @@
 import React from 'react';
 // Components
-import {Form, Button, Textarea, Message} from 'semantic-ui-react';
+import {Form, Button, Textarea, Message, Container, Header} from 'semantic-ui-react';
+import Input from 'react-toolbox/lib/input';
 class ThreadCreateForm extends React.Component {
     constructor() {
       super()
@@ -9,78 +10,62 @@ class ThreadCreateForm extends React.Component {
             text: '', 
             image: '',
             errors: {},
+            isLoading: false,
+            invalid: false,
             showThreadCreateForm: false,
         };
-        this.onChange = this.onChange.bind(this);
+        // this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
      }
-  onSubmit(e) { 
-   e.preventDefault()
-    // Временная валидация.
-    let errors = {};
-      if (this.state.name === '') errors.name = "name can't be empty";
-      if (this.state.text === '') errors.text = "OP-post can't be empty";
-        this.setState({ errors })
-     
-      if (this.state.image === '') {
-    this.state.image = 'http://static.zerochan.net/Chen.full.1194832.jpg';}
-    // Post!
-    const { name, text, image} = this.state; // чтоб не перечислять через this.state
-    this.props.createThread({name, text, image})
-        .then(() => this.props.fetchThread())
+
+    onSubmit(e) {
+      // validation
+      e.preventDefault();
+        let errors = {};
+        if (this.state.name === '') errors.name = "Can't be empty";
+        if (this.state.text === '') errors.text = "Can't be empty";
+        if (this.state.image == '') this.state.image = 'https://images-na.ssl-images-amazon.com/images/I/71qw-PZPSeL._SY550_.jpg'
+        this.setState({ errors });
+        const isValid = Object.keys(errors).length === 0
+       // post
+      if (isValid) {
+        this.setState({ loading: true });
+          const { name, text, image} = this.state; 
+          this.props.createThread({name, text, image}).catch((err) => err.response.json().then(({errors}) => this.setState({ errors, loading: false })))
+          .then(() => this.props.fetchThread())
           .then( () => {
             this.props.addFlashMessage({
               type: 'Succes', 
               text: 'Thread created',
             })
-            })
-        // Вот это - для очищения формы. Вроде норм.
+          })
+        // reset form to default
         this.setState({
           name: 'Chen',
           text: '',
           image: '',
           showThreadCreateForm: false,
         });
-     }
-  onChange(e) {
-     this.setState({ [e.target.name]: e.target.value });
-  }
+    } }
+
+    onChange = (name, value) => {
+          this.setState({...this.state, [name]: value} )
+        }
+
     render() {
           const {onSubmit} = this.props;
-          const {showThreadCreateForm} = this.state; 
+          const {showThreadCreateForm, name, text, image, errors, invalid, isLoading} = this.state; 
           
-     if (showThreadCreateForm) return (
+          if (showThreadCreateForm) return (
        <div>
         <Form onSubmit={this.onSubmit}>
-               <span>{this.state.errors.name}</span>
-              <input
-                  name='name'
-                  placeholder='name'
-                  value={this.state.name}
-                  onChange={this.onChange} >
-              </input>
-               <span>{this.state.errors.name}</span>
-              <Form.Field
-                  name='text'
-                  placeholder='Message'
-                  control='textarea'
-                  rows='3'
-                  value={this.state.text}
-                  onChange={this.onChange}/>
-              <Form.Field>
-              <input
-                  name='image'
-                  placeholder='URL:'
-                  value={this.state.image}
-                  onChange={this.onChange}>
-              </input>
-              <Form.Field>
-              </Form.Field>
-                <div className="field"> 
-                    {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}
-                </div>
-              </Form.Field>
-                    <Button className="ui primary button">Create thread</Button>
+             <h1>Create thread form</h1>
+            <Input error={errors.name} error={errors.name} label='Name' type='text' name='name' value={name} onChange={this.onChange.bind(this, 'name')} />
+            <Input error={errors.text} multiline rows={3} label='Message'type='text' name='text' value={text} onChange={this.onChange.bind(this, 'text')} />
+            <Input error={errors.image} label='URL' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
+            
+            <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>
+            <Button color='blue' disabled={isLoading || invalid}>Create thread</Button>
          </Form>
          </div>
      );

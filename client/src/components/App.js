@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link, Route} from 'react-router-dom';
 // Components
 import Threads from './Thread/Threads';
+import Thread from './Thread/Thread';
 import ThreadList from './Thread/ThreadList';
 import ThreadView from './Thread/ThreadView';
 import Home from './Home';
@@ -37,6 +38,8 @@ class App extends Component {
         </Menu.Item>
        <ActiveLink activeOnlyWhenExact to="/" label="null" />
        <ActiveLink activeOnlyWhenExact to="/threads" label="list" /> 
+       <ActiveLink activeOnlyWhenExact to="/dev" label="Dev" /> 
+       <ActiveLink activeOnlyWhenExact to="/darknet" label="Darknet" /> 
            <Dropdown item text='Log-In'>
         <Dropdown.Menu>
          <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
@@ -52,6 +55,7 @@ class App extends Component {
          <Route  path="/login" component={LoginPage} />
           <Route handler={NotFound} name="not-found" />
           <Route  path='/register' component={RegisterPage} />
+          <Route  path='/darknet' component={Thread} />
       </div>
 
       
