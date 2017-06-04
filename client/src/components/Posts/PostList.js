@@ -2,6 +2,7 @@ import React from 'react';;
 import {Item, Button, Menu, Container, Header, Divider} from 'semantic-ui-react';
 import PostView from './PostView';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
+ 
  class PostList extends React.Component {
     constructor() {
       super()
@@ -13,7 +14,7 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
     const posts = this.props.posts
     const thread = this.props.thread
      return(
-        <Item.Group relaxed>                                
+        <Item.Group divided relaxed>                                
              {posts.filter(post => thread.id == post.reply_id).map(post =>
             <PostView
               thread={this.props.thread}

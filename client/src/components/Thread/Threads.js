@@ -30,7 +30,6 @@ import Dev from './Dev';
          
          
           <div className="ui vertical footer segment form-page">
-           <Icon size='large' name='github' />
            <div className="ui container">
           </div>
           </div>

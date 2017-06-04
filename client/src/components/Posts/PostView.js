@@ -13,23 +13,18 @@ class PostView extends React.Component {
              <Item.Image src={post.image} />
            </Modal.Content>
       </Modal>
-        <Item.Content as='h5'>
-              №{post.id}
-              <Item.Header as='' className='extra content'>
-              <p>{post.name}</p>
-              {post.date}
-              </Item.Header>
-              <Item.Description  className='extra content'>
-                <Message color='blue'>
-                {post.text}
+           <Item.Content as='h7'>
+                <a>{post.name} {post.date} №{post.id}</a>  
+              <Item.Description>
+                <Message size='big' >
+                {post.text} 
                 </Message>
-                Answers: <a>>{Date.now()}</a> 
               </Item.Description>      
-                 <ThreadReply
-                    thread={this.props.thread}
-                    createPost={this.props.createPost}
-                    fetchPost={this.props.fetchPost}
-                    addFlashMessage={this.props.addFlashMessage} />       
+                  <ThreadReply
+                  thread={this.props.thread}
+                  createPost={this.props.createPost}
+                  fetchPost={this.props.fetchPost}
+                  addFlashMessage={this.props.addFlashMessage} />  
         </Item.Content>
       </Item>
      );

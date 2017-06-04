@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Route} from 'react-router-dom';
 // Components
-import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Dimmer} from 'semantic-ui-react';
+import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Dimmer, Segment} from 'semantic-ui-react';
 import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
 import Threads from './Threads';
@@ -15,50 +15,47 @@ class ThreadView extends React.Component {
   render() {
     const {thread, image, select, text, name, id, comments, user_id, href} = this.props;
       return(
-      <Item>   
-      
+<Item.Group relaxed>
+<Message color='black'>
+    <Item>   <Item.Header>№{thread.id} {thread.date}</Item.Header>
         <Modal closeIcon size='small' basic trigger={<Item.Image size='small' src={thread.image} alt='no img' />}>
             <Modal.Content image>
                <Item.Image src={thread.image} />
            </Modal.Content>
-       </Modal>
-        <Item.Content>
-              №{thread.id} 
-              <Item.Header as='' className='extra content'>
-                 {thread.name}
-              </Item.Header>
-              {thread.date}
-              <Item.Description  className='extra content'>
-                {thread.text}
-              </Item.Description>
-                   <Item.Extra as='h4'>
-                     <a>>{Date.now()}</a> 
-                   </Item.Extra> 
-                       <Link to={`/threads/${thread.id}`}>
-                        <Button onClick={() => select(thread.id)} compact basic size='small' icon='reply' />
-                       </Link>  
-               <ThreadReply
-                    thread={this.props.thread}
-                    createPost={this.props.createPost}
-                    fetchPost={this.props.fetchPost}
-                    addFlashMessage={this.props.addFlashMessage}
+       </Modal> 
+      <Item.Content verticalAlign='middle'>
+        <Item.Description>
+          <Message size='massive'>
+          {thread.text}
+          
+        <Link to={`/threads/${thread.id}`}>
+          <Button floated='right' onClick={() => select(thread.id)} compact basic size='large' icon='reply' />
+        </Link>  
+         <ThreadReply
+            thread={this.props.thread}
+            createPost={this.props.createPost}
+            fetchPost={this.props.fetchPost}
+            addFlashMessage={this.props.addFlashMessage}
                />
-               <PostList 
+          </Message>
+        </Item.Description>
+        <Item.Extra>
+        <Segment color='grey'>
+        <Message color='blue'>
+         <PostList 
                     thread={this.props.thread}
                     posts={this.props.posts}
                     createPost={this.props.createPost}
                     fetchPost={this.props.fetchPost}
                     addFlashMessage={this.props.addFlashMessage}
-               />                      
-        </Item.Content>
-                <div className=''>
-        <Button.Group attached='bottom' basic size='small'>
-              <Button  icon='like' />
-        </Button.Group>
-               </div>
-     
-      </Item>
-
+               />       
+        </Message>
+        </Segment>
+        </Item.Extra>
+      </Item.Content>
+    </Item>
+       </Message>           
+  </Item.Group>
 
     );
   }
