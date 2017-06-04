@@ -14,11 +14,15 @@ class PostView extends React.Component {
            </Modal.Content>
       </Modal>
            <Item.Content as='h7'>
-                <a>{post.name} {post.date} №{post.id}</a>  
+             <Item.Header as='h1'><p>{post.name}<a><br></br>№{post.id}</a> <br></br>{post.date}</p></Item.Header>
+             
               <Item.Description>
+              
                 <Message color='black' size='big' >
+                
                 {post.text} 
                 </Message>
+                
               </Item.Description>      
                   <ThreadReply
                   thread={this.props.thread}
