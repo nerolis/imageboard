@@ -16,7 +16,7 @@ class PostView extends React.Component {
            <Item.Content as='h7'>
                 <a>{post.name} {post.date} №{post.id}</a>  
               <Item.Description>
-                <Message size='big' >
+                <Message color='black' size='big' >
                 {post.text} 
                 </Message>
               </Item.Description>      

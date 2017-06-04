@@ -25,9 +25,8 @@ class ThreadView extends React.Component {
        </Modal> 
       <Item.Content verticalAlign='middle'>
         <Item.Description>
-          <Message size='massive'>
+          <Message color='brown' size='massive'>
           {thread.text}
-          
         <Link to={`/threads/${thread.id}`}>
           <Button floated='right' onClick={() => select(thread.id)} compact basic size='large' icon='reply' />
         </Link>  
@@ -40,8 +39,8 @@ class ThreadView extends React.Component {
           </Message>
         </Item.Description>
         <Item.Extra>
-        <Segment color='grey'>
-        <Message color='blue'>
+
+        <Message color='brown'>
          <PostList 
                     thread={this.props.thread}
                     posts={this.props.posts}
@@ -50,7 +49,7 @@ class ThreadView extends React.Component {
                     addFlashMessage={this.props.addFlashMessage}
                />       
         </Message>
-        </Segment>
+   
         </Item.Extra>
       </Item.Content>
     </Item>
