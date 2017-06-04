@@ -21,20 +21,16 @@ import Dev from './Dev';
           this.props.fetchThread()
           this.props.fetchPost()     
   }
+
     render() {
-      console.log('from threads', this.props.threads)
       return(
       <Container>
           <ThreadList threads={this.props.threads} posts={this.props.posts}/>    
          
          
          
-         
-         
-         
-         
-         
           <div className="ui vertical footer segment form-page">
+           <Icon size='large' name='github' />
            <div className="ui container">
           </div>
           </div>

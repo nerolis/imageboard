@@ -53,7 +53,7 @@ class App extends Component {
         <Route path="/threads" component={Threads}/>
          <Route exact path="/" component={Home} />
          <Route  path="/login" component={LoginPage} />
-          <Route handler={NotFound} name="not-found" />
+
           <Route  path='/register' component={RegisterPage} />
           <Route  path='/darknet' component={Thread} />
       </div>

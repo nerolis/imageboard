@@ -1,8 +1,12 @@
 import React from 'react';
 // Components
-import {Form, Button, Textarea, Message, Container, Header} from 'semantic-ui-react';
-import Input from 'react-toolbox/lib/input';
+import {Form, Button, Textarea, Message, Container, Header, Search, Grid} from 'semantic-ui-react';
+import {Input} from 'react-toolbox/lib/input';
+import {IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
 import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/posts';
+import {connect} from 'react-redux';
+import {fetchTube} from '../../actions/youtube';
+
 class ThreadAddPost extends React.Component {
     constructor() {
       super()
@@ -14,11 +18,15 @@ class ThreadAddPost extends React.Component {
             reply_id: '',
             isLoading: false,
             invalid: false,
+            Embed: '',
             showThreadCreateForm: false,
+            selectedVideo: null,
         };
         // this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        
      }
+
 
     onSubmit(e) {
       // validation
@@ -54,6 +62,10 @@ class ThreadAddPost extends React.Component {
     onChange = (name, value) => {
           this.setState({...this.state, [name]: value} )
         }
+    fetchYoutube(term) {
+      console.log(fetchTube(term))
+      this.props.fetchTube(term)
+    }
 
     render() {
           const {onSubmit} = this.props;
@@ -65,9 +77,16 @@ class ThreadAddPost extends React.Component {
              <label>Reply {this.state.reply_id}</label>
             <Input error={errors.name} error={errors.name} label='Name' type='text' name='name' value={name} onChange={this.onChange.bind(this, 'name')} />
             <Input error={errors.text} multiline rows={2} label='Message'type='text' name='text' value={text} onChange={this.onChange.bind(this, 'text')} />
-            <Input error={errors.image} label='URL' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
-            
+                 <Grid>
+        <Grid.Column width={6}>
+                  <Input error={errors.image} label='Image' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
+        </Grid.Column>
+        <Grid.Column width={6}>
+                  <Input label='Youtube' type='text' onChange={this.fetchYoutube.bind(this)} name='youtube' />
+        </Grid.Column>
+        </Grid>
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>
+            <div className="field"> {this.state.selectedVideo !== '' && <img src={this.state.selectedVideo} className="ui small bordered image"/>}</div>
             <Button color='blue' disabled={isLoading || invalid}>Reply {this.state.reply_id}</Button>
          </Form>
          </div>
@@ -79,4 +98,9 @@ class ThreadAddPost extends React.Component {
     );
   }
 }
-export default ThreadAddPost;
+export default connect(
+  null, 
+{
+     fetchTube
+} 
+)(ThreadAddPost)
