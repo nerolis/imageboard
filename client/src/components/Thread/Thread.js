@@ -8,7 +8,6 @@ import {Item, Button, Menu, Container, Header, Message, Image} from 'semantic-ui
 import ThreadList from './ThreadList';
 import {Redirect} from 'react-router';
 
-
 class Thread extends React.Component {
 render() {
     document.body.style.backgroundColor = 'black'

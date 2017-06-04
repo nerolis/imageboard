@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} from 'semantic-ui-react';
 import ThreadReply from '../Thread/ThreadReply';
+import {Link} from 'react-router-dom';
 // Styles
 // import postForm from '.../styles/postForm.scss';
 class PostView extends React.Component {

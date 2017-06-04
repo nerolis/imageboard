@@ -56,6 +56,7 @@ class ThreadView extends React.Component {
        </Message>           
   </Item.Group>
 
+
     );
   }
 }

@@ -24,7 +24,7 @@ import Dev from './Dev';
 
     render() {
       return(
-      <Container>
+      <Container >
           <ThreadList threads={this.props.threads} posts={this.props.posts}/>    
           <div className="ui vertical footer segment form-page">
            <div className="ui container">

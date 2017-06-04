@@ -4,28 +4,28 @@ import { connect } from 'react-redux';
 import ThreadView from './ThreadView';
 import {Item, Button, Menu, Container, Header, Message} from 'semantic-ui-react';
 import ThreadCreateForm from './ThreadCreateForm';
+import { Redirect, Link} from 'react-router';
+import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 // Actions
 import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchThread, createThread} from '../../actions/actions';
 import {fetchPost, createPost} from '../../actions/posts';
-import { Redirect, Link} from 'react-router';
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
+
 class ThreadList extends React.Component {
         constructor() {
             super()
             this.state = {
              currentThread: undefined,
-        }
-    }
+        } 
+     }
 
     render() {
     const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost} = this.props;
         return(
             <div>
-
-            <Container fluid>
+            <Container>
             {(this.state.currentThread)
-            ? <Message size='large' color='black'>Opened thread №{this.state.currentThread}</Message>
+            ? <div as='h1' size='large' color='brown'>Thread №{this.state.currentThread}</div>
             : <ThreadCreateForm 
                     onSubmit={(threads) => this.setState({ threads })}
                     createThread={createThread}
