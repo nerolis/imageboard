@@ -17,15 +17,16 @@ class ThreadView extends React.Component {
       return(
 <Item.Group relaxed>
 <Message color='black'>
-    <Item>   <Item.Header>№{thread.id} {thread.date}</Item.Header>
-        <Modal closeIcon size='small' basic trigger={<Item.Image size='small' src={thread.image} alt='no img' />}>
-            <Modal.Content image>
-               <Item.Image src={thread.image} />
-           </Modal.Content>
-       </Modal> 
-      <Item.Content verticalAlign='middle'>
-        <Item.Description>
-          <Message color='brown' size='massive'>
+    <Item.Header as='h1'><p>{thread.name}<a><br></br>№{thread.id}</a> <br></br>{thread.date}</p></Item.Header>
+    <Item>
+        <Modal closeIcon size='small' basic trigger={<Item.Image size='small' src={thread.image}/>}>
+      <Modal.Content image>
+      <Item.Image src={thread.image} />
+      </Modal.Content>
+      </Modal> 
+       <Item.Header as='h1'>reserved space</Item.Header>
+      <Item.Content verticalAlign='top'>
+               <Message color='brown' size='massive'>
           {thread.text}
         <Link to={`/threads/${thread.id}`}>
           <Button floated='right' onClick={() => select(thread.id)} compact basic size='large' icon='reply' />
@@ -37,19 +38,18 @@ class ThreadView extends React.Component {
             addFlashMessage={this.props.addFlashMessage}
                />
           </Message>
+        <Item.Description>
         </Item.Description>
         <Item.Extra>
-
         <Message color='brown'>
          <PostList 
-                    thread={this.props.thread}
-                    posts={this.props.posts}
-                    createPost={this.props.createPost}
-                    fetchPost={this.props.fetchPost}
-                    addFlashMessage={this.props.addFlashMessage}
-               />       
+            thread={this.props.thread}
+            posts={this.props.posts}
+            createPost={this.props.createPost}
+            fetchPost={this.props.fetchPost}
+            addFlashMessage={this.props.addFlashMessage}
+        />       
         </Message>
-   
         </Item.Extra>
       </Item.Content>
     </Item>

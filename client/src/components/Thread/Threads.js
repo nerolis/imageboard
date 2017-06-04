@@ -26,9 +26,6 @@ import Dev from './Dev';
       return(
       <Container>
           <ThreadList threads={this.props.threads} posts={this.props.posts}/>    
-         
-         
-         
           <div className="ui vertical footer segment form-page">
            <div className="ui container">
           </div>

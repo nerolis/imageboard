@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // Components
 import ThreadView from './ThreadView';
-import {Item, Button, Menu, Container, Header} from 'semantic-ui-react';
+import {Item, Button, Menu, Container, Header, Message} from 'semantic-ui-react';
 import ThreadCreateForm from './ThreadCreateForm';
 // Actions
 import { addFlashMessage } from '../../actions/flashMessages';
@@ -25,7 +25,7 @@ class ThreadList extends React.Component {
 
             <Container fluid>
             {(this.state.currentThread)
-            ? <Header size='large'>Thread: №{this.state.currentThread}</Header>
+            ? <Message size='large' color='black'>Opened thread №{this.state.currentThread}</Message>
             : <ThreadCreateForm 
                     onSubmit={(threads) => this.setState({ threads })}
                     createThread={createThread}
