@@ -65,7 +65,7 @@ class ThreadCreateForm extends React.Component {
             <Input error={errors.image} label='URL' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
             
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>
-            <Button color='black' disabled={isLoading || invalid}>Create thread</Button>
+            <Button color='' disabled={isLoading || invalid}>Create thread</Button>
          </Form>
          </Message>
      );
