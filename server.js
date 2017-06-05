@@ -94,7 +94,7 @@ function validate(data) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
       const {id, date, title, name, text, image} = req.body;
-      db.collection('threads').insert({id: autoIndex, title, name, text, image, date:new Date().toLocaleString()}, (err, result) => {
+      db.collection('threads').insert({id: autoIndex, title, name, text, image, videoId, date:new Date().toLocaleString('ru')}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {
@@ -112,7 +112,7 @@ function validate(data) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
       const { id, date, title, name, text, image, reply_id} = req.body;
-      db.collection('posts').insert({reply_id, id: autoIndex, title, name, text, image, date:new Date().toLocaleString()}, (err, result) => {
+      db.collection('posts').insert({reply_id, id: autoIndex, title, name, text, image, videoId, date:new Date().toLocaleString('ru')}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {
