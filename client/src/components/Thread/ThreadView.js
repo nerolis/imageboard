@@ -14,47 +14,43 @@ class ThreadView extends React.Component {
   // }
   render() {
     const {thread, image, select, text, name, id, comments, user_id, href} = this.props;
-      return(
-<Item.Group relaxed>
-<Message color='black'>
-    <Item.Header as='h1'><p>{thread.name}<a><br></br>№{thread.id}</a> <br></br>{thread.date}</p></Item.Header>
-    <Item>
-        <Modal closeIcon size='small' basic trigger={<Item.Image size='small' src={thread.image}/>}>
+      return(   
+
+    <Item>  
+      <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={thread.image} alt='no img' />}>
       <Modal.Content image>
-      <Item.Image src={thread.image} />
+        <Item.Image src={thread.image} />
       </Modal.Content>
-      </Modal> 
-       <Item.Header as='h1'>reserved space</Item.Header>
-      <Item.Content verticalAlign='top'>
-               <Message color='brown' size='massive'>
-          {thread.text}
-        <Link to={`/threads/${thread.id}`}>
-          <Button floated='right' onClick={() => select(thread.id)} compact basic size='large' icon='reply' />
-        </Link>  
-         <ThreadReply
-            thread={this.props.thread}
-            createPost={this.props.createPost}
-            fetchPost={this.props.fetchPost}
-            addFlashMessage={this.props.addFlashMessage}
-               />
-          </Message>
-        <Item.Description>
-        </Item.Description>
-        <Item.Extra>
+    </Modal>
+    <Item.Content as='h7'>
+        <Message color='black' size='big' > 
+            <Item.Header as='h1'><p>{thread.name}<a><br></br>№{thread.id}</a> <br></br>{thread.date}</p></Item.Header>
+        <Message color='black'>
         <Message color='brown'>
-         <PostList 
+        {thread.text} 
+       </Message>
+            <ThreadReply
             thread={this.props.thread}
-            posts={this.props.posts}
             createPost={this.props.createPost}
             fetchPost={this.props.fetchPost}
-            addFlashMessage={this.props.addFlashMessage}
-        />       
+            addFlashMessage={this.props.addFlashMessage} />  
+          <Link to={`/threads/${thread.id}`}>
+             <Button floated='right' color='black' onClick={() => select(thread.id)} compact>Open</Button>
+          </Link> 
         </Message>
-        </Item.Extra>
+        </Message>
+        <Message color='brown'>
+        <PostList 
+          thread={this.props.thread}
+          posts={this.props.posts}
+          createPost={this.props.createPost}
+          fetchPost={this.props.fetchPost}
+          addFlashMessage={this.props.addFlashMessage}
+        />       
+      </Message>
       </Item.Content>
-    </Item>
-       </Message>           
-  </Item.Group>
+      </Item>   
+
 
 
     );
