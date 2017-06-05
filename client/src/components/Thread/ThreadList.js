@@ -25,7 +25,7 @@ class ThreadList extends React.Component {
             <div>
             <Container>
             {(this.state.currentThread)
-            ? <div as='h1' size='large' color='brown'>Thread №{this.state.currentThread}</div>
+            ? <Message as='h1' size='large' color='black'>Thread №{this.state.currentThread}</Message>
             : <ThreadCreateForm 
                     onSubmit={(threads) => this.setState({ threads })}
                     createThread={createThread}

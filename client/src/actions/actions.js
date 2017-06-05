@@ -80,7 +80,6 @@ export function fetchThread() {
          axios.get('https://yyychan.herokuapp.com/api/threads', {mode: 'cors'})
             .then(response => {
                dispatch(setThreads(response.data.threads))
-                       console.log('fetchThread:', response.data.threads)
                 
                
       });

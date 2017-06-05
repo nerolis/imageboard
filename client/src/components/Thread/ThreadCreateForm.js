@@ -59,13 +59,13 @@ class ThreadCreateForm extends React.Component {
           if (showThreadCreateForm) return (
        <Message color='black'>
         <Form  onSubmit={this.onSubmit}>
-             <Message attached='top' color='black'><h1>Create thread Form</h1></Message>
+             <Message color='black'><h1>Create thread Form</h1></Message>
             <Input  error={errors.name} error={errors.name} label='Name' type='text' name='name' value={name} onChange={this.onChange.bind(this, 'name')} />
             <Input error={errors.text} multiline rows={3} label='Message'type='text' name='text' value={text} onChange={this.onChange.bind(this, 'text')} />
             <Input error={errors.image} label='URL' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
-            
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>
-            <Button color='' disabled={isLoading || invalid}>Create thread</Button>
+            <Button disabled={isLoading || invalid}>Submit</Button>
+            <Button color='red' basic floated='right'icon='close' onClick={() => this.setState({showThreadCreateForm: false})}></Button>
          </Form>
          </Message>
      );

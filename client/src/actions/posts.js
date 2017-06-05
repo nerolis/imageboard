@@ -44,12 +44,10 @@ export function fetchPost() {
     return dispatch => {
          axios.get('https://yyychan.herokuapp.com/api/posts', {mode: 'cors'})
             .then(response => {
-               console.log(response.data.posts[0]);
                const postsObj = response.data.posts[0];
                const data = {
                }
                dispatch(setPosts(response.data.posts));
-                         console.log(data);
               } );
     }
 }

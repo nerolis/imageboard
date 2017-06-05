@@ -89,9 +89,7 @@ class RegisterPage extends Component { // В принципе, для анони
       <Input required error={errors.password} label='Password' type='password' name='password' value={password} onChange={this.onChange.bind(this, 'password')} />
       <Input required error={errors.passwordConfirmation} label='Confirm password' type='password' name='passwordConfirmation'
              value={passwordConfirmation} onChange={this.onChange.bind(this, 'passwordConfirmation')} />
-      
        <Button color='blue' disabled={isLoading || invalid}>Sign up</Button>
-      
       </section>
           </Form>
             </Container>

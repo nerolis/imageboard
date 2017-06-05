@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 // Components
-import {Form, Button, Textarea, Message, Container, Header, Search, Grid} from 'semantic-ui-react';
+import {Form, Button, Textarea, Message, Container, Header, Search, Grid, Icon} from 'semantic-ui-react';
 import {Input} from 'react-toolbox/lib/input';
-import {IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
 // actions
 import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/posts';
 import {fetchTube} from '../../actions/youtube';
+import ThreadCreateForm from './ThreadCreateForm';
 
 class ThreadAddPost extends React.Component {
     constructor() {
@@ -74,6 +74,7 @@ class ThreadAddPost extends React.Component {
 
         <Message color='black'>
         <Form onSubmit={this.onSubmit}>
+    
              <label>Reply №{this.state.reply_id}</label>
             <Input error={errors.name} error={errors.name} label='Name' type='text' name='name' value={name} onChange={this.onChange.bind(this, 'name')} />
             <Input error={errors.text} multiline rows={2} label='Message'type='text' name='text' value={text} onChange={this.onChange.bind(this, 'text')} />
@@ -87,7 +88,8 @@ class ThreadAddPost extends React.Component {
         </Grid>
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>
             <div className="field"> {this.state.selectedVideo !== '' && <img src={this.state.selectedVideo} className="ui small bordered image"/>}</div>
-            <Button color='brown' disabled={isLoading || invalid}>Reply {this.state.reply_id}</Button>
+            <Button disabled={isLoading || invalid}>Submit {this.state.reply_id}</Button>
+             <Button basic color='red' floated='right'icon='close' onClick={() => this.setState({showThreadCreateForm: false})}></Button>
          </Form>
          </Message>
  
