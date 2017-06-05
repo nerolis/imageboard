@@ -2,30 +2,22 @@ import React from 'react';
 import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} from 'semantic-ui-react';
 import ThreadReply from '../Thread/ThreadReply';
 import {Link} from 'react-router-dom';
-import YouTube from 'react-youtube';
+import ReactPlayer from 'react-player'
 // Styles
 // import postForm from '.../styles/postForm.scss';
 class PostView extends React.Component {
-  render() {
-    const {thread, image, select, text, name, id, comments, user_id, post, YoutubeLink} = this.props;
-        const opts = {
-      height: '390',
-      width: '640',
-      playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
-     
-     }
+   constructor() {
+      super()
+      this.state = {
+           YoutubeLink: undefined,
+        
+      }
     }
-    let videoId = YoutubeLink;
-    let url = 'https://www.youtube.com/embed/' + videoId;
-    
-     if (YoutubeLink) {
-    return (
-      <div>Loading...</div>
-    )
-  }
+  render() {
+       const {thread, image, select, text, name, id, comments, user_id, post, YoutubeLink} = this.props;
   return(
       <Item>   
+      
       <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={post.image} alt='no img' />}>
            <Modal.Content image>
              <Item.Image src={post.image} />
@@ -42,14 +34,12 @@ class PostView extends React.Component {
                   fetchPost={this.props.fetchPost}
                   addFlashMessage={this.props.addFlashMessage} />   
                 </Message>
-              </Item.Description>      
-          
+              </Item.Description>    
+                 {post.YoutubeLink ? <ReactPlayer url={post.YoutubeLink} width='400' height='200' controls /> : ''}
         </Item.Content>
       </Item>
      );
-  }
-      _onReady(event) {
-    event.target.pauseVideo();
+    
   }
 }
 export default PostView;

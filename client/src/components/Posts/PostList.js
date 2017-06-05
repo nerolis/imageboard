@@ -2,7 +2,7 @@ import React from 'react';;
 import {Item, Button, Menu, Container, Header, Divider} from 'semantic-ui-react';
 import PostView from './PostView';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
- 
+ import ReactPlayer from 'react-player'
  class PostList extends React.Component {
     constructor() {
       super()
@@ -23,10 +23,10 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
               createPost={this.props.createPost}
               fetchPost={this.props.fetchPost}
               addFlashMessage={this.props.addFlashMessage}
-          />)}
 
+          />)}
         </Item.Group>
    )
   }     
 }
-export default PostList;
+export default PostList; 

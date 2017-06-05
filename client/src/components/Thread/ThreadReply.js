@@ -21,8 +21,7 @@ class ThreadAddPost extends React.Component {
             YoutubeLink: '',
         };
         // this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-        
+        this.onSubmit = this.onSubmit.bind(this); 
      }
 
     onSubmit(e) {
@@ -32,13 +31,13 @@ class ThreadAddPost extends React.Component {
         this.state.reply_id = this.props.thread.id
         if (this.state.name === '') errors.name = "Can't be empty";
         if (this.state.text === '') errors.text = "Can't be empty";
-        if (this.state.image == '') this.state.image = 'https://images-na.ssl-images-amazon.com/images/I/71qw-PZPSeL._SY550_.jpg'
+        if (this.state.image === '') this.state.image = 'https://images-na.ssl-images-amazon.com/images/I/71qw-PZPSeL._SY550_.jpg'
         this.setState({ errors });
         const isValid = Object.keys(errors).length === 0
        // post
       if (isValid) {
         this.setState({ loading: true });
-          const { name, text, image, reply_id, YoutubeLink} = this.state; 
+          const { name, text, image, reply_id, YoutubeLink} = this.state;
           this.props.createPost({name, text, image, reply_id, YoutubeLink}).catch((err) => err.response.json().then(({errors}) => this.setState({ errors, loading: false })))
           .then(() => this.props.fetchPost())
           .then( () => {
@@ -58,7 +57,6 @@ class ThreadAddPost extends React.Component {
 
     onChange = (name, value) => {
           this.setState({...this.state, [name]: value} )
-          console.log(this.state.YoutubeLink)
         }
 
     render() {
@@ -77,7 +75,7 @@ class ThreadAddPost extends React.Component {
                   <Input error={errors.image} label='Image' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
         </Grid.Column>
         <Grid.Column width={6}>
-                  <Input label='Youtube' type='text' name='videoId' value={YoutubeLink} onChange={this.onChange.bind(this, 'YoutubeLink')} />
+                  <Input error={errors.YoutubeLink}label='Youtube' onFocus={this.youtubeValidate} type='text' name='videoId' value={YoutubeLink} onChange={this.onChange.bind(this, 'YoutubeLink')} />
         </Grid.Column>
         </Grid>
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>

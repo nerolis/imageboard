@@ -15,12 +15,13 @@ import ThreadList from './ThreadList';
 import PostList from '../Posts/PostList';
 import ThreadCreateForm from './ThreadCreateForm';
 import Dev from './Dev';
-  
+import ReactPlayer from 'react-player'
   class Threads extends React.Component {
          componentWillMount() {
           this.props.fetchThread()
           this.props.fetchPost()     
   }
+
 
     render() {
       return(
