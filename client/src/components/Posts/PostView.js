@@ -10,6 +10,7 @@ class PostView extends React.Component {
   return(
       <Item>   
       <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={post.image} alt='no img' />}>
+      
            <Modal.Content image>
              <Item.Image src={post.image} />
            </Modal.Content>
@@ -26,7 +27,7 @@ class PostView extends React.Component {
                   addFlashMessage={this.props.addFlashMessage} />   
                 </Message>
               </Item.Description>      
-                
+          
         </Item.Content>
       </Item>
      );

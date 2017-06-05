@@ -2,12 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 // Components
 import {Form, Button, Textarea, Message, Container, Header, Search, Grid, Icon} from 'semantic-ui-react';
-import {Input} from 'react-toolbox/lib/input';
 // actions
 import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/posts';
-import {fetchTube} from '../../actions/youtube';
 import ThreadCreateForm from './ThreadCreateForm';
-
+import {Input} from 'react-toolbox/lib/input';  
 class ThreadAddPost extends React.Component {
     constructor() {
       super()
@@ -19,9 +17,8 @@ class ThreadAddPost extends React.Component {
             reply_id: '',
             isLoading: false,
             invalid: false,
-            Embed: '',
             showThreadCreateForm: false,
-            selectedVideo: null,
+            videoId: '',
         };
         // this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -62,14 +59,10 @@ class ThreadAddPost extends React.Component {
     onChange = (name, value) => {
           this.setState({...this.state, [name]: value} )
         }
-    fetchYoutube(term) {
-      console.log(fetchTube(term))
-      this.props.fetchTube(term)
-    }
 
     render() {
           const {onSubmit} = this.props;
-          const {showThreadCreateForm, name, text, image, errors, invalid, isLoading} = this.state; 
+          const {showThreadCreateForm, name, text, image, videoId, errors, invalid, isLoading} = this.state; 
           if (showThreadCreateForm) return (
 
         <Message color='black'>
@@ -83,11 +76,10 @@ class ThreadAddPost extends React.Component {
                   <Input error={errors.image} label='Image' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
         </Grid.Column>
         <Grid.Column width={6}>
-                  <Input label='Youtube' type='text' onChange={this.fetchYoutube.bind(this)} name='youtube' />
+                  <Input label='Youtube' type='text' name='videoId' value={videoId} onChange={this.onChange.bind(this, 'videoId')} />
         </Grid.Column>
         </Grid>
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>
-            <div className="field"> {this.state.selectedVideo !== '' && <img src={this.state.selectedVideo} className="ui small bordered image"/>}</div>
             <Button disabled={isLoading || invalid}>Submit {this.state.reply_id}</Button>
              <Button basic color='red' floated='right'icon='close' onClick={() => this.setState({showThreadCreateForm: false})}></Button>
          </Form>
@@ -101,9 +93,4 @@ class ThreadAddPost extends React.Component {
     );
   }
 }
-export default connect(
-  null, 
-{
-     fetchTube
-} 
-)(ThreadAddPost)
+export default ThreadAddPost;
