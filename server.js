@@ -93,8 +93,8 @@ function validate(data) {
     autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
-      const {id, date, title, name, text, image, videoId} = req.body;
-      db.collection('threads').insert({id: autoIndex, title, name, text, image, videoId, date:new Date().toLocaleString()}, (err, result) => {
+      const {id, date, title, name, text, image, YoutubeLink} = req.body;
+      db.collection('threads').insert({id: autoIndex, title, name, text, image, YoutubeLink, date:new Date().toLocaleString()}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {
@@ -111,8 +111,8 @@ function validate(data) {
       autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
-      const { id, date, title, name, text, image, reply_id, videoId} = req.body;
-      db.collection('posts').insert({reply_id, id: autoIndex, title, name, text, image, videoId, date:new Date().toLocaleString()}, (err, result) => {
+      const { id, date, title, name, text, image, reply_id, YoutubeLink} = req.body;
+      db.collection('posts').insert({reply_id, id: autoIndex, title, name, text, image, YoutubeLink, date:new Date().toLocaleString()}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {

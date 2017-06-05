@@ -13,7 +13,6 @@ class Dev extends React.Component {
           super()
             this.state = {
             bgColor: '',
-            videoId: 'O8z0F8Lqz1k&',
        }
       }
      onChange = (e) => {
