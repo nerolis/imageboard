@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header} from 'semantic-ui-react';
+import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Popup} from 'semantic-ui-react';
 import ThreadReply from '../Thread/ThreadReply';
 import {Link} from 'react-router-dom';
 import ReactPlayer from 'react-player'
@@ -9,15 +9,21 @@ class PostView extends React.Component {
    constructor() {
       super()
       this.state = {
-           YoutubeLink: undefined,
+           isToggleOn: false,
         
       }
+       this.handleClick = this.handleClick.bind(this);
     }
+     handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
   render() {
        const {thread, image, select, text, name, id, comments, user_id, post, YoutubeLink} = this.props;
   return(
-      <Item>   
-      
+      <Item>        
       <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={post.image}/>}>
            <Modal.Content image>
              <Item.Image src={post.image} />
@@ -34,8 +40,10 @@ class PostView extends React.Component {
                   fetchPost={this.props.fetchPost}
                   addFlashMessage={this.props.addFlashMessage} />   
                 </Message>
-              </Item.Description>    
-                 {post.YoutubeLink ? <ReactPlayer url={post.YoutubeLink} width='400' height='200' controls /> : ''}
+                  {post.YoutubeLink && <Button floated='right'  color='black' basic icon onClick={this.handleClick}> 
+                  {this.state.isToggleOn ? <ReactPlayer url={post.YoutubeLink} width={400} height={200} controls={true}/> : <Icon size='big' name='youtube play' />}
+                  </Button>}
+              </Item.Description>
         </Item.Content>
       </Item>
      );
