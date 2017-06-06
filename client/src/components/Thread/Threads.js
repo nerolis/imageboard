@@ -14,8 +14,6 @@ import {Image, Item, Container, Button, Header, MessageList, Advertisement, Icon
 import ThreadList from './ThreadList';
 import PostList from '../Posts/PostList';
 import ThreadCreateForm from './ThreadCreateForm';
-import Dev from './Dev';
-import Home from '../Home';
   class Threads extends React.Component {
          componentWillMount() {
           this.props.fetchThread()

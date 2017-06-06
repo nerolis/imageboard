@@ -6,7 +6,7 @@ import Threads from './Thread/Threads';
 import Thread from './Thread/Thread';
 import ThreadList from './Thread/ThreadList';
 import ThreadView from './Thread/ThreadView';
-import Home from './Home';
+import Home from './Home/Home';
 import NotFound from './NotFound';
 import LoginPage from './LoginPage';
 import Dev from './Thread/Dev';
@@ -36,8 +36,8 @@ class App extends Component {
          <Menu.Item >
           <img size='large' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
         </Menu.Item>
-       <ActiveLink activeOnlyWhenExact to="/" label="null" />
-       <ActiveLink activeOnlyWhenExact to="/threads" label="list" /> 
+       <ActiveLink activeOnlyWhenExact to="/" label="Home" />
+       <ActiveLink activeOnlyWhenExact to="/threads" label="Board" /> 
        <ActiveLink activeOnlyWhenExact to="/dev" label="Dev" /> 
        <ActiveLink activeOnlyWhenExact to="/darknet" label="Darknet" /> 
            <Dropdown item text='Log-In'>
