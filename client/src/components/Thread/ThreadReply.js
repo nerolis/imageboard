@@ -23,12 +23,19 @@ class ThreadAddPost extends React.Component {
         // this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
      }
-
     onSubmit(e) {
       // validation
       e.preventDefault();
         let errors = {};
         this.state.reply_id = this.props.thread.id
+        const re = /.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+        // Это валидация инпута ютуба, странно выглядит, но работает. Если не делать !== '', то инпут не проходит с пустой строкой.
+        if (this.state.YoutubeLink !== '') {
+          this.state.invalid = false;
+          if (!this.state.YoutubeLink.match(re)) {
+            errors.YoutubeLink = 'Not valid URL. Example: https://www.youtube.com/watch?v=1FGtd3oH_PQ'
+          }
+        }
         if (this.state.name === '') errors.name = "Can't be empty";
         if (this.state.text === '') errors.text = "Can't be empty";
         if (this.state.image === '') this.state.image = 'https://images-na.ssl-images-amazon.com/images/I/71qw-PZPSeL._SY550_.jpg'
@@ -75,7 +82,7 @@ class ThreadAddPost extends React.Component {
                   <Input error={errors.image} label='Image' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
         </Grid.Column>
         <Grid.Column width={6}>
-                  <Input error={errors.YoutubeLink}label='Youtube' onFocus={this.youtubeValidate} type='text' name='videoId' value={YoutubeLink} onChange={this.onChange.bind(this, 'YoutubeLink')} />
+                  <Input error={errors.YoutubeLink}label='Youtube'  type='text' name='videoId' value={YoutubeLink} onChange={this.onChange.bind(this, 'YoutubeLink')} />
         </Grid.Column>
         </Grid>
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>

@@ -5,7 +5,6 @@ import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, 
 import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
 import Threads from './Threads';
-import youtubeExample from '../features/youtube';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 // Styles
 // import postForm from '.../styles/postForm.scss';
@@ -18,7 +17,6 @@ class ThreadView extends React.Component {
       return(   
 
     <Item>  
-    
       <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={thread.image} alt='no img' />}>
       <Modal.Content image>
         <Item.Image src={thread.image} />

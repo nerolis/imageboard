@@ -18,7 +18,7 @@ class PostView extends React.Component {
   return(
       <Item>   
       
-      <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={post.image} alt='no img' />}>
+      <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={post.image}/>}>
            <Modal.Content image>
              <Item.Image src={post.image} />
            </Modal.Content>
