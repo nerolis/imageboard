@@ -15,7 +15,7 @@ import ThreadList from './ThreadList';
 import PostList from '../Posts/PostList';
 import ThreadCreateForm from './ThreadCreateForm';
 import Dev from './Dev';
-import ReactPlayer from 'react-player'
+import Home from '../Home';
   class Threads extends React.Component {
          componentWillMount() {
           this.props.fetchThread()
@@ -26,7 +26,7 @@ import ReactPlayer from 'react-player'
     render() {
       return(
       <Container >
-          <ThreadList threads={this.props.threads} posts={this.props.posts}/>    
+          <ThreadList threads={this.props.threads} posts={this.props.posts}/>  
           <div className="ui vertical footer segment form-page">
            <div className="ui container">
           </div>

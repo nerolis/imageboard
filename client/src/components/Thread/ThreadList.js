@@ -20,7 +20,6 @@ class ThreadList extends React.Component {
      }
 
     render() {
-        
     const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost} = this.props;
         return(
             <div>
