@@ -71,12 +71,6 @@ function validate(data) {
   //   })
 
 
-//     .catch(error => {
-//       console.error(error);
-//       res.status(404).send('Bad Request');
-//     });
-// });
-
    app.get('/api/threads/:threadsId', (req, res) => {
     db.collection('threads').findOne({id: Number(req.params.threadsId)})
       .then(threads => res.send(threads))
@@ -144,10 +138,7 @@ function validate(data) {
 //   .catch(console.error)
 // })
 
-app.get('*', function (req, res) {
-  // and drop 'public' in the middle of here
-  res.sendFile(path.join(__dirname + "/..", 'public', 'index.html'))
-})
+
 
 app.use(errorHandler);
   app.use((req, res) => {
@@ -158,6 +149,10 @@ app.use(errorHandler);
     });
   })
 
+app.get('*', function (req, res) {
+  // and drop 'public' in the middle of here
+  res.sendFile(path.join(__dirname + '/..', 'public', 'index.html'))
+})
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
