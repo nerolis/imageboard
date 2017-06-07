@@ -24,7 +24,7 @@ class ThreadView extends React.Component {
     </Modal>
     <Item.Content as='h7'>
         <Message color='black' size='big' > 
-            <Item.Header as='h1'><p>{thread.name}<a><br></br>№{thread.id}</a> <br></br>{thread.date}</p></Item.Header>
+            <Item.Header as='h1'><p>{thread.name} <a><br></br>№{thread.id}</a> <br></br>{thread.date}</p></Item.Header>
         <Message color='black'>
         <Message color='brown'>
         {thread.text} 

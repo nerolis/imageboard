@@ -10,11 +10,13 @@ import { addFlashMessage } from '../../actions/flashMessages';
 
 class Home extends Component {
            componentWillMount() {
-          this.props.fetchThread()     
+              this.props.fetchThread()   
+              this.props.fetchPost()  
   }
   render() {
+
     return (
-        <HomeList threads={this.props.threads}/>
+        <HomeList threads={this.props.threads} posts={this.props.posts}/>
     );
   }
 }
@@ -22,12 +24,13 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
    threads: state.threads,
+   posts: state.posts,
   }
 }
 
 export default connect(
   mapStateToProps, 
-{
+{    fetchPost,
      fetchThread,
 } 
 )(Home)
