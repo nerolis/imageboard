@@ -61,6 +61,21 @@ function validate(data) {
     });
   });
 
+  // app.get(['/', '/threads/:threadsId'], (req, res) => {
+  // serverRender(req.params.threadId)
+  //   .then(({ initialMarkup, initialData }) => {
+  //     res.render('index', {
+  //       initialMarkup,
+  //       initialData
+  //     });
+  //   })
+
+
+//     .catch(error => {
+//       console.error(error);
+//       res.status(404).send('Bad Request');
+//     });
+// });
 
    app.get('/api/threads/:threadsId', (req, res) => {
     db.collection('threads').findOne({id: Number(req.params.threadsId)})
@@ -131,7 +146,7 @@ function validate(data) {
 
 app.get('*', function (req, res) {
   // and drop 'public' in the middle of here
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+  res.sendFile(path.join(__dirname, + "/..", 'public', 'index.html'))
 })
 
 app.use(errorHandler);
