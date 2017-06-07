@@ -146,7 +146,7 @@ function validate(data) {
 
 app.get('*', function (req, res) {
   // and drop 'public' in the middle of here
-  res.sendFile(path.join(__dirname, + "/..", 'public', 'index.html'))
+  res.sendFile(path.join(__dirname + "/..", 'public', 'index.html'))
 })
 
 app.use(errorHandler);
