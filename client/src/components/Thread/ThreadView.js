@@ -37,6 +37,7 @@ class ThreadView extends React.Component {
           <Link to={`/threads/${thread.id}`}>
              <Button floated='right' color='black' onClick={() => select(thread.id)} compact>Open</Button>
           </Link> 
+           <Button floated='right' color='black'>Like 1</Button>
         </Message>
         </Message>
         <Message color='brown'>

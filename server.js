@@ -61,21 +61,22 @@ function validate(data) {
     });
   });
 
-  // app.get(['/', '/threads/:threadsId'], (req, res) => {
-  // serverRender(req.params.threadId)
-  //   .then(({ initialMarkup, initialData }) => {
-  //     res.render('index', {
-  //       initialMarkup,
-  //       initialData
-  //     });
-  //   })
-
-
    app.get('/api/threads/:threadsId', (req, res) => {
     db.collection('threads').findOne({id: Number(req.params.threadsId)})
       .then(threads => res.send(threads))
         .catch(console.error)
     });
+
+    app.put('/api/threads/:threadsId', (req, res) => {
+      db.collection('threads').findOneAndUpdate({like: Number}, {$inc: {like: +1}})
+        .then(threads => res.send(threads))
+          .catch(console.error)
+      });
+    app.put('/api/posts/:postsId', (req, res) => {
+      db.collection('posts').findOneAndUpdate({like: Number}, {$inc: {like: +1}})
+        .then(threads => res.send(threads))
+          .catch(console.error)
+      });
 
    app.get('/api/posts', (req, res) => {
     db.collection('posts').find({}).toArray((err, posts) => {
@@ -83,12 +84,13 @@ function validate(data) {
     });
   });
 
+
   app.post('/api/threads', (req, res) => {
     autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
-      const {id, date, title, name, text, image, YoutubeLink} = req.body;
-      db.collection('threads').insert({id: autoIndex, title, name, text, image, YoutubeLink, date:new Date().toLocaleString()}, (err, result) => {
+      const {id, date, title, name, text, image, YoutubeLink, like} = req.body;
+      db.collection('threads').insert({id: autoIndex, title, name, text, image, YoutubeLink, like, date:new Date().toLocaleString()}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {
@@ -105,8 +107,8 @@ function validate(data) {
       autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
-      const { id, date, title, name, text, image, reply_id, YoutubeLink} = req.body;
-      db.collection('posts').insert({reply_id, id: autoIndex, title, name, text, image, YoutubeLink, date:new Date().toLocaleString()}, (err, result) => {
+      const { id, date, title, name, text, image, reply_id, YoutubeLink, like} = req.body;
+      db.collection('posts').insert({reply_id, id: autoIndex, title, name, text, image, like, YoutubeLink, date:new Date().toLocaleString()}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {
@@ -119,24 +121,6 @@ function validate(data) {
   });
     })
 
-// app.post('/api/posts', (req, res) => {
-//   const threadId = req.body.threadId;
-//   const post = req.body.newPost;
-//   db.collection('posts').insertOne({ post }).then(result => {
-//     db.collection('threads').findAndModify(
-//       {_id: threadId},
-//       [],
-//       {$push: {postIds: result.insertedId}},
-//       { new: true}
-//     ).then(doc => 
-//       res.send({
-//         updatedThread: doc.value,
-//         newPost: {_id: result.insertedId, post}
-//       })
-//     )
-//   })
-//   .catch(console.error)
-// })
 
 
 

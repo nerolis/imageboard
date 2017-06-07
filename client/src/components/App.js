@@ -25,6 +25,12 @@ const User = ({ match }) => {
   return <h1>{console.log('Params match')} {match.params.thread.id}!</h1>
 }
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      currentThread: undefined,
+    }
+  }
   
   render() {
     
@@ -49,7 +55,7 @@ class App extends Component {
       </Dropdown>
         </div>
         <Route  path="/dev" component={Dev} />
-         <Route path="/threads/:threadId" render={() => <div>{console.log('Thread opened console from route')}</div>}/>
+         <Route path="/threads/:threadId" render={() => <div>{console.log('current thread')}</div>}/>
         <Route path="/threads" component={Threads}/>
          <Route exact path="/" component={Home} />
          <Route  path="/login" component={LoginPage} />

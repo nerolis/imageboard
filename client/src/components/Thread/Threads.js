@@ -6,7 +6,6 @@ import {Redirect, Link} from 'react-router-dom';
 import {fetchThread} from '../../actions/actions';
 import {fetchPost} from '../../actions/posts';
 import { addFlashMessage } from '../../actions/flashMessages';
-import { selectThread, fetchPostsIfNeeded, invalidateThread } from '../../actions/fetchThreads';
 // Styles
 import mainscss from '../../styles/main.scss';
 import {Image, Item, Container, Button, Header, MessageList, Advertisement, Icon} from 'semantic-ui-react';
