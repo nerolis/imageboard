@@ -140,6 +140,10 @@ function validate(data) {
 
 
 
+app.get('*', function (req, res) {
+  // and drop 'public' in the middle of here
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 app.use(errorHandler);
   app.use((req, res) => {
     res.status(404).json({
@@ -148,11 +152,6 @@ app.use(errorHandler);
       }
     });
   })
-
-app.get('*', function (req, res) {
-  // and drop 'public' in the middle of here
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
