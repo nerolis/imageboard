@@ -21,7 +21,7 @@ class PostView extends React.Component {
   }
 
   render() {
-       const {thread, image, select, text, name, id, comments, user_id, post, YoutubeLink} = this.props;
+       const {thread, image, select, text, name, id, comments, user_id, post, YoutubeLink, upvotePost} = this.props;
   return(
       <Item>        
       <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={post.image}/>}>
@@ -39,7 +39,7 @@ class PostView extends React.Component {
                   createPost={this.props.createPost}
                   fetchPost={this.props.fetchPost}
                   addFlashMessage={this.props.addFlashMessage} />   
-                  <Button floated='right' color='black'>Like 1</Button>
+                  <Button floated='right' color='black' compact onClick={() => this.props.upvotePost(post.id)}>Likes: {post.like}</Button>
                 </Message>
                   {post.YoutubeLink && <Button floated='right'  color='black' basic icon onClick={this.handleClick}> 
                   {this.state.isToggleOn ? <ReactPlayer url={post.YoutubeLink} width={400} height={200} controls={true}/> : <Icon size='big' name='youtube play' />}

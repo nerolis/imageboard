@@ -19,6 +19,7 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
               thread={this.props.thread}
               post={post}
               key={post._id}  
+              upvotePost={this.props.upvotePost}
               createPost={this.props.createPost}
               fetchPost={this.props.fetchPost}
               addFlashMessage={this.props.addFlashMessage}

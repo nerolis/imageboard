@@ -10,6 +10,7 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
 import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchThread, createThread} from '../../actions/actions';
 import {fetchPost, createPost} from '../../actions/posts';
+import {upvoteThread, upvotePost} from '../../actions/upvote';
 
 class ThreadList extends React.Component {
         constructor() {
@@ -20,7 +21,7 @@ class ThreadList extends React.Component {
      }
 
     render() {
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost} = this.props;
         return(
             <div>
             <Container>
@@ -38,7 +39,7 @@ class ThreadList extends React.Component {
         )}     
 
     renderThreads() {
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread} = this.props;
         return (
             
         <Item.Group divided relaxed>
@@ -51,6 +52,8 @@ class ThreadList extends React.Component {
                 posts={posts}
                 createPost={createPost}
                 fetchPost={fetchPost}
+                upvoteThread={upvoteThread}
+                upvotePost={upvotePost}
                 addFlashMessage={addFlashMessage}
                 thread={thread}
                 key={thread._id}
@@ -70,5 +73,8 @@ export default connect(null,
     fetchThread, 
     createPost,
     addFlashMessage,
+    upvoteThread,
+    upvotePost,
+    
 }
 )(ThreadList);

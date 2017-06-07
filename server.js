@@ -68,13 +68,13 @@ function validate(data) {
     });
 
     app.put('/api/threads/:threadsId', (req, res) => {
-      db.collection('threads').findOneAndUpdate({like: Number}, {$inc: {like: +1}})
+      db.collection('threads').findOneAndUpdate({like: Number(req.params.threadsId)}, {$inc: {like: +1}})
         .then(threads => res.send(threads))
           .catch(console.error)
       });
     app.put('/api/posts/:postsId', (req, res) => {
-      db.collection('posts').findOneAndUpdate({like: Number}, {$inc: {like: +1}})
-        .then(threads => res.send(threads))
+      db.collection('posts').findOneAndUpdate({like: Number(req.params.postsId)}, {$inc: {like: +1}})
+        .then(posts => res.send(posts))
           .catch(console.error)
       });
 
