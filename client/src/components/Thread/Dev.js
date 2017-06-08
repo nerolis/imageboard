@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {fetchThread, createThread} from '../../actions/actions';
+import {fetchThread, createThread, INVALIDATE_SUBTHREAD} from '../../actions/actions';
 import {fetchPost, createPost} from '../../actions/posts';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {Segment, Input, Form, Button} from 'semantic-ui-react';
+import {Segment, Input, Form, Button, Container, Label, Message} from 'semantic-ui-react';
 import ThreadList from './ThreadList';
 class Dev extends React.Component {
  constructor() {
@@ -20,15 +20,14 @@ class Dev extends React.Component {
   render() {
     const style = {backgroundColor: this.state.backgroundColor}
     return (
-     <div>
-      <input value={this.state.bgColor}
+     <Container>
+      <Segment inverted>
+      <Input value={this.state.bgColor}
              onChange={this.onChange}
-             name='bgColor'
-      />
-       <div>
-        <button onClick={document.body.style.backgroundColor = this.state.bgColor}>Type color to change BG</button>
-           </div>
-     </div> 
+             name='bgColor'/>
+     <Button color='black' onClick={document.body.style.backgroundColor = this.state.bgColor}>Type some color. Like white.</Button>
+     </Segment>
+     </Container> 
     )
 
   }

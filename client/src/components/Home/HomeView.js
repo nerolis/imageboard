@@ -13,8 +13,10 @@ class HomeView extends Component {
           </Table.Cell>
                 <Table.Cell>
                 {thread.text}
-                </Table.Cell>
+                </Table.Cell>               
+          <Table.Cell collapsing textAlign='right'> <Icon name='like'> {thread.like}</Icon></Table.Cell>
           <Table.Cell collapsing textAlign='right'>{thread.date}</Table.Cell>
+          
         </Table.Row>
       </Table.Body>
     </Table>

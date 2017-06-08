@@ -15,7 +15,7 @@ class PostView extends React.Component {
       }
        this.handleClick = this.handleClick.bind(this);
     }
-     handleClick() {
+  handleClick() {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
     }));
@@ -30,17 +30,18 @@ class PostView extends React.Component {
              <Item.Image src={post.image} />
            </Modal.Content>
       </Modal>
-           <Item.Content as='h7'>
-             <Item.Header as='h1'><p>{post.name}<a><br></br>№{post.id}</a> <br></br>{post.date}</p></Item.Header>
-              <Item.Description>
-                <Message color='black' size='big' >
-                {post.text}
-                  <ThreadReply
+           <Item.Content>
+                <ThreadReply
                   thread={this.props.thread}
                   createPost={this.props.createPost}
                   fetchPost={this.props.fetchPost}
-                  addFlashMessage={this.props.addFlashMessage} />   
-                  <Button disabled={this.state.inactive} floated='right' color='black' compact onClick={() => upvotePost(post.id).then(this.setState({inactive: true}))}>Like: {post.like}</Button>
+                  addFlashMessage={this.props.addFlashMessage} />  
+             <Item.Header as='h1'><p>{post.name}<a><br></br>№{post.id}</a> <br></br>{post.date}</p></Item.Header>
+              <Button disabled={this.state.inactive} floated='right' size='tiny' basic color='black'  onClick={() => upvotePost(post.id)
+                .then(this.setState({inactive: true}))}><Icon name='like' />{post.like}</Button>
+              <Item.Description>
+                <Message color='black' size='big' >
+                {post.text} 
                 </Message>
                   {post.YoutubeLink && <Button floated='right'  color='black' basic icon onClick={this.handleClick}> 
                   {this.state.isToggleOn ? <ReactPlayer url={post.YoutubeLink} width={400} height={200} controls={true}/> : <Icon size='big' name='youtube play' />}
@@ -51,5 +52,6 @@ class PostView extends React.Component {
      );
     
   }
+  
 }
 export default PostView;

@@ -71,7 +71,7 @@ class ThreadCreateForm extends React.Component {
          </Message>
      );
        else return (
-      <Button attached='top' color='black' onClick={() => this.setState({showThreadCreateForm: true})}>
+      <Button color='black' onClick={() => this.setState({showThreadCreateForm: true})}>
         Create thread
       </Button>
     );

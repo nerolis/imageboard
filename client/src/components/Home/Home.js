@@ -7,6 +7,7 @@ import HomeList from './HomeList';
 import {fetchThread} from '../../actions/actions';
 import {fetchPost} from '../../actions/posts';
 import { addFlashMessage } from '../../actions/flashMessages';
+import Dev from '../Thread/Dev';
 
 class Home extends Component {
            componentWillMount() {
@@ -16,7 +17,11 @@ class Home extends Component {
   render() {
 
     return (
+        <div>
         <HomeList threads={this.props.threads} posts={this.props.posts}/>
+        <Dev />
+        </div>
+        
     );
   }
 }
