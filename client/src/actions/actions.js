@@ -79,9 +79,7 @@ export function fetchThread() {
     return dispatch => {
          axios.get('https://yyychan.herokuapp.com/api/threads', {mode: 'cors'})
             .then(response => {
-               dispatch(setThreads(response.data.threads))
-                
-               
+               dispatch(setThreads(response.data.threads))      
       });
     }
 }

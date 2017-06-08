@@ -13,7 +13,7 @@ class ThreadAddPost extends React.Component {
             name: 'Chen',
             text: '', 
             image: '',
-            like: '0',
+            like: 0,
             errors: {},
             reply_id: '',
             isLoading: false,

@@ -58,6 +58,7 @@ class ThreadList extends React.Component {
                 addFlashMessage={addFlashMessage}
                 thread={thread}
                 key={thread._id}
+                threads={threads}
                 select={(currentThread) => this.setState({ currentThread })}
             />)}
 

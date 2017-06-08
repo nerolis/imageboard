@@ -8,7 +8,7 @@ class ThreadCreateForm extends React.Component {
         this.state = {
             name: 'Chen',
             text: '', 
-            like: '0',
+            like: 0,
             image: '',
             errors: {},
             isLoading: false,
