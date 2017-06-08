@@ -13,6 +13,7 @@ class ThreadAddPost extends React.Component {
             name: 'Chen',
             text: '', 
             image: '',
+            like: '0',
             errors: {},
             reply_id: '',
             isLoading: false,
@@ -44,8 +45,8 @@ class ThreadAddPost extends React.Component {
        // post
       if (isValid) {
         this.setState({ loading: true });
-          const { name, text, image, reply_id, YoutubeLink} = this.state;
-          this.props.createPost({name, text, image, reply_id, YoutubeLink}).catch((err) => err.response.json().then(({errors}) => this.setState({ errors, loading: false })))
+          const { name, text, image, like, reply_id, YoutubeLink} = this.state;
+          this.props.createPost({like, name, text, image, reply_id, YoutubeLink}).catch((err) => err.response.json().then(({errors}) => this.setState({ errors, loading: false })))
           .then(() => this.props.fetchPost())
           .then( () => {
             this.props.addFlashMessage({

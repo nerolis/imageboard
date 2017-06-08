@@ -10,8 +10,9 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
 // import postForm from '.../styles/postForm.scss';
 
 class ThreadView extends React.Component {
+  
   render() {
-    const {thread, image, select, text, name, id, comments, user_id, href, upvoteThread} = this.props;
+    const {thread, image, select, text, name, id, comments, user_id, href, upvoteThread, fetchThread} = this.props;
       return(   
 
     <Item>  

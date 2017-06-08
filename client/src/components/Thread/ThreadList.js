@@ -39,7 +39,7 @@ class ThreadList extends React.Component {
         )}     
 
     renderThreads() {
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost} = this.props;
         return (
             
         <Item.Group divided relaxed>
@@ -52,6 +52,7 @@ class ThreadList extends React.Component {
                 posts={posts}
                 createPost={createPost}
                 fetchPost={fetchPost}
+                fetchThread={fetchThread}
                 upvoteThread={upvoteThread}
                 upvotePost={upvotePost}
                 addFlashMessage={addFlashMessage}

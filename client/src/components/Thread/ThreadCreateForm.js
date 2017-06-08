@@ -8,6 +8,7 @@ class ThreadCreateForm extends React.Component {
         this.state = {
             name: 'Chen',
             text: '', 
+            like: '0',
             image: '',
             errors: {},
             isLoading: false,
@@ -30,8 +31,8 @@ class ThreadCreateForm extends React.Component {
        // post
       if (isValid) {
         this.setState({ loading: true });
-          const { name, text, image} = this.state; 
-          this.props.createThread({name, text, image}).catch((err) => err.response.json().then(({errors}) => this.setState({ errors, loading: false })))
+          const { name, text, image, like} = this.state; 
+          this.props.createThread({name, text, image, like}).catch((err) => err.response.json().then(({errors}) => this.setState({ errors, loading: false })))
           .then(() => this.props.fetchThread())
           .then( () => {
             this.props.addFlashMessage({
