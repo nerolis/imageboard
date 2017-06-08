@@ -10,8 +10,8 @@ import { addFlashMessage } from '../../actions/flashMessages';
 
 class Home extends Component {
            componentWillMount() {
-              this.props.fetchThread()   
-              this.props.fetchPost()  
+            this.props.fetchThread()   
+            this.props.fetchPost()  
   }
   render() {
 

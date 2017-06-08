@@ -10,9 +10,16 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
 // import postForm from '.../styles/postForm.scss';
 
 class ThreadView extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      inactive: false,
+    }
+  }
   
   render() {
-    const {thread, image, select, text, name, id, comments, user_id, href, upvoteThread, fetchThread} = this.props;
+    console.log(this.state.inactive)
+    const {thread, image, select, text, name, id, comments, user_id, href, upvoteThread, fetchThread, inactive} = this.props;
       return(   
 
     <Item>  
@@ -36,7 +43,7 @@ class ThreadView extends React.Component {
           <Link to={`/threads/${thread.id}`}>
              <Button floated='right' color='black' onClick={() => select(thread.id)} compact>Open</Button>
           </Link> 
-           <Button floated='right' color='black' compact onClick={() => upvoteThread(thread.id)}>Likes: {thread.like}</Button>
+           <Button disabled={this.state.inactive} floated='right' color='black' compact onClick={() => upvoteThread(thread.id).then(this.setState({inactive: true}))}>Like: {thread.like}</Button>
         </Message>
         </Message>
         <Message color='brown'>
