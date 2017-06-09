@@ -55,6 +55,7 @@ class App extends Component {
         </div>
         <Route  path="/dev" component={Dev} />
         <Route path="/b/" component={Threads}/>
+         <Route path="/to/" component={Threads}/>
          <Route exact path="/" component={Home} />
          <Route  path="/login" component={LoginPage} />
           <Route  path='/register' component={RegisterPage} />

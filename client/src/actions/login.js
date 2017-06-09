@@ -1,22 +1,33 @@
 import axios from 'axios';
+import setAuthorizationToken from '../utils/setAuthorizationToken';
+import jwt from 'jsonwebtoken'
+import { SET_CURRENT_USER } from './types';
 
-
-function handleResponse(response) {
-  if (response.ok) {
-    return response.json();
-  } else {
-    let error = new Error(response.statusText);
-    error.response = response;
-    throw error;
+export function setCurrentUser(user) {
+  return {
+    type: SET_CURRENT_USER,
+    user
   }
 }
 
 export function loginAuth(data) {
     return dispatch => {
         return axios.post('https://yyychan.herokuapp.com/api/auth', data).then(res => {
-        })
+          const token = res.data
+          localStorage.setItem('jwtToken', token);
+          setAuthorizationToken(token);
+          dispatch(setCurrentUser(jwt.decode(token)))
+      });
     }
 }
+
+
+
+
+
+
+
+
 
 
 // export function isUserExists(login) {
@@ -24,9 +35,3 @@ export function loginAuth(data) {
 //     return axios.get(`/api/users/${login}`);
 //   }
 // }
-
-
- export function authToken(){
-    // Заготовочка для токена
-    
- }

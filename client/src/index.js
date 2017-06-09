@@ -3,25 +3,40 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 import { Provider} from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom'; 
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, applyMiddleware, compose } from 'redux';
 import logger from 'redux-logger'
+import jwtDecode from 'jwt-decode';
+import jwt from 'jsonwebtoken';
 // Reducers
-import reducers from './reducers/rootReducer';
+import rootReducer from './reducers/rootReducer';
+import {setCurrentUser} from './actions/login';
 // Styles
 import './styles/index.scss';
 // middlewares
 // Components
 import App from './components/App'
+import setAuthorizationToken from './utils/setAuthorizationToken';
 
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(reduxThunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+);
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger)(createStore);
+if (localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
+}
+
 ReactDOM.render(
-    <BrowserRouter>
-    <Provider store={createStoreWithMiddleware(reducers)}>
-        <App/>
-    </Provider>
-     </BrowserRouter>, document.getElementById('root') 
-     );
+   <BrowserRouter>
+  <Provider store={store}>
+    <App/>
+  </Provider>
+ </BrowserRouter>, document.getElementById('root') 
+);
+    

@@ -30,5 +30,8 @@ module.exports = {
     ]
   },
 
-  plugins: []
+  node: {
+    net: 'empty',
+    dns: 'empty'
+  }
 }
