@@ -1,28 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import {Item, Button, Menu, Container, Header, Message, Image} from 'semantic-ui-react';
-import {Redirect} from 'react-router';
-import Link from 'react-toolbox/lib/link';
+import {Item, Button, Menu, Container, Header, Message, Image, Label, Grid} from 'semantic-ui-react';
+import { Link, Route} from 'react-router-dom';
+
 class Board extends React.Component {
 render() {
     return (
   
-     <Container>
-      <Message as='h1' size='massive'>
+     <Header>
+      <Grid textAlign='center' columns={3}>
+    <Grid.Row>
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+    
+               <Label color='blue' size='massive'>
+              <Link to='/b/'>/B/</Link><br></br>
+              <Link to='/to/'>/TO/ in development</Link><br></br>
+              <Link to='/a/'>/A/ in development</Link><br></br>
+              <Link to='/dev/'>/Dev/</Link><br></br>
+              </Label>
+ 
+     
+      </Grid.Column>
+      <Grid.Column>
 
-             <nav>
-    <Link active href="/b/" label="/b/" icon='' />
-      
-      <Link href="/a/" label="/A/" icon='in development'/>
-     <Link href="/to/" label="/TO/" icon='in development' />
-    <Link active href="/dev" label="Dev"/>
-  </nav>
-      
-      </Message>
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
 
+  
 
-     </Container>
+     </Header>
 
     )
 

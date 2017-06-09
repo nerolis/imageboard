@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // Components
 import ThreadView from './ThreadView';
-import {Item, Button, Menu, Container, Header, Message} from 'semantic-ui-react';
+import {Item, Button, Menu, Container, Header, Message, Icon} from 'semantic-ui-react';
 import ThreadCreateForm from './ThreadCreateForm';
 import { Redirect, Link} from 'react-router';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
@@ -39,8 +39,18 @@ class ThreadList extends React.Component {
         )}     
 
     renderThreads() {
+            const emptyMessage = (
+                <Message icon>
+                <Icon name='circle notched' loading />
+                     <Message.Content>
+                         <Message.Header>Just one second</Message.Header>
+                              We are fetching that content for you.
+                    </Message.Content>
+                </Message>
+    )
     const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost} = this.props;
         return (
+
         <Item.Group divided relaxed>
             {threads.filter(thread => {
             if (!this.state.currentThread) return true;
@@ -59,8 +69,7 @@ class ThreadList extends React.Component {
                 threads={threads}
                 select={(currentThread) => this.setState({ currentThread})}
             />)}
-
-            
+            <div>{threads.length === 0 ? emptyMessage : this.renderThreads}</div>
         </Item.Group>
 
         

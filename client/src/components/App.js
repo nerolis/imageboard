@@ -12,7 +12,7 @@ import LoginPage from './LoginPage';
 import Dev from './Thread/Dev';
 import RegisterPage from './RegisterPage';
 import FlashMessagesList from './features/flash/FlashMessagesList';
-import {Menu, Dropdown, Item, Segment, Button, Icon} from 'semantic-ui-react';
+import {Menu, Dropdown, Item, Segment, Button, Icon, Label} from 'semantic-ui-react';
 // Styles
 
 
@@ -43,9 +43,6 @@ class App extends Component {
          <a href='https://github.com/nerolis'>Nerolis</a>
         </Menu.Item>
         <div className="ui basic black three item menu">
-   
-    
-
        <ActiveLink activeOnlyWhenExact to="/" label="Home" /> 
        <ActiveLink activeOnlyWhenExact to="/board" label="Board" />
            <Dropdown color='blue'item text='Log-In'>
@@ -60,7 +57,6 @@ class App extends Component {
         <Route path="/b/" component={Threads}/>
          <Route exact path="/" component={Home} />
          <Route  path="/login" component={LoginPage} />
-
           <Route  path='/register' component={RegisterPage} />
           <Route  path='/board' component={Board} />
       </div>
