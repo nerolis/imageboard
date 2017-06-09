@@ -21,11 +21,11 @@ class Dev extends React.Component {
     const style = {backgroundColor: this.state.backgroundColor}
     return (
      <Container>
-      <Segment inverted>
+      <Segment>
       <Input value={this.state.bgColor}
              onChange={this.onChange}
              name='bgColor'/>
-     <Button color='black' onClick={document.body.style.backgroundColor = this.state.bgColor}>Type some color. Like white.</Button>
+     <Button onClick={document.body.style.backgroundColor = this.state.bgColor}>Type some color. Like white.</Button>
      </Segment>
      </Container> 
     )

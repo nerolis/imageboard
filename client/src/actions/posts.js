@@ -48,6 +48,6 @@ export function fetchPost() {
                const data = {
                }
                dispatch(setPosts(response.data.posts));
-              } );
+              } )
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';;
-import {Item, Button, Menu, Container, Header, Divider} from 'semantic-ui-react';
+import {Item, Button, Menu, Container, Header, Divider, Message} from 'semantic-ui-react';
 import PostView from './PostView';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
  class PostList extends React.Component {

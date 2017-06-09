@@ -80,7 +80,6 @@ class RegisterPage extends Component { // В принципе, для анони
           if (redirectToReferrer) { return (<Redirect to={from}/>) }
             return ( 
             <Container>
-            <h1>Register</h1>
           <Form onSubmit={this.onSubmit}>
              { errors.form && <Message color='red' className="alert">{errors.form}</Message> }  
             <section>

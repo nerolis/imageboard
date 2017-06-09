@@ -12,13 +12,13 @@ class Thread extends React.Component {
 render() {
     document.body.style.backgroundColor = 'black'
     return (
-     <Header>
+  
      <Container>
       <Message error>Invalid authToken
             <Image src='https://s-media-cache-ak0.pinimg.com/236x/4b/88/68/4b886804aa9a6f7a3d5bd31806cc2473.jpg' />
       </Message>
      </Container>
-     </Header> 
+
     )
 
 

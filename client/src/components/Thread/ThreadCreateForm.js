@@ -2,6 +2,7 @@ import React from 'react';
 // Components
 import {Form, Button, Textarea, Message, Container, Header} from 'semantic-ui-react';
 import Input from 'react-toolbox/lib/input';
+import {addFlashMessage} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/flashMessages';
 class ThreadCreateForm extends React.Component {
     constructor() {
       super()

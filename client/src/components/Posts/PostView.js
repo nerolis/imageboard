@@ -40,7 +40,7 @@ class PostView extends React.Component {
               <Button disabled={this.state.inactive} floated='right' size='tiny' basic color='black'  onClick={() => upvotePost(post.id)
                 .then(this.setState({inactive: true}))}><Icon name='like' />{post.like}</Button>
               <Item.Description>
-                <Message color='black' size='big' >
+                <Message color='black' size='large' >
                 {post.text} 
                 </Message>
                   {post.YoutubeLink && <Button floated='right'  color='black' basic icon onClick={this.handleClick}> 

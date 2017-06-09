@@ -5,7 +5,6 @@ export const SELECT_SUBTHREAD = 'SELECT_SUBTHREAD'
 export const INVALIDATE_SUBTHREAD = 'INVALIDATE_SUBTHREAD'
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-
 export function selectSubThread(subThread) {
   return {
     type: SELECT_SUBTHREADT,
@@ -79,8 +78,8 @@ export function fetchThread() {
     return dispatch => {
          axios.get('https://yyychan.herokuapp.com/api/threads', {mode: 'cors'})
             .then(response => {
-               dispatch(setThreads(response.data.threads))      
-      });
+               dispatch(setThreads(response.data.threads))   
+      })
     }
 }
 

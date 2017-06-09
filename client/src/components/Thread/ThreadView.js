@@ -29,16 +29,21 @@ class ThreadView extends React.Component {
     <Item.Content as='h1'>
       <Item.Content>
         <Item.Meta>
-           <Button disabled={this.state.inactive} floated='left' color='black' compact onClick={() => upvoteThread(thread.id)
+           <Button   disabled={this.state.inactive} floated='left' color='black' compact onClick={() => upvoteThread(thread.id)
                .then(this.setState({inactive: true}))}><Icon name='like' />Like: {thread.like}</Button>
-          <ThreadReply
-            thread={this.props.thread}
-            createPost={this.props.createPost}
-            fetchPost={this.props.fetchPost}
-            addFlashMessage={this.props.addFlashMessage} /> 
-          <Link to={`/threads/${thread.id}`}><Button floated='right' color='black' onClick={() => select(thread.id)} compact>Open thread</Button></Link>
-        <Message color='brown'><Item.Header as='h1'>{thread.name}<br></br>№{thread.id}<br></br>{thread.date}
-            <Message size='big' color='black'><Item.Description>{thread.text} 
+                      <ThreadReply
+                        thread={this.props.thread}
+                        createPost={this.props.createPost}
+                        fetchPost={this.props.fetchPost}
+                        addFlashMessage={this.props.addFlashMessage} /> 
+                      <Link to={`/threads/${thread.id}`}>
+                         <Button floated='right' color='black' onClick={() => select(thread.id)} compact>Open thread</Button>
+                      </Link>
+        <Message color='brown'>
+        <Item.Header as='h1'>{thread.name}<br></br><a>№{thread.id}</a><br></br>{thread.date}
+         <Message size='large' color='black'>
+         <Item.Description>
+         {thread.text} 
         </Item.Description>
         </Message>
         </Item.Header></Message>

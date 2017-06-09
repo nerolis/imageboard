@@ -38,13 +38,12 @@ class App extends Component {
       
     <div className="ui container">
                            <FlashMessagesList />
-        <div className="ui inverted six item menu">
+        <div className="ui  inverted three item menu">
          <Menu.Item >
-          <img size='large' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
+         In dev
         </Menu.Item>
        <ActiveLink activeOnlyWhenExact to="/" label="Home" />
        <ActiveLink activeOnlyWhenExact to="/threads" label="Board" /> 
-       <ActiveLink activeOnlyWhenExact to="/dev" label="Dev" /> 
        <ActiveLink activeOnlyWhenExact to="/darknet" label="Darknet" /> 
            <Dropdown item text='Log-In'>
         <Dropdown.Menu>
