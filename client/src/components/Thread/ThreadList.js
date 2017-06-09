@@ -26,7 +26,7 @@ class ThreadList extends React.Component {
             <div>
             <Container>
             {(this.state.currentThread)
-            ? <Message as='h1' size='large' color='black'>Thread №{this.state.currentThread}</Message>
+            ?       ''
             : <ThreadCreateForm 
                     onSubmit={(threads) => this.setState({ threads })}
                     createThread={createThread}
@@ -41,9 +41,7 @@ class ThreadList extends React.Component {
     renderThreads() {
     const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost} = this.props;
         return (
-            
         <Item.Group divided relaxed>
-        
             {threads.filter(thread => {
             if (!this.state.currentThread) return true;
             else return (thread.id == this.state.currentThread);
@@ -59,7 +57,7 @@ class ThreadList extends React.Component {
                 thread={thread}
                 key={thread._id}
                 threads={threads}
-                select={(currentThread) => this.setState({ currentThread })}
+                select={(currentThread) => this.setState({ currentThread})}
             />)}
 
             

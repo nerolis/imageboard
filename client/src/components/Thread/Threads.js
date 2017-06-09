@@ -22,14 +22,14 @@ import ThreadCreateForm from './ThreadCreateForm';
 
     render() {
       return(
-      <Container >
+      <div >
           <ThreadList threads={this.props.threads} posts={this.props.posts}/>  
           <div className="ui vertical footer segment form-page">
            <div className="ui container">
           </div>
           </div>
       
-      </Container>
+      </div>
 
     )
   }

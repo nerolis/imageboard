@@ -6,6 +6,8 @@ import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
 import Threads from './Threads';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
+import {createThread} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/actions';
+import ThreadCreateForm from '../../../../../../../../Users/Kircheis/yychan/client/src/components/Thread/ThreadCreateForm';
 // Styles
 // import postForm from '.../styles/postForm.scss';
 
@@ -36,8 +38,8 @@ class ThreadView extends React.Component {
                         createPost={this.props.createPost}
                         fetchPost={this.props.fetchPost}
                         addFlashMessage={this.props.addFlashMessage} /> 
-                      <Link to={`/threads/${thread.id}`}>
-                         <Button floated='right' color='black' onClick={() => select(thread.id)} compact>Open thread</Button>
+                      <Link to={`/b/thread${thread.id}`}>
+                        <Button compact floated='right' color='black' onClick={() => select(thread.id)}>Open</Button>
                       </Link>
         <Message color='brown'>
         <Item.Header as='h1'>{thread.name}<br></br><a>№{thread.id}</a><br></br>{thread.date}

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link, Route} from 'react-router-dom';
 // Components
 import Threads from './Thread/Threads';
-import Thread from './Thread/Thread';
+import Board from './Board';
 import ThreadList from './Thread/ThreadList';
 import ThreadView from './Thread/ThreadView';
 import Home from './Home/Home';
@@ -12,7 +12,7 @@ import LoginPage from './LoginPage';
 import Dev from './Thread/Dev';
 import RegisterPage from './RegisterPage';
 import FlashMessagesList from './features/flash/FlashMessagesList';
-import {Menu, Dropdown, Item, Segment, Button} from 'semantic-ui-react';
+import {Menu, Dropdown, Item, Segment, Button, Icon} from 'semantic-ui-react';
 // Styles
 
 
@@ -37,15 +37,18 @@ class App extends Component {
     return (
       
     <div className="ui container">
-                           <FlashMessagesList />
-        <div className="ui  inverted three item menu">
-         <Menu.Item >
-         In dev
+                        <FlashMessagesList />
+         <Menu.Item>
+          <Icon size='large' name='github' />
+         <a href='https://github.com/nerolis'>Nerolis</a>
         </Menu.Item>
-       <ActiveLink activeOnlyWhenExact to="/" label="Home" />
-       <ActiveLink activeOnlyWhenExact to="/threads" label="Board" /> 
-       <ActiveLink activeOnlyWhenExact to="/darknet" label="Darknet" /> 
-           <Dropdown item text='Log-In'>
+        <div className="ui basic black three item menu">
+   
+    
+
+       <ActiveLink activeOnlyWhenExact to="/" label="Home" /> 
+       <ActiveLink activeOnlyWhenExact to="/board" label="Board" />
+           <Dropdown color='blue'item text='Log-In'>
         <Dropdown.Menu>
          <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
          <ActiveLink activeOnlyWhenExact to="/register" label="Register" /> 
@@ -54,13 +57,12 @@ class App extends Component {
       </Dropdown>
         </div>
         <Route  path="/dev" component={Dev} />
-         <Route path="/threads/:threadId" render={() => <div>{console.log('current thread')}</div>}/>
-        <Route path="/threads" component={Threads}/>
+        <Route path="/b/" component={Threads}/>
          <Route exact path="/" component={Home} />
          <Route  path="/login" component={LoginPage} />
 
           <Route  path='/register' component={RegisterPage} />
-          <Route  path='/darknet' component={Thread} />
+          <Route  path='/board' component={Board} />
       </div>
 
       
