@@ -10,6 +10,14 @@ export function setCurrentUser(user) {
   }
 }
 
+export function logout() {
+  return dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthorizationToken(false);
+    dispatch(setCurrentUser({}));
+  }
+}
+
 export function loginAuth(data) {
     return dispatch => {
         return axios.post('https://yyychan.herokuapp.com/api/auth', data).then(res => {

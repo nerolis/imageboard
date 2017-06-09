@@ -18,6 +18,7 @@ class FlashMessage extends React.Component {
     this.props.deleteFlashMessage(this.props.message.id);
 }
 
+
     render() {
        const {id, type, text} = this.props.message;
         return(
