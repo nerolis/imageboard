@@ -31,6 +31,7 @@ export const signin = async (req, res, next) => {
         return res.status(401).json({ errors: { form: 'Wrong password'}})
   }
 
-  const token = jwt.sign({ _id: user._id }, config.secret);
+  const token = jwt.sign({id: user.get('id'),
+          login: user.get('username')}, config.secret);
   res.json(token);
 }
