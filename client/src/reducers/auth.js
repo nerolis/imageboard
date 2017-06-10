@@ -3,15 +3,15 @@ import isEmpty from 'lodash/isEmpty';
 
 const initialState = {
   isAuthenticated: false,
-  user: {}
+  login: {}
 };
 
 export default (state = initialState, action = {}) => {
   switch(action.type) {
     case SET_CURRENT_USER:
       return {
-        isAuthenticated: !isEmpty(action.user),
-        user: action.user
+        isAuthenticated: !isEmpty(action.login),
+        login: action.login
       };
     default: return state;
   }

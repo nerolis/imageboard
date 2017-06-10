@@ -3,10 +3,10 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken'
 import { SET_CURRENT_USER } from './types';
 
-export function setCurrentUser(user) {
+export function setCurrentUser(login) {
   return {
     type: SET_CURRENT_USER,
-    user
+    login
   }
 }
 

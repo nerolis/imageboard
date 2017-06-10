@@ -20,11 +20,16 @@ class NavigationBar extends React.Component {
     }
  render() {  
     const { isAuthenticated } = this.props.auth;
+  
     const userLinks = (
-          <div className='item'>
-          <Link onClick={this.logout.bind(this)} to='#'>Logout</Link>
-          </div>
+               <Dropdown color='blue' item text=''>
+            <Dropdown.Menu >
+              <ActiveLink activeOnlyWhenExact to="/profile" label='Profile' />
+              <Link onClick={this.logout.bind(this)} to='#'>Logout</Link>    
+            </Dropdown.Menu>
+        </Dropdown>
     )
+ 
     const guestLinks = (
         <Dropdown color='blue' item text='Log-In'>
             <Dropdown.Menu >
@@ -33,16 +38,17 @@ class NavigationBar extends React.Component {
             </Dropdown.Menu>
         </Dropdown>)
     return (
+
   <Router>
   <div className="ui container">
-             <Menu.Item position='left'>
+             <Menu.Item position='right'>
               <Icon size='large' name='github' />
                <a href='https://github.com/nerolis'>Nerolis</a>
             </Menu.Item>
          <div className="ui basic black three item menu">
            <ActiveLink activeOnlyWhenExact to="/" label="Home" /> 
            <ActiveLink activeOnlyWhenExact to="/board" label="Board" />
-            { isAuthenticated ? userLinks : guestLinks }
+            {isAuthenticated ? userLinks : guestLinks}
         </div>
         <Route exact path="/" component={Home}/>
         <Route path="/dev" component={Dev} />

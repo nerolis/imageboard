@@ -19,7 +19,6 @@ class Home extends Component {
     return (
         <div>
         <HomeList threads={this.props.threads} posts={this.props.posts}/>
-        <Dev />
         </div>
         
     );
