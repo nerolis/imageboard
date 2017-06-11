@@ -63,6 +63,7 @@ function validate(data) {
       res.json({ threads});
     });
   });
+
    app.get('/api/threads/:threadsId', (req, res) => {
     db.collection('threads').findOne({id: Number(req.params.threadsId)})
       .then(threads => res.send(threads))
@@ -74,6 +75,7 @@ function validate(data) {
         .then(threads => res.send(threads))
           .catch(console.error)
       }); 
+
     app.post('/api/threads', (req, res) => {
     autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
@@ -96,7 +98,6 @@ function validate(data) {
      if (err) {res.status(500).json({errors: {global: err}}); return;}
      res.json({ threads })
     })
-  });
 
   
       // posts 
