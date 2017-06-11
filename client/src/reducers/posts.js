@@ -8,7 +8,7 @@ export default function posts(state = [], action = {}) {
         action.post
       ];
    case POST_DELETED:
-      return state.filter(post => post.id !== action.postId)
+      return state.filter(post => post.id !== action.postsId)
     
     case SET_POSTS:
       return action.posts;

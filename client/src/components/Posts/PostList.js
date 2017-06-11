@@ -23,6 +23,7 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
               createPost={this.props.createPost}
               fetchPost={this.props.fetchPost}
               addFlashMessage={this.props.addFlashMessage}
+              deletePost={this.props.deletePost}
 
           />)}
         </Item.Group>

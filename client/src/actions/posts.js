@@ -24,7 +24,7 @@ export function addPost(posts) {
     posts
   }
 }
-export function threadDeleted(postsId) {
+export function postDeleted(postsId) {
   return {
     type: POST_DELETED,
     postsId
@@ -44,15 +44,15 @@ export function createPost(data) {
     .then(data => dispatch(addPost(data.posts)));
   }
 }
-export function deleteThread(post) {
+export function deletePost(post) {
   return dispatch => {
-    return fetch(`https://yyychan.herokuapp.com/api/threads/${post}`, {
+    return fetch(`https://yyychan.herokuapp.com/api/posts/${post}`, {
       method: 'delete',
       headers: {
         "Content-Type": "application/json",    
       }
     }).then(handleResponse)
-    .then(data => dispatch(threadDeleted(post)))
+    .then(data => dispatch(postDeleted(post)))
   }
 }
 //todo: через аксиос переделать всё.

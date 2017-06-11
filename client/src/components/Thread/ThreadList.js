@@ -9,7 +9,7 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
 // Actions
 import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchThread, createThread, deleteThread} from '../../actions/actions';
-import {fetchPost, createPost} from '../../actions/posts';
+import {fetchPost, createPost, deletePost} from '../../actions/posts';
 import {upvoteThread, upvotePost} from '../../actions/upvote';
 
 class ThreadList extends React.Component {
@@ -21,7 +21,7 @@ class ThreadList extends React.Component {
      }
 
     render() {
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost, deleteThread} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost, deleteThread, deletePost} = this.props;
         return(
             <div>
             <Container>
@@ -48,7 +48,7 @@ class ThreadList extends React.Component {
                     </Message.Content>
                 </Message>
     )
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost, deleteThread} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost, deleteThread, deletePost} = this.props;
         return (
 
         <Item.Group divided relaxed>
@@ -68,6 +68,7 @@ class ThreadList extends React.Component {
                 thread={thread}
                 key={thread._id}
                 threads={threads}
+                deletePost={deletePost}
                 select={(currentThread) => this.setState({ currentThread})}
             />)}
             <div>{threads.length === 0 ? emptyMessage : this.renderThreads}</div>
@@ -86,6 +87,7 @@ export default connect(null,
     upvoteThread,
     upvotePost,
     deleteThread,
+    deletePost,
     
 }
 )(ThreadList);

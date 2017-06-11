@@ -27,15 +27,14 @@ class ThreadView extends React.Component {
     <Item.Content as='h1'>
       <Item.Content>
         <Item.Meta>
-                              <Button  color='black' size='tiny' compact floated='left' compact onClick={() => deleteThread(thread.id)}>Delete</Button>
-          <Button disabled={this.state.inactive} floated='left' color='black' compact onClick={() => upvoteThread(thread.id).then(this.setState({inactive: true}))}>
+           <Button  basic color='black' size='tiny' compact floated='left' compact onClick={() => deleteThread(thread.id)}>Delete</Button>
+          <Button basic disabled={this.state.inactive} floated='left' color='black' compact onClick={() => upvoteThread(thread.id).then(this.setState({inactive: true}))}>
           <Icon name='like' />Like: {thread.like}</Button>
                       <ThreadReply
                         thread={this.props.thread}
                         createPost={this.props.createPost}
                         fetchPost={this.props.fetchPost}
                         addFlashMessage={this.props.addFlashMessage} /> 
-            
                       <Link to={`/b/thread/${thread.id}`}>
                         <Button compact floated='right' color='black' onClick={() => select(thread.id)}>Open</Button>
                       </Link>
@@ -57,6 +56,7 @@ class ThreadView extends React.Component {
           createPost={this.props.createPost}
           fetchPost={this.props.fetchPost}
           addFlashMessage={this.props.addFlashMessage}
+          deletePost={this.props.deletePost}
         />       
       </Message>
         <Button color='black' onClick={this.props.fetchPost}>Load more from №{thread.id}</Button>

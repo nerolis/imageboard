@@ -50,7 +50,7 @@ export function deleteThread(thread) {
       headers: {
         "Content-Type": "application/json",    
       }
-    }).then(handleResponse)
+    })
     .then(data => dispatch(threadDeleted(thread)))
   }
 }
