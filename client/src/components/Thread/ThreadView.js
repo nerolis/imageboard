@@ -18,23 +18,23 @@ class ThreadView extends React.Component {
   render() {
     const {thread, image, select, text, name, id, comments, user_id, href, upvoteThread, fetchThread, inactive, deleteThread, isAuthenticated} = this.props;
    return(   
+    
     <Item> 
-          <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={thread.image}/>}>
+    <Modal closeIcon basic trigger={<Item.Image size='small' src={thread.image}/>}>
            <Modal.Content image>
-            <Item.Image src={thread.image} />
+            <Item.Image size='big'src={thread.image} />
            </Modal.Content>
          </Modal>
     <Item.Content as='h1'>
       <Item.Content>
         <Item.Meta>
            {isAuthenticated ? <Button  basic color='black' size='tiny' compact floated='left' compact onClick={() => deleteThread(thread.id)}>Delete</Button> : ''}
-          <Button basic disabled={this.state.inactive} floated='left' color='black' compact onClick={() => upvoteThread(thread.id).then(this.setState({inactive: true}))}>
-          <Icon name='like' />Like: {thread.like}</Button>
-                      <ThreadReply
-                        thread={this.props.thread}
-                        createPost={this.props.createPost}
-                        fetchPost={this.props.fetchPost}
-                        addFlashMessage={this.props.addFlashMessage} /> 
+          <Button basic disabled={this.state.inactive} floated='left' color='black' compact onClick={() => upvoteThread(thread.id).then(this.setState({inactive: true}))}><Icon name='like' />Like: {thread.like}</Button>
+              <ThreadReply
+                thread={this.props.thread}
+                createPost={this.props.createPost}
+                fetchPost={this.props.fetchPost}
+                addFlashMessage={this.props.addFlashMessage} /> 
           <Link to={`/b/thread/${thread.id}`}>
           < Button compact floated='right' color='black' onClick={() => select(thread.id)}>Open</Button>
           </Link>
