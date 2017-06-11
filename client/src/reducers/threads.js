@@ -9,7 +9,7 @@ export default function threads(state = [], action = {}) {
       ];   
 
     case THREAD_DELETED:
-      return state.filter(item => item._id !== action.threadId)
+      return state.filter(thread => thread.id !== action.threadsId)
     
     case SET_THREADS: 
       return action.threads;

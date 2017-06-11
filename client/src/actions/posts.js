@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_POSTS, ADD_POSTS} from '../constants/posts';
+import { SET_POSTS, ADD_POSTS, POST_DELETED} from '../constants/posts';
 
 function handleResponse(response) {
   if (response.ok) {
@@ -24,6 +24,12 @@ export function addPost(posts) {
     posts
   }
 }
+export function threadDeleted(postsId) {
+  return {
+    type: POST_DELETED,
+    postsId
+  }
+}
 
 export function createPost(data) {
   return dispatch => {
@@ -38,7 +44,17 @@ export function createPost(data) {
     .then(data => dispatch(addPost(data.posts)));
   }
 }
-
+export function deleteThread(post) {
+  return dispatch => {
+    return fetch(`https://yyychan.herokuapp.com/api/threads/${post}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json",    
+      }
+    }).then(handleResponse)
+    .then(data => dispatch(threadDeleted(post)))
+  }
+}
 //todo: через аксиос переделать всё.
 export function fetchPost() {
     return dispatch => {

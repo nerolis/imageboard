@@ -1,4 +1,4 @@
-import { SET_POSTS, ADD_POST} from '../constants/posts';
+import { SET_POSTS, ADD_POST, POST_DELETED} from '../constants/posts';
 
 export default function posts(state = [], action = {}) {
   switch(action.type) {
@@ -7,7 +7,9 @@ export default function posts(state = [], action = {}) {
         ...state,
         action.post
       ];
-      
+   case POST_DELETED:
+      return state.filter(post => post.id !== action.postId)
+    
     case SET_POSTS:
       return action.posts;
     default: return state;

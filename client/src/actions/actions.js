@@ -43,15 +43,15 @@ export function createThread(data) {
     .then(data => dispatch(addThread(data.threads)))
   }
 }
-export function deleteThread(id) {
+export function deleteThread(thread) {
   return dispatch => {
-    return fetch(`https://yyychan.herokuapp.com/api/threads/${id}`, {
+    return fetch(`https://yyychan.herokuapp.com/api/threads/${thread}`, {
       method: 'delete',
       headers: {
         "Content-Type": "application/json",    
       }
     }).then(handleResponse)
-    .then(data => dispatch(threadDeleted(id)))
+    .then(data => dispatch(threadDeleted(thread)))
   }
 }
 //todo: через аксиос переделать всё.
