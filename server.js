@@ -75,6 +75,11 @@ function validate(data) {
         .then(threads => res.send(threads))
           .catch(console.error)
       }); 
+        app.delete('/api/threads/:threadsId', (req, res) => {
+          db.collection('threads').deleteOne({id: Number(req.params.threadsId)})
+             if (err) {res.status(500).json({errors: {global: err}}); return;}
+         res.json({ threads })
+    })
 
     app.post('/api/threads', (req, res) => {
     autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
@@ -93,11 +98,6 @@ function validate(data) {
   }
 });
   })
-  app.delete('/api/threads/threadsId', (req, res) => {
-    db.collection('threads').deleteOne({id: Number(req.params.threadsId)})
-     if (err) {res.status(500).json({errors: {global: err}}); return;}
-     res.json({ threads })
-    })
 
   
       // posts 
