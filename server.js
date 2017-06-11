@@ -12,7 +12,6 @@ import authRoute from './server/routes/auth';
 import config from './server/config';
 import errorHandler from './server/middlewares/errorHandler'; // must be last
 import checkToken from './server/middlewares/checkToken';
-import authenticate from './server/middlewares/authenticate';
 var cool = require('cool-ascii-faces');
 mongoose.Promise = bluebird;
 mongoose.connect(config.database, err => {
@@ -51,10 +50,6 @@ function validate(data) {
   mongodb.MongoClient.connect(dbUrl, function(err, db) {
 
   app.use('/api', authRoute);
-  app.get('/test', checkToken, (req, res) => { // token
-    res.json('test')
-  });
-  
   
   
   // threads
@@ -76,7 +71,7 @@ function validate(data) {
         .then(threads => res.send(threads))
           .catch(console.error)
       }); 
-        app.delete('/api/threads/:threadsId', authenticate, (req, res) => {
+        app.delete('/api/threads/:threadsId', checkToken, (req, res) => {
           db.collection('threads').deleteOne({id: Number(req.params.threadsId)})
           if (err) {res.status(500).json({errors: {global: err}});return;}
         res.json({})
@@ -112,7 +107,7 @@ function validate(data) {
       res.json({ posts });
     });
   });
-     app.delete('/api/posts/:postsId', authenticate, (req, res) => {
+     app.delete('/api/posts/:postsId', checkToken, (req, res) => {
           db.collection('posts').deleteOne({id: Number(req.params.postsId)})
             if (err) {res.status(500).json({errors: {global: err}});return;}
         res.json({})
