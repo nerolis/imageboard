@@ -71,9 +71,10 @@ function validate(data) {
         .then(threads => res.send(threads))
           .catch(console.error)
       }); 
-        app.delete('/api/threads/:threadsId', checkToken, (req, res) => {
+        app.delete('/api/threads/:threadsId', (req, res) => {
           db.collection('threads').deleteOne({id: Number(req.params.threadsId)})
-            res.json({});
+          if (err) {res.status(500).json({errors: {global: err}});return;}
+        res.json({})
     })
 
     app.post('/api/threads', (req, res) => {
@@ -106,7 +107,7 @@ function validate(data) {
       res.json({ posts });
     });
   });
-     app.delete('/api/posts/:postsId', checkToken, (req, res) => {
+     app.delete('/api/posts/:postsId', (req, res) => {
           db.collection('posts').deleteOne({id: Number(req.params.postsId)})
             if (err) {res.status(500).json({errors: {global: err}});return;}
         res.json({})

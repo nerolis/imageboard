@@ -7,7 +7,7 @@ export function setCurrentUser(login) {
   return {
     type: SET_CURRENT_USER,
     login
-  }
+  };
 }
 
 export function logout() {
