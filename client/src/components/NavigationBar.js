@@ -19,7 +19,9 @@ class NavigationBar extends React.Component {
         e.preventDefault();
         this.props.logout();
     }
+    
  render() {  
+     
     const { isAuthenticated } = this.props.auth;
   
     const userLinks = (

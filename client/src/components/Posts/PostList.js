@@ -24,6 +24,7 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
               fetchPost={this.props.fetchPost}
               addFlashMessage={this.props.addFlashMessage}
               deletePost={this.props.deletePost}
+              isAuthenticated={this.props.isAuthenticated}
 
           />)}
         </Item.Group>

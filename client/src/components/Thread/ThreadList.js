@@ -21,7 +21,7 @@ class ThreadList extends React.Component {
      }
 
     render() {
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost, deleteThread, deletePost} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost, deleteThread, deletePost, isAuthenticated} = this.props;
         return(
             <div>
             <Container>
@@ -48,7 +48,7 @@ class ThreadList extends React.Component {
                     </Message.Content>
                 </Message>
     )
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost, deleteThread, deletePost} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost, deleteThread, deletePost, isAuthenticated} = this.props;
         return (
 
         <Item.Group divided relaxed>
@@ -68,6 +68,7 @@ class ThreadList extends React.Component {
                 thread={thread}
                 key={thread._id}
                 threads={threads}
+                isAuthenticated={isAuthenticated}
                 deletePost={deletePost}
                 select={(currentThread) => this.setState({ currentThread})}
             />)}

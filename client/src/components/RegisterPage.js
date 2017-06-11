@@ -74,7 +74,7 @@ class RegisterPage extends Component { // В принципе, для анони
 
   render() {
         const { errors, login, password, passwordConfirmation, email, isLoading, invalid} = this.state;
-         const { from } = this.props.location.state || { from: { pathname: '/' } }
+         const { from } = this.props.location.state || { from: { pathname: '/login' } }
          const { redirectToReferrer } = this.state
           if (redirectToReferrer) { return (<Redirect to={from}/>) }
             return ( 

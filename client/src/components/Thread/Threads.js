@@ -21,9 +21,10 @@ import ThreadCreateForm from './ThreadCreateForm';
 
 
     render() {
+      const { isAuthenticated } = this.props.auth;
       return(
       <div >
-          <ThreadList threads={this.props.threads} posts={this.props.posts}/>  
+          <ThreadList threads={this.props.threads} posts={this.props.posts} isAuthenticated={isAuthenticated} />  
           <div className="ui vertical footer segment form-page">
            <div className="ui container">
           </div>
@@ -38,6 +39,7 @@ function mapStateToProps(state) {
   return {
    threads: state.threads,
    posts: state.posts,
+   auth: state.auth
   }
 }
 
