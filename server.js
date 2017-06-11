@@ -73,8 +73,7 @@ function validate(data) {
       }); 
         app.delete('/api/threads/:threadsId', checkToken, (req, res) => {
           db.collection('threads').deleteOne({id: Number(req.params.threadsId)})
-          if (err) {res.status(500).json({errors: {global: err}});return;}
-        res.json({})
+            res.json({});
     })
 
     app.post('/api/threads', (req, res) => {

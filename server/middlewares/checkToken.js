@@ -17,6 +17,6 @@ export default async (req, res, next) => {
         .status(400)
         .json({message})
     }
-    console.log('tokenObj', tokenObj);
     next()
 }
+
