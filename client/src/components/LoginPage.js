@@ -38,8 +38,7 @@ class LoginPage extends Component { // В принципе, для аноним�
       this.setState({ errors: {}, isLoading: true });
       this.props.loginAuth(this.state).then(() => {
             this.props.addFlashMessage({
-              type: 'Succes', 
-              text: 'Redirect...',
+              type: 'Succes'
             })
          }).then(
         (res) => this.setState({ redirectToReferrer: true }),

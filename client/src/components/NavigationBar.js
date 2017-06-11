@@ -12,6 +12,7 @@ import Threads from './Thread/Threads';
 import Board from './Board';
 import RegisterPage from './RegisterPage'
 import { logout } from '../actions/login';
+import RequireAuth from '../utils/RequireAuth';
 
 class NavigationBar extends React.Component {
     logout(e) {
@@ -22,16 +23,17 @@ class NavigationBar extends React.Component {
     const { isAuthenticated } = this.props.auth;
   
     const userLinks = (
-               <Dropdown color='blue' item text=''>
+               <Dropdown  icon='user' item text={`${this.props.auth.login.login}`}>
             <Dropdown.Menu >
-              <ActiveLink activeOnlyWhenExact to="/profile" label='Profile' />
-              <Link onClick={this.logout.bind(this)} to='#'>Logout</Link>    
+              <ActiveLink activeOnlyWhenExact to="/profile" label={`Profile`} />
+              <ActiveLink  activeOnlyWhenExact to="/messages" label={`Messages`} />
+               <Dropdown.Header icon='sign out' content={<Link onClick={this.logout.bind(this)} to='#'>Sign out</Link>}/>
             </Dropdown.Menu>
         </Dropdown>
     )
  
     const guestLinks = (
-        <Dropdown color='blue' item text='Log-In'>
+        <Dropdown item text='Sign in' icon='sign in'>
             <Dropdown.Menu >
             <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
             <ActiveLink activeOnlyWhenExact to="/register" label="Register" /> 
@@ -45,13 +47,17 @@ class NavigationBar extends React.Component {
               <Icon size='large' name='github' />
                <a href='https://github.com/nerolis'>Nerolis</a>
             </Menu.Item>
-         <div className="ui basic black three item menu">
+         <div className="ui basic black four item menu">
+           <Menu.Item >
+            <img size='large' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
+            In dev
+          </Menu.Item>
            <ActiveLink activeOnlyWhenExact to="/" label="Home" /> 
            <ActiveLink activeOnlyWhenExact to="/board" label="Board" />
             {isAuthenticated ? userLinks : guestLinks}
         </div>
         <Route exact path="/" component={Home}/>
-        <Route path="/dev" component={Dev} />
+        <Route path="/dev" component={RequireAuth(Dev)} />
         <Route path="/b/" component={Threads}/>
         <Route path="/to/" component={Threads}/>
         <Route path="/login" component={LoginPage} />

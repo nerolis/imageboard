@@ -23,8 +23,8 @@ class FlashMessage extends React.Component {
        const {id, type, text} = this.props.message;
         return(
           <Message
-            success
-            negative
+           
+            attached='bottom'
             header={type}
             content={text}
             onDismiss={this.onClick}

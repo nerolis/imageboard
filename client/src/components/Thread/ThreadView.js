@@ -38,7 +38,7 @@ class ThreadView extends React.Component {
                         createPost={this.props.createPost}
                         fetchPost={this.props.fetchPost}
                         addFlashMessage={this.props.addFlashMessage} /> 
-                      <Link to={`/b/thread${thread.id}`}>
+                      <Link to={`/b/thread/${thread.id}`}>
                         <Button compact floated='right' color='black' onClick={() => select(thread.id)}>Open</Button>
                       </Link>
         <Message color='brown'>

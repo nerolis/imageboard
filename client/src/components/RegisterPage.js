@@ -61,7 +61,6 @@ class RegisterPage extends Component { // В принципе, для анони
       this.props.register(this.state).then(() => {
             this.props.addFlashMessage({
               type: 'Succes', 
-              text: 'Redirect...',
             })
          }).then(
         (res) => this.setState({ redirectToReferrer: true }),

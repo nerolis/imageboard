@@ -8,13 +8,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import logger from 'redux-logger'
 import jwtDecode from 'jwt-decode';
-import jwt from 'jsonwebtoken';
 // Reducers
 import rootReducer from './reducers/rootReducer';
 import {setCurrentUser} from './actions/login';
 // Styles
 import './styles/index.scss';
 // middlewares
+
 // Components
 import App from './components/App'
 import setAuthorizationToken from './utils/setAuthorizationToken';
@@ -29,7 +29,7 @@ const store = createStore(
 
 if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
-  store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
+  store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
 }
 
 ReactDOM.render(
