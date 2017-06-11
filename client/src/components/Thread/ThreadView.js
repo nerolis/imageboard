@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link, Route} from 'react-router-dom';
 // Components
-import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Dimmer, Segment, Label} from 'semantic-ui-react';
+import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Dimmer, Segment, Label, Dropdown} from 'semantic-ui-react';
 import ThreadReply from './ThreadReply';
 import PostList from '../Posts/PostList';
-import Threads from './Threads';
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-import {createThread} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/actions';
-import ThreadCreateForm from '../../../../../../../../Users/Kircheis/yychan/client/src/components/Thread/ThreadCreateForm';
 // Styles
 // import postForm from '.../styles/postForm.scss';
 
@@ -20,7 +16,7 @@ class ThreadView extends React.Component {
   }
   
   render() {
-    const {thread, image, select, text, name, id, comments, user_id, href, upvoteThread, fetchThread, inactive} = this.props;
+    const {thread, image, select, text, name, id, comments, user_id, href, upvoteThread, fetchThread, inactive, deleteThread} = this.props;
    return(   
     <Item> 
           <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={thread.image}/>}>
@@ -31,13 +27,15 @@ class ThreadView extends React.Component {
     <Item.Content as='h1'>
       <Item.Content>
         <Item.Meta>
-           <Button   disabled={this.state.inactive} floated='left' color='black' compact onClick={() => upvoteThread(thread.id)
-               .then(this.setState({inactive: true}))}><Icon name='like' />Like: {thread.like}</Button>
+                              <Button  color='black' size='tiny' compact floated='left' compact onClick={() => deleteThread(thread.id)}>Delete</Button>
+          <Button disabled={this.state.inactive} floated='left' color='black' compact onClick={() => upvoteThread(thread.id).then(this.setState({inactive: true}))}>
+          <Icon name='like' />Like: {thread.like}</Button>
                       <ThreadReply
                         thread={this.props.thread}
                         createPost={this.props.createPost}
                         fetchPost={this.props.fetchPost}
                         addFlashMessage={this.props.addFlashMessage} /> 
+            
                       <Link to={`/b/thread/${thread.id}`}>
                         <Button compact floated='right' color='black' onClick={() => select(thread.id)}>Open</Button>
                       </Link>

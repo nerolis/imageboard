@@ -53,14 +53,16 @@ function validate(data) {
   app.get('/test', checkToken, (req, res) => { // token
     res.json('test')
   });
-
+  
+  
+  
+  // threads
   // todo: refactor через роутер
   app.get('/api/threads', (req, res) => {
     db.collection('threads').find({}).toArray((err, threads) => {
       res.json({ threads});
     });
   });
-
    app.get('/api/threads/:threadsId', (req, res) => {
     db.collection('threads').findOne({id: Number(req.params.threadsId)})
       .then(threads => res.send(threads))
@@ -71,21 +73,8 @@ function validate(data) {
       db.collection('threads').findOneAndUpdate({id: Number(req.params.threadsId)}, {$inc: {like: +1}})
         .then(threads => res.send(threads))
           .catch(console.error)
-      });
-    app.put('/api/posts/:postsId', (req, res) => {
-      db.collection('posts').findOneAndUpdate({id: Number(req.params.postsId)}, {$inc: {like: +1}})
-        .then(posts => res.send(posts))
-          .catch(console.error)
-      });
-
-   app.get('/api/posts', (req, res) => {
-    db.collection('posts').find({}).toArray((err, posts) => {
-      res.json({ posts });
-    });
-  });
-
-
-  app.post('/api/threads', (req, res) => {
+      }); 
+    app.post('/api/threads', (req, res) => {
     autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
@@ -102,6 +91,25 @@ function validate(data) {
   }
 });
   })
+  app.delete('/api/threads/threadsId', (req, res) => {
+    db.collection('threads').deleteOne({id: Number(req.params.threadsId)})
+     if (err) {res.status(500).json({errors: {global: err}}); return;}
+     res.json({ threads })
+    })
+  });
+
+  
+      // posts 
+    app.put('/api/posts/:postsId', (req, res) => {
+      db.collection('posts').findOneAndUpdate({id: Number(req.params.postsId)}, {$inc: {like: +1}})
+        .then(posts => res.send(posts))
+          .catch(console.error)
+      });
+   app.get('/api/posts', (req, res) => {
+    db.collection('posts').find({}).toArray((err, posts) => {
+      res.json({ posts });
+    });
+  });
   
       app.post('/api/posts', (req, res) => {
       autoIncrement.getNextSequence(db, 'threads', function (err, autoIndex) {

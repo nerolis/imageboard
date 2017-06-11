@@ -1,4 +1,4 @@
-import { SET_THREADS, ADD_THREAD} from '../constants/threads';
+import { SET_THREADS, ADD_THREAD, THREAD_DELETED} from '../constants/threads';
 
 export default function threads(state = [], action = {}) {
   switch(action.type) {
@@ -7,6 +7,10 @@ export default function threads(state = [], action = {}) {
         ...state,
         action.thread
       ];   
+
+    case THREAD_DELETED:
+      return state.filter(item => item._id !== action.threadId)
+    
     case SET_THREADS: 
       return action.threads;
     default: return state;

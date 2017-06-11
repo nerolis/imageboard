@@ -8,7 +8,7 @@ import { Redirect, Link} from 'react-router';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 // Actions
 import { addFlashMessage } from '../../actions/flashMessages';
-import {fetchThread, createThread} from '../../actions/actions';
+import {fetchThread, createThread, deleteThread} from '../../actions/actions';
 import {fetchPost, createPost} from '../../actions/posts';
 import {upvoteThread, upvotePost} from '../../actions/upvote';
 
@@ -21,7 +21,7 @@ class ThreadList extends React.Component {
      }
 
     render() {
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost, deleteThread} = this.props;
         return(
             <div>
             <Container>
@@ -48,7 +48,7 @@ class ThreadList extends React.Component {
                     </Message.Content>
                 </Message>
     )
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost, deleteThread} = this.props;
         return (
 
         <Item.Group divided relaxed>
@@ -58,6 +58,7 @@ class ThreadList extends React.Component {
             })
             .map(thread => <ThreadView       // Мапаю threadview, вывожу в threads       
                 posts={posts}
+                deleteThread={deleteThread}
                 createPost={createPost}
                 fetchPost={fetchPost}
                 fetchThread={fetchThread}
@@ -84,6 +85,7 @@ export default connect(null,
     addFlashMessage,
     upvoteThread,
     upvotePost,
+    deleteThread,
     
 }
 )(ThreadList);
