@@ -6,16 +6,10 @@ import {connect} from 'react-redux';
 import FlashMessagesList from './features/flash/FlashMessagesList';
 import NavigationBar from './NavigationBar';
 import {Menu, Dropdown, Item, Segment, Button, Icon, Label, Container} from 'semantic-ui-react';
-class App extends React.Component {
-  render() {
-    return (
-      <Container>
-        <FlashMessagesList />
-        <NavigationBar />
-        {this.props.children}
-      </Container>
-    );
-  }
-}
-
+const App = () => (
+        <Container>
+           <FlashMessagesList />
+           <NavigationBar />
+       </Container>
+)
 export default App;

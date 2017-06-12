@@ -9,7 +9,7 @@ class HomeView extends Component {
       <Table.Body>
         <Table.Row>
           <Table.Cell collapsing>
-            <Icon name='add' /> New thread in <Link to={`/b/threads/${thread.id}`}>/b/№{thread.id}</Link> 
+            <Icon name='add' /> New thread in <Link to={`/b/${thread.id}`}>/b/№{thread.id}</Link> 
           </Table.Cell>
                 <Table.Cell>
                 {thread.text}

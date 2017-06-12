@@ -11,52 +11,20 @@ import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchThread, createThread, deleteThread} from '../../actions/actions';
 import {fetchPost, createPost, deletePost} from '../../actions/posts';
 import {upvoteThread, upvotePost} from '../../actions/upvote';
-
 class ThreadList extends React.Component {
-        constructor() {
-            super()
-            this.state = {
-             currentThread: undefined,
-        } 
-     }
-
     render() {
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost, deleteThread, deletePost, isAuthenticated} = this.props;
-        return(
-            <div>
-            <Container>
-            {(this.state.currentThread)
-            ?       ''
-            : <ThreadCreateForm 
-                    onSubmit={(threads) => this.setState({ threads })}
-                    createThread={createThread}
-                    fetchThread={fetchThread}
-                    addFlashMessage={addFlashMessage}                   
-            />}
-            {this.renderThreads.bind(this)()}
-            </Container>
-            </div>
-        )}     
-
-    renderThreads() {
-            const emptyMessage = (
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost, deleteThread, deletePost, isAuthenticated, upvoteThread} = this.props;
+    const emptyMessage = (
                 <Message icon>
                 <Icon name='circle notched' loading />
                      <Message.Content>
-                         <Message.Header>Just one second</Message.Header>
-                              We are fetching that content for you.
+                      We are fetching that content for you.
                     </Message.Content>
                 </Message>
     )
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvoteThread, upvotePost, deleteThread, deletePost, isAuthenticated} = this.props;
-        return (
-
-        <Item.Group divided relaxed>
-            {threads.filter(thread => {
-            if (!this.state.currentThread) return true;
-            else return (thread.id == this.state.currentThread);
-            })
-            .map(thread => <ThreadView       // Мапаю threadview, вывожу в threads       
+        return(
+          <Item.Group divided relaxed>
+            {threads.map(thread => <ThreadView       // Мапаю threadview, вывожу в threads       
                 posts={posts}
                 deleteThread={deleteThread}
                 createPost={createPost}
@@ -69,16 +37,12 @@ class ThreadList extends React.Component {
                 key={thread._id}
                 threads={threads}
                 isAuthenticated={isAuthenticated}
-                deletePost={deletePost}
-                select={(currentThread) => this.setState({ currentThread})}
-            />)}
-            <div>{threads.length === 0 ? emptyMessage : this.renderThreads}</div>
+                deletePost={deletePost}/>)}
+         <div>{threads.length === 0 ? emptyMessage : this.renderThreads}</div>
         </Item.Group>
-
-        
-        )}
+  )   
  }
-
+}
 export default connect(null, 
 {   createThread,
     fetchPost,

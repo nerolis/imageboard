@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {Menu, Dropdown, Item, Segment, Button, Icon, Label} from 'semantic-ui-react';
 import App from './App';
 import Home from './Home/Home';
-import NotFound from './NotFound';
 import LoginPage from './LoginPage';
 import Dev from './Thread/Dev';
 import Threads from './Thread/Threads';
@@ -13,7 +12,6 @@ import Board from './Board';
 import RegisterPage from './RegisterPage'
 import { logout } from '../actions/login';
 import RequireAuth from '../utils/RequireAuth';
-
 class NavigationBar extends React.Component {
     logout(e) {
         e.preventDefault();

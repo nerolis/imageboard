@@ -10,7 +10,7 @@ class SubView extends Component {
       <Table.Body>
         <Table.Row>
           <Table.Cell collapsing>
-            <Icon name='add' /> New post in <Link to={`/b/threads/${post.reply_id}`}>/b/№{post.reply_id}</Link> 
+            <Icon name='add' /> New post in <Link to={`/b/${post.reply_id}`}>/b/№{post.reply_id}</Link> 
           </Table.Cell>
                 <Table.Cell>
                 {post.text}
