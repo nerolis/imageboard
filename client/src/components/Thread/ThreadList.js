@@ -24,6 +24,12 @@ class ThreadList extends React.Component {
     )
         return(
           <Item.Group divided relaxed>
+                    <ThreadCreateForm 
+                    onSubmit={(threads) => this.setState({ threads })}
+                    createThread={createThread}
+                    fetchThread={fetchThread}
+                    addFlashMessage={addFlashMessage}                   
+            />
             {threads.map(thread => <ThreadView       // Мапаю threadview, вывожу в threads       
                 posts={posts}
                 deleteThread={deleteThread}
