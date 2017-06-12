@@ -41,7 +41,7 @@ class PostView extends React.Component {
              <Item.Header as='h1'><p>{post.name}<a><br></br>№{post.id}</a> <br></br>{post.date}</p></Item.Header>
               <Button disabled={this.state.inactive} floated='right' size='tiny' compact basic color='black'  onClick={() => upvotePost(post.id)
                 .then(this.setState({inactive: true}))}><Icon name='like' />{post.like}</Button>
-            <Button  color='black' size='tiny' basic floated='right' compact onClick={() => deletePost(post.id)}>Delete</Button>
+            {isAuthenticated ? <Button  color='black' size='tiny' basic floated='right' compact onClick={() => deletePost(post.id)}>Delete</Button>: ''}
               <Item.Description>
                 <Message color='black' size='large' >
                 {post.text} 

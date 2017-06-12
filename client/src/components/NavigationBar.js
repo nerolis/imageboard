@@ -33,7 +33,7 @@ class NavigationBar extends React.Component {
     )
  
     const guestLinks = (
-        <Dropdown item text='Sign in' icon='sign in'>
+        <Dropdown item  text='Sign in' icon='sign in'>
             <Dropdown.Menu >
             <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
             <ActiveLink activeOnlyWhenExact to="/register" label="Register" /> 

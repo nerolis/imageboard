@@ -2,10 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 // Components
 import ThreadView from './ThreadView';
-import {Item, Button, Menu, Container, Header, Message, Icon} from 'semantic-ui-react';
+import {Item, Button, Menu, Container, Header, Message, Icon, Segment} from 'semantic-ui-react';
 import ThreadCreateForm from './ThreadCreateForm';
 import { Redirect, Link} from 'react-router';
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 // Actions
 import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchThread, createThread, deleteThread} from '../../actions/actions';
