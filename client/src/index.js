@@ -14,7 +14,6 @@ import {setCurrentUser} from './actions/login';
 // Styles
 import './styles/index.scss';
 // middlewares
-
 // Components
 import App from './components/App'
 import setAuthorizationToken from './utils/setAuthorizationToken';
@@ -31,6 +30,7 @@ if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
   store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
 }
+
 ReactDOM.render(
    <BrowserRouter>
   <Provider store={store}>

@@ -64,14 +64,3 @@ export function fetchThread() {
     }
 }
 
-export function fetchSelectThread() {
-    return dispatch => {
-         axios.get(`https://yyychan.herokuapp.com/api/threads/${thread.id}`), {mode: 'cors'}
-            .then(response => {
-               dispatch(setThreads(response.data.threads))
-                
-               
-      });
-    }
-}
-
