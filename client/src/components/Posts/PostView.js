@@ -31,17 +31,19 @@ class PostView extends React.Component {
            </Modal.Content>
       </Modal>
            <Item.Content>
-                <ThreadReply
-                  thread={this.props.thread}
-                  createPost={this.props.createPost}
-                  fetchPost={this.props.fetchPost}
-                  addFlashMessage={this.props.addFlashMessage} />  
-             <Item.Header as='h1'><p>{post.name}<a><br></br>№{post.id}</a> <br></br>{post.date}</p></Item.Header>
-              <Button disabled={this.state.inactive} floated='right' size='tiny' compact basic color='black'  onClick={() => upvotePost(post.id)
-                .then(this.setState({inactive: true}))}><Icon name='like' />{post.like}</Button>
+          <ThreadReply
+              thread={this.props.thread}
+              createPost={this.props.createPost}
+              fetchPost={this.props.fetchPost}
+              addFlashMessage={this.props.addFlashMessage}
+              />  
+             <Item.Header
+                as='h1'><p>{post.name}<a><br></br>№{post.id}</a> <br></br>{post.date}</p>
+             </Item.Header>
+              <Button disabled={this.state.inactive} floated='right' size='tiny' compact basic color='black'  onClick={() => upvotePost(post.id).then(this.setState({inactive: true}))}><Icon name='like' />{post.like}</Button>
             {isAuthenticated ? <Button  color='black' size='tiny' basic floated='right' compact onClick={() => deletePost(post.id)}>Delete</Button>: ''}
               <Item.Description as='h1'>
-                <Message color='black' size='large' >
+                <Message color='black' size='small' >
                 {post.text} 
                 </Message>
                   {post.YoutubeLink && <Button floated='right'  color='black' basic icon onClick={this.handleClick}> 

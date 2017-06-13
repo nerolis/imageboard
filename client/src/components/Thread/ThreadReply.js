@@ -93,7 +93,7 @@ class ThreadAddPost extends React.Component {
  
      );
        else return (
-      <Button icon='reply' size='small' compact content='Reply'  floated='right' color='black' onClick={() => this.setState({showThreadCreateForm: true})}/>
+      <Button icon='reply' size='small' compact content='Reply'  floated='right' inverted onClick={() => this.setState({showThreadCreateForm: true})}/>
     );
   }
 }

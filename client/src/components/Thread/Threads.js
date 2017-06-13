@@ -27,8 +27,7 @@ class Threads extends React.Component {
       <Route exact path='/b/' render={() => <ThreadList threads={threads} posts={posts} isAuthenticated={isAuthenticated}   />}/>
       <Route path={`/b/:threadId`} component={SingleThread} />
          </Switch>
-       <div className="ui vertical footer segment form-page">
-       
+      <div className="ui vertical footer segment form-page">
       </div>
     </Container>
 

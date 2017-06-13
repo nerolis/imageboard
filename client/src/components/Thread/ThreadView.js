@@ -26,13 +26,12 @@ class ThreadView extends React.Component {
         </Modal.Content>
       </Modal>
   <Item.Content>
-  
         <Item.Meta>
         <Link to={`/b/${thread.id}`}>
-            <Button content='Open' icon='chevron down' size='small' compact floated='right' color='black' />
+            <Button content='Open' icon='chevron down' size='small' compact floated='right' inverted />
         </Link>
-            {isAuthenticated ? <Button   color='black' size='tiny' compact floated='left' compact onClick={() => deleteThread(thread.id)}>Delete</Button> : ''}
-          <ThreadReply
+            {isAuthenticated ? <Button   inverted  size='tiny' compact floated='left' compact onClick={() => deleteThread(thread.id)}>Delete</Button> : ''}
+                      <ThreadReply
             fetchOnePost={this.props.fetchOnePost}
             thread={this.props.thread}
             createPost={this.props.createPost}
@@ -43,9 +42,9 @@ class ThreadView extends React.Component {
           onClick={() => upvoteThread(thread.id).then(this.setState({inactive: true}))}
           size='tiny'
           compact
-          color='black'
+          inverted
           floated="left"
-          content={thread.like}
+          content={`Like ${thread.like}`}
           icon='like' />
         </Item.Meta>
       <Message color='brown' size='small'>

@@ -28,9 +28,9 @@ class SingleThread extends React.Component {
             />)}
             <Header>
             <Link to={`/b`}>
-            <Button  icon='arrow left' basic content='Back'/>
+            <Button  icon='arrow left' basic inverted content='Back'/>
            </Link>
-           <Button floated='right' content='Update' basic onClick={this.props.fetchPost} />
+           <Button floated='right' content='Update' inverted basic onClick={this.props.fetchPost} />
            </Header>
      </Item.Group>
       )
