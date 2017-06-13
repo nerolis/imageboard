@@ -11,7 +11,7 @@ import {upvoteThread, upvotePost} from '../../actions/upvote';
     const posts = this.props.posts
     const thread = this.props.thread
   return(
-    <Item.Group divided relaxed>                                
+    <Item.Group divided>                                
       {posts.filter(post => thread.id == post.reply_id).map(post => <PostView thread={this.props.thread} post={post} key={post._id}  {...this.props} />)}
     </Item.Group>
    )

@@ -8,7 +8,7 @@ import NavigationBar from './Navigation/NavigationBar';
 import { Container } from 'semantic-ui-react';
 const App = () => (
     <Container>
-        <FlashMessagesList />
+   <FlashMessagesList />
         <NavigationBar />
     </Container>
 )

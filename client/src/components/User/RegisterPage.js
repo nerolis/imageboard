@@ -22,7 +22,6 @@ class RegisterPage extends Component { // В принципе, для анони
             redirectToReferrer: false
         }
             this.onSubmit = this.onSubmit.bind(this);
-            this.checkUserExists = this.checkUserExists.bind(this);
         }
     
      isValid() {

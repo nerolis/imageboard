@@ -5,7 +5,7 @@ class HomeView extends Component {
   render() {
      const {thread, threads} = this.props;
     return (
-    <Table celled striped>
+    <Table celled striped selectable sortable>
       <Table.Body>
         <Table.Row>
           <Table.Cell collapsing>
@@ -16,7 +16,6 @@ class HomeView extends Component {
                 </Table.Cell>               
           <Table.Cell collapsing textAlign='right'> <Icon name='like'> {thread.like}</Icon></Table.Cell>
           <Table.Cell collapsing textAlign='right'>{thread.date}</Table.Cell>
-          
         </Table.Row>
       </Table.Body>
     </Table>

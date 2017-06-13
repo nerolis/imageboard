@@ -30,7 +30,7 @@ class ThreadList extends React.Component {
             fetchThread={fetchThread}
             addFlashMessage={addFlashMessage}/>
          {threads.length === 0 ? emptyMessage : this.renderThreads}
-        <Item.Group divided relaxed>
+        <Item.Group divided>
           {threads.map(thread => <ThreadView key={thread.id} thread={thread} {...this.props}/>)}
        </Item.Group>
      </Container>

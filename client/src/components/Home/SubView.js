@@ -6,7 +6,7 @@ class SubView extends Component {
   render() {
      const {post, posts, threads, thread} = this.props;
     return (
-    <Table celled striped>
+    <Table celled striped selectable sortable>
       <Table.Body>
         <Table.Row>
           <Table.Cell collapsing>

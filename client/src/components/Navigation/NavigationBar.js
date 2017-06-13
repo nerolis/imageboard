@@ -40,24 +40,24 @@ class NavigationBar extends React.Component {
    const guestLinks = (
      <Dropdown item  text='Sign in' icon='sign in'>
         <Dropdown.Menu >
-        <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
-        <ActiveLink activeOnlyWhenExact to="/register" label="Register" /> 
+        <ActiveLink activeOnlyWhenExact to="/login" label='Sign in' />      
+        <ActiveLink activeOnlyWhenExact to="/register" label='Register' /> 
         </Dropdown.Menu>
      </Dropdown>
     )
     return (
   <Router>
     <div className="ui container">
-      <Menu.Item>
+      <Menu.Item >
       <Icon size='large' name='github'/> <a href='https://github.com/nerolis'>Nerolis</a>
       </Menu.Item>
-     <div className="ui basic teal four item menu">
+     <div className="ui basic small stackable teal four item tabular  menu">
       <Menu.Item >
           <img size='large' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
           In dev
       </Menu.Item>
         <ActiveLink activeOnlyWhenExact to="/" label="Home" /> 
-        <ActiveLink activeOnlyWhenExact to="/board" label="Board" />
+        <ActiveLink activeOnlyWhenExact to="/board" label={`Board`} /> 
         {isAuthenticated ? userLinks : guestLinks}
     </div>
 

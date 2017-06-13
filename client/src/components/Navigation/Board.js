@@ -37,11 +37,7 @@ class Board extends React.Component {
       </Grid.Column>
     </Grid.Row>
   </Grid>
-
-  
-
      </Header>
-
     )
 
 

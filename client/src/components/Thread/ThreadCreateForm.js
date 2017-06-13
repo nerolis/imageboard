@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import {Form, Button, Textarea, Message, Container, Header} from 'semantic-ui-react';
+import {Form, Button, Textarea, Message, Container, Header, Grid} from 'semantic-ui-react';
 import Input from 'react-toolbox/lib/input';
 import {addFlashMessage} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/flashMessages';
 class ThreadCreateForm extends React.Component {
@@ -58,17 +58,18 @@ class ThreadCreateForm extends React.Component {
           const {showThreadCreateForm, name, text, image, errors, invalid, isLoading} = this.state; 
           
           if (showThreadCreateForm) return (
-       <Message color='black'>
+
         <Form  onSubmit={this.onSubmit}>
-             <Message color='black'><h1>Create thread Form</h1></Message>
+     
             <Input  error={errors.name} error={errors.name} label='Name' type='text' name='name' value={name} onChange={this.onChange.bind(this, 'name')} />
             <Input error={errors.text} multiline rows={3} label='Message'type='text' name='text' value={text} onChange={this.onChange.bind(this, 'text')} />
             <Input error={errors.image} label='URL' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>
-            <Button disabled={isLoading || invalid}>Submit</Button>
+            <Button inverted  disabled={isLoading || invalid}>Submit</Button>
             <Button color='red' basic floated='right'icon='close' onClick={() => this.setState({showThreadCreateForm: false})}></Button>
+       
          </Form>
-         </Message>
+     
      );
        else return (
       <Button basic inverted color='teal' onClick={() => this.setState({showThreadCreateForm: true})}>

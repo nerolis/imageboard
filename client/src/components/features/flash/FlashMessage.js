@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import {Message} from 'semantic-ui-react';
+import {Message, Rail} from 'semantic-ui-react';
 // Actions
 class FlashMessage extends React.Component {
     constructor(props) {
@@ -16,11 +16,12 @@ class FlashMessage extends React.Component {
     render() {
     const {id, type, text} = this.props.message;
         return(
-          <Message
+       <Message
            attached='bottom'
            header={type}
            content={text}
-           onDismiss={this.onClick}/>
+           onDismiss={this.onClick}
+       />
  )}
 }
 
