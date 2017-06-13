@@ -73,4 +73,4 @@ class RegisterPage extends Component { // В принципе, для анони
   }
 }
 
-export default connect(null, {isUserExists, register, addFlashMessage})(RegisterPage);
+export default connect(null, { register, addFlashMessage})(RegisterPage);
