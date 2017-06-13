@@ -8,43 +8,32 @@ import { Redirect, Link} from 'react-router';
 // Actions
 import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchThread, createThread, deleteThread} from '../../actions/actions';
-import {fetchPost, createPost, deletePost} from '../../actions/posts';
+import {fetchPost, createPost, deletePost, fetchOnePost} from '../../actions/posts';
 import {upvoteThread, upvotePost} from '../../actions/upvote';
 class ThreadList extends React.Component {
     render() {
-    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost, upvotePost, deleteThread, deletePost, isAuthenticated, upvoteThread} = this.props;
+    const {threads, posts, createThread, fetchThread, addFlashMessage, createPost, fetchPost,
+          upvotePost, deleteThread, deletePost, isAuthenticated, upvoteThread, fetchOnePost} = this.props;
     const emptyMessage = (
-                <Message icon>
-                <Icon name='circle notched' loading />
-                     <Message.Content>
-                      We are fetching that content for you.
-                    </Message.Content>
-                </Message>
+         <Message icon>
+         <Icon name='circle notched' loading />
+           <Message.Content>
+              We are fetching that content for you.
+           </Message.Content>
+         </Message>
     )
         return(
-          <Item.Group divided relaxed>
-                    <ThreadCreateForm 
-                    onSubmit={(threads) => this.setState({ threads })}
-                    createThread={createThread}
-                    fetchThread={fetchThread}
-                    addFlashMessage={addFlashMessage}                   
-            />
-            {threads.map(thread => <ThreadView       // Мапаю threadview, вывожу в threads       
-                posts={posts}
-                deleteThread={deleteThread}
-                createPost={createPost}
-                fetchPost={fetchPost}
-                fetchThread={fetchThread}
-                upvoteThread={upvoteThread}
-                upvotePost={upvotePost}
-                addFlashMessage={addFlashMessage}
-                thread={thread}
-                key={thread._id}
-                threads={threads}
-                isAuthenticated={isAuthenticated}
-                deletePost={deletePost}/>)}
-         <div>{threads.length === 0 ? emptyMessage : this.renderThreads}</div>
-        </Item.Group>
+        <Container>
+         <ThreadCreateForm 
+            onSubmit={(threads) => this.setState({ threads })}
+            createThread={createThread}
+            fetchThread={fetchThread}
+            addFlashMessage={addFlashMessage}/>
+         {threads.length === 0 ? emptyMessage : this.renderThreads}
+        <Item.Group divided relaxed>
+          {threads.map(thread => <ThreadView key={thread.id} thread={thread} {...this.props}/>)}
+       </Item.Group>
+     </Container>
   )   
  }
 }
@@ -58,6 +47,7 @@ export default connect(null,
     upvotePost,
     deleteThread,
     deletePost,
+    fetchOnePost,
     
 }
 )(ThreadList);

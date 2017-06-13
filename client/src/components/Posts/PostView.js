@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Popup} from 'semantic-ui-react';
+import { Image, Item , Message, Button, Icon, Feed, Embed, Card, Modal, Header, Popup, Label} from 'semantic-ui-react';
 import ThreadReply from '../Thread/ThreadReply';
 import {Link} from 'react-router-dom';
 import ReactPlayer from 'react-player'
@@ -30,9 +30,7 @@ class PostView extends React.Component {
              <Item.Image src={post.image} />
            </Modal.Content>
       </Modal>
-      
            <Item.Content>
-           
                 <ThreadReply
                   thread={this.props.thread}
                   createPost={this.props.createPost}
@@ -42,13 +40,13 @@ class PostView extends React.Component {
               <Button disabled={this.state.inactive} floated='right' size='tiny' compact basic color='black'  onClick={() => upvotePost(post.id)
                 .then(this.setState({inactive: true}))}><Icon name='like' />{post.like}</Button>
             {isAuthenticated ? <Button  color='black' size='tiny' basic floated='right' compact onClick={() => deletePost(post.id)}>Delete</Button>: ''}
-              <Item.Description>
+              <Item.Description as='h1'>
                 <Message color='black' size='large' >
                 {post.text} 
                 </Message>
                   {post.YoutubeLink && <Button floated='right'  color='black' basic icon onClick={this.handleClick}> 
                   {this.state.isToggleOn ? <ReactPlayer url={post.YoutubeLink} width={400} height={200} controls={true}/> : <Icon size='big' name='youtube play' />}
-                  </Button>}
+                 </Button>}
               </Item.Description>
         </Item.Content>
       </Item>

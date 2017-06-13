@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_POSTS, ADD_POSTS, POST_DELETED} from '../constants/posts';
+import { SET_POSTS, ADD_POSTS, POST_DELETED, POST_FETCHED} from '../constants/posts';
 
 function handleResponse(response) {
   if (response.ok) {
@@ -30,6 +30,12 @@ export function postDeleted(postsId) {
     postsId
   }
 }
+export function postFetched(postsId) {
+  return {
+    type: GAME_FETCHED,
+    posts
+  }
+}
 
 export function createPost(data) {
   return dispatch => {
@@ -53,6 +59,14 @@ export function deletePost(post) {
       }
     }).then(handleResponse)
     .then(data => dispatch(postDeleted(post)))
+  }
+}
+
+export function fetchOnePost(id) {
+  return dispatch => {
+    fetch(`https://yyychan.herokuapp.com/api/posts/${id}`)
+      .then(res => res.json())
+      .then(data => dispatch(postFetched(data.posts)));
   }
 }
 //todo: через аксиос переделать всё.

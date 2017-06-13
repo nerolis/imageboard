@@ -12,50 +12,58 @@ import Board from './Board';
 import RegisterPage from './RegisterPage'
 import { logout } from '../actions/login';
 import RequireAuth from '../utils/RequireAuth';
-class NavigationBar extends React.Component {
-    logout(e) {
-        e.preventDefault();
-        this.props.logout();
-    }
-    
- render() {  
-     
-    const { isAuthenticated } = this.props.auth;
-  
-    const userLinks = (
-               <Dropdown  icon='user' item text={`${this.props.auth.login.login}`}>
-            <Dropdown.Menu >
-              <ActiveLink activeOnlyWhenExact to="/profile" label={`Profile`} />
-              <ActiveLink  activeOnlyWhenExact to="/messages" label={`Messages`} />
-               <Dropdown.Header icon='sign out' content={<Link onClick={this.logout.bind(this)} to='#'>Sign out</Link>}/>
-            </Dropdown.Menu>
-        </Dropdown>
-    )
- 
-    const guestLinks = (
-        <Dropdown item  text='Sign in' icon='sign in'>
-            <Dropdown.Menu >
-            <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
-            <ActiveLink activeOnlyWhenExact to="/register" label="Register" /> 
-            </Dropdown.Menu>
-        </Dropdown>)
-    return (
 
+const ActiveLink = ({ label, to, activeOnlyWhenExact }) => (
+  <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
+    <Link className={match ? 'active item' : 'item'} to={to}>{label}</Link>
+  )} />
+);
+
+class NavigationBar extends React.Component { 
+  logout(e) 
+ { e.preventDefault();
+   this.props.logout(); }
+
+ render() {  
+    const { isAuthenticated } = this.props.auth;
+    // Navigation bar for auth users
+    const userLinks = (
+     <Dropdown  icon='user' item text={`${this.props.auth.login.login}`}>
+        <Dropdown.Menu >
+        <ActiveLink activeOnlyWhenExact to="/profile" label={`Profile`} />
+        <ActiveLink  activeOnlyWhenExact to="/messages" label={`Messages`} />
+        <Dropdown.Header icon='sign out' content={<Link onClick={this.logout.bind(this)} to='#'>Sign out</Link>}/>
+       </Dropdown.Menu>
+    </Dropdown>
+    )
+    // Navigation bar for guest
+   const guestLinks = (
+     <Dropdown item  text='Sign in' icon='sign in'>
+        <Dropdown.Menu >
+        <ActiveLink activeOnlyWhenExact to="/login" label="Login" />      
+        <ActiveLink activeOnlyWhenExact to="/register" label="Register" /> 
+        </Dropdown.Menu>
+     </Dropdown>
+    )
+    return (
   <Router>
-  <div className="ui container">
-             <Menu.Item position='right'>
+    <div className="ui container">
+              <Menu.Item>
               <Icon size='large' name='github' />
-               <a href='https://github.com/nerolis'>Nerolis</a>
-            </Menu.Item>
-         <div className="ui basic black four item menu">
-           <Menu.Item >
-            <img size='large' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
-            In dev
-          </Menu.Item>
+              <a href='https://github.com/nerolis'>Nerolis</a>
+              </Menu.Item>
+     <div className="ui basic teal four item menu">
+              <Menu.Item >
+                 <img size='large' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
+                  In dev
+              </Menu.Item>
+        
            <ActiveLink activeOnlyWhenExact to="/" label="Home" /> 
            <ActiveLink activeOnlyWhenExact to="/board" label="Board" />
             {isAuthenticated ? userLinks : guestLinks}
-        </div>
+        
+    </div>
+
         <Route exact path="/" component={Home}/>
         <Route path="/dev" component={RequireAuth(Dev)} />
         <Route path="/b/" component={Threads}/>
@@ -63,17 +71,13 @@ class NavigationBar extends React.Component {
         <Route path="/login" component={LoginPage} />
         <Route path='/register' component={RegisterPage} />
         <Route path='/board' component={Board} />
- </div>
+   
+    </div>
   </Router>
  )
 
   }
  }
-const ActiveLink = ({ label, to, activeOnlyWhenExact }) => (
-  <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
-    <Link className={match ? 'active item' : 'item'} to={to}>{label}</Link>
-  )} />
-);
 
 function mapStateToProps(state) {
   return {

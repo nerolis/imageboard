@@ -4,30 +4,27 @@ import { Redirect, Link} from 'react-router-dom';
 // Actions
 import { addFlashMessage } from '../../actions/flashMessages';
 import {fetchPost, createPost, deletePost} from '../../actions/posts';
+import {deleteThread} from '../../actions/actions';
 import {upvoteThread, upvotePost} from '../../actions/upvote';
 // Components
 import ThreadView from './ThreadView';
 import {Item, Button, Menu, Container, Header, Message, Icon} from 'semantic-ui-react';
-import {createThread} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/actions';
 
 
 class SingleThread extends React.Component {
     render() {
-        const {match, threads, posts, thread, addFlashMessage, createPost, fetchPost, upvotePost, deletePost, isAuthenticated, upvoteThread} = this.props;
+        const {match, threads, posts, thread, addFlashMessage, createPost, fetchPost, upvotePost, deletePost, upvoteThread, deleteThread} = this.props;
+        const { isAuthenticated } = this.props.auth;
       return (
      <Item.Group divided relaxed>
-       {threads.filter(thread => match.params.threadId == thread.id).map(thread => <ThreadView     
-                posts={posts}
-                thread={thread}
-                key={thread.id}
-                threads={threads}
-                createPost={createPost}
-                fetchPost={fetchPost}
-                upvoteThread={upvoteThread}
-                upvotePost={upvotePost}
-                addFlashMessage={addFlashMessage}
-                isAuthenticated={isAuthenticated}
-                deletePost={deletePost}
+       {threads.filter(thread => match.params.threadId == thread.id)
+        .map(thread =>
+           <ThreadView     
+              posts={posts}
+              thread={thread}
+              key={thread.id}
+              isAuthenticated={isAuthenticated}
+              {...this.props}
             />)}
             <Header>
             <Link to={`/b`}>
@@ -35,7 +32,7 @@ class SingleThread extends React.Component {
            </Link>
            <Button floated='right' content='Update' basic onClick={this.props.fetchPost} />
            </Header>
- </Item.Group>
+     </Item.Group>
       )
     }
 }
@@ -43,6 +40,7 @@ function mapStateToProps(state) {
   return {
    threads: state.threads,
    posts: state.posts,
+   auth: state.auth
   }
 }
 
@@ -55,6 +53,7 @@ export default connect(
     upvoteThread,
     upvotePost,
     deletePost,
+    deleteThread,
 
 } 
 )(SingleThread)

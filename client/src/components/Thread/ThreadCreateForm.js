@@ -26,7 +26,6 @@ class ThreadCreateForm extends React.Component {
         let errors = {};
         if (this.state.name === '') errors.name = "Can't be empty";
         if (this.state.text === '') errors.text = "Can't be empty";
-        if (this.state.image == '') this.state.image = 'https://images-na.ssl-images-amazon.com/images/I/71qw-PZPSeL._SY550_.jpg'
         this.setState({ errors });
         const isValid = Object.keys(errors).length === 0
        // post

@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 // Components
 import {Form, Button, Textarea, Message, Container, Header, Search, Grid, Icon} from 'semantic-ui-react';
 // actions
-import {fetchPost} from '../../../../../../../../Users/Kircheis/yychan/client/src/actions/posts';
 import ThreadCreateForm from './ThreadCreateForm';
 import {Input} from 'react-toolbox/lib/input';  
+import {fetchPost} from '../../actions/posts';
 class ThreadAddPost extends React.Component {
     constructor() {
       super()
@@ -39,7 +39,7 @@ class ThreadAddPost extends React.Component {
         }
         if (this.state.name === '') errors.name = "Can't be empty";
         if (this.state.text === '') errors.text = "Can't be empty";
-        if (this.state.image === '') this.state.image = 'https://images-na.ssl-images-amazon.com/images/I/71qw-PZPSeL._SY550_.jpg'
+        if (this.state.image === '') this.state.image = 'http://i2.kym-cdn.com/photos/images/original/001/093/203/f09.jpg' 
         this.setState({ errors });
         const isValid = Object.keys(errors).length === 0
        // post
@@ -64,8 +64,7 @@ class ThreadAddPost extends React.Component {
     } }
 
     onChange = (name, value) => {
-          this.setState({...this.state, [name]: value} )
-        }
+          this.setState({...this.state, [name]: value} ) }
 
     render() {
           const {onSubmit} = this.props;
@@ -78,14 +77,14 @@ class ThreadAddPost extends React.Component {
              <label>Reply №{this.state.reply_id}</label>
             <Input error={errors.name} error={errors.name} label='Name' type='text' name='name' value={name} onChange={this.onChange.bind(this, 'name')} />
             <Input error={errors.text} multiline rows={2} label='Message'type='text' name='text' value={text} onChange={this.onChange.bind(this, 'text')} />
-                 <Grid>
+      <Grid>
         <Grid.Column width={6}>
                   <Input error={errors.image} label='Image' type='text' name='image' value={image} onChange={this.onChange.bind(this, 'image')} />
         </Grid.Column>
         <Grid.Column width={6}>
                   <Input error={errors.YoutubeLink}label='Youtube'  type='text' name='videoId' value={YoutubeLink} onChange={this.onChange.bind(this, 'YoutubeLink')} />
         </Grid.Column>
-        </Grid>
+      </Grid>
             <div className="field"> {this.state.image !== '' && <img src={this.state.image} className="ui small bordered image"/>}</div>
             <Button disabled={isLoading || invalid}>Submit {this.state.reply_id}</Button>
              <Button basic color='red' floated='right'icon='close' onClick={() => this.setState({showThreadCreateForm: false})}></Button>
