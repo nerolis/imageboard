@@ -13,6 +13,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-plugin-import": "^1.2.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "postcss-loader": "^2.0.5"
   },
@@ -20,6 +21,7 @@
     "node": "7.9.0"
   },
   "dependencies": {
+    "antd": "^2.11.0",
     "axios": "^0.16.1",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.1",

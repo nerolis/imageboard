@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link, Route, BrowserRouter as Router} from 'react-router-dom';
 import {connect} from 'react-redux';
-// components
+// Utils/Actions
 import {Menu, Dropdown, Item, Segment, Button, Icon, Label} from 'semantic-ui-react';
+import RequireAuth from '../../utils/RequireAuth';
+import { logout } from '../../actions/login';
+// Routes
 import App from '../App';
 import Home from '../Home/Home';
 import LoginPage from '../User/LoginPage';
@@ -10,8 +13,9 @@ import Dev from './Dev';
 import Threads from '../Thread/Threads';
 import Board from './Board';
 import RegisterPage from '../User/RegisterPage'
-import { logout } from '../../actions/login';
-import RequireAuth from '../../utils/RequireAuth';
+import Profile from '../User/Profile'
+import Messages from '../User/Messages'
+
 
 const ActiveLink = ({ label, to, activeOnlyWhenExact }) => (
   <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
@@ -63,11 +67,15 @@ class NavigationBar extends React.Component {
 
         <Route exact path="/" component={Home}/>
         <Route path="/dev" component={RequireAuth(Dev)} />
+        <Route path='/board' component={Board} />
         <Route path="/b/" component={Threads}/>
         <Route path="/to/" component={Threads}/>
         <Route path="/login" component={LoginPage} />
         <Route path='/register' component={RegisterPage} />
-        <Route path='/board' component={Board} />
+        <Route path='/profile' component={RequireAuth(Profile)} />
+        <Route path='/messages' component={RequireAuth(Messages)} />
+
+
    
     </div>
   </Router>
