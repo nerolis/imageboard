@@ -16,12 +16,12 @@ class ThreadView extends React.Component {
   render() {
   const {thread, image, select, text, name, id, comments, user_id, href, upvoteThread, fetchThread, inactive, deleteThread, isAuthenticated, match} = this.props;
    return(   
-   <Item>      
-      <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={thread.image}/>}>
+   <Item> 
+   <Item.Meta>      <Modal closeIcon size='large' basic trigger={<Item.Image size='small' src={thread.image}/>}>
         <Modal.Content image>
           <Item.Image src={thread.image} />
         </Modal.Content>
-      </Modal>
+      </Modal></Item.Meta>
   <Item.Content>
         <Item.Meta className='button group'>
       <Link to={`/b/${thread.id}`}>  <Button content='Open' icon='chevron down' size='small' compact floated='right' inverted/> </Link>

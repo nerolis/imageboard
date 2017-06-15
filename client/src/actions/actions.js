@@ -60,6 +60,17 @@ export function fetchThread() {
     return dispatch => {
          axios.get('https://yyychan.herokuapp.com/api/threads', {mode: 'cors'})
             .then(response => {
+               console.log(response.data.threads)
+               dispatch(setThreads(response.data.threads.slice(0, 5)))   
+      })
+    }
+}
+
+export function FetchMoreThreads() {
+    return dispatch => {
+         axios.get('https://yyychan.herokuapp.com/api/threads', {mode: 'cors'})
+            .then(response => {
+               console.log(response.data.threads)
                dispatch(setThreads(response.data.threads))   
       })
     }

@@ -21,7 +21,6 @@ class Threads extends React.Component {
       const { posts, threads } = this.props;
     
     return(
-      
      <Container className="Container" >
           <Switch>
       <Route exact path='/b/' render={() => <ThreadList threads={threads} posts={posts} isAuthenticated={isAuthenticated}   />}/>
