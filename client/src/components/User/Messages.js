@@ -1,22 +1,23 @@
 import React from 'react';
-import {Form, Container, Message, Label, Button, TextArea} from 'semantic-ui-react';
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-const Messages = (props) => {
-const Data = {
-    image: 'http://piq.codeus.net/static/media/userpics/piq_366969_400x400.png',
-    name: 'Cirno',
+import { List, ListItem, ListDivider } from 'react-toolbox/lib/list';
+
+const Messages = () => {
+    return (
+    <List selectable ripple>
+       <ListItem
+        avatar={Data.image}
+        caption={Data.name}
+        legend={Data.msg} />
+     <ListDivider />
+    </List> 
+       
+ )
+}
+
+    const Data = {
+    image: 'http://piq.codeus.net/static/media/userpics/piq_369078_400x400.png',
+    name: 'Yakumo',
     msg: 'Some text mock,  hello',
-    date: 42
-}
-return (
-  <List selectable ripple>
-    <ListItem
-      avatar={Data.image}
-      caption={Data.name}
-      legend={Data.msg}
-    />
- <ListDivider />
- </List>
-)
-}
+    date: 42 } 
+
 export default Messages;

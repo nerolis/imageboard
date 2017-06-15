@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SET_THREADS, ADD_THREADS, THREAD_DELETED} from '../constants/threads';
+
 function handleResponse(response) {
   if (response.ok) {
     return response.json();
@@ -64,3 +65,11 @@ export function fetchThread() {
     }
 }
 
+export function fetchOneThread(id) {
+    return dispatch => {
+         axios.get(`https://yyychan.herokuapp.com/api/threads/${id}`, {mode: 'cors'})
+            .then(response => {
+               dispatch(setThreads(response.data.threads))   
+      })
+    }
+}

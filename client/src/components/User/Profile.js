@@ -1,14 +1,18 @@
 import React from 'react';
 import { AppBar, Checkbox, IconButton } from 'react-toolbox';
-import { Layout, NavDrawer, Panel, Sidebar, Input, Button} from 'react-toolbox';
-import {Form, Container, Message, Label} from 'semantic-ui-react';
+import { Layout, NavDrawer, Panel, Sidebar, Input} from 'react-toolbox';
+import {Form, Message, Label} from 'semantic-ui-react';
 import Messages from './Messages';
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import {Button} from 'react-toolbox/lib/button';
+
 class Profile extends React.Component {
     state = {
         drawerActive: false,
         drawerPinned: false,
-        sidebarPinned: false
+        sidebarPinned: false,
     };
+
 
     toggleDrawerActive = () => {
         this.setState({ drawerActive: !this.state.drawerActive });
@@ -27,18 +31,23 @@ class Profile extends React.Component {
             <Layout>
              <NavDrawer
                 active={this.state.drawerActive}
-                pinned={this.state.drawerPinned} permanentAt='xxxl'
-                onOverlayClick={ this.toggleDrawerActive }
-                >
-                <Messages/>
+                pinned={this.state.drawerPinned} permanentAt='xxxl'>
+            <Messages />
              </NavDrawer>
                 <Panel>
-                  <AppBar leftIcon='Profile' onLeftIconClick={ this.toggleDrawerActive } />
+                
                     <div style={{ flex: 1, overflowY: 'auto', padding: '1.8rem' }}>
                         <Checkbox label='Messages: 1' checked={this.state.drawerPinned} onChange={this.toggleDrawerPinned} />
-                        <Checkbox label='Settings' checked={this.state.sidebarPinned} onChange={this.toggleSidebar} />
+                        <Checkbox label="Settings" checked={this.state.sidebarPinned} onChange={this.toggleSidebar}  />
                     </div>
+
+                <Card style={{width: '350px'}}>
+                <CardTitle
+                avatar={Data.image}
+                title={Data.name}/>
+                </Card>
                 </Panel>
+
                 <Sidebar pinned={ this.state.sidebarPinned } width={ 10  }>
                     <div><IconButton icon='close' onClick={ this.toggleSidebar }/></div>
                     <div style={{ flex: 2 }}>
@@ -48,12 +57,15 @@ class Profile extends React.Component {
                         <Input placeholder='Default name'></Input>
                         <Button>Submit settings</Button>
                         </Form>
-        
                     </div>
                 </Sidebar>
             </Layout>
-        );
-    }
+  );
+ }
 }
-
+    const Data = {
+    image: 'http://piq.codeus.net/static/media/userpics/piq_366969_400x400.png',
+    name: 'Cirno',
+    msg: 'Some text mock,  hello',
+    date: 42 } 
 export default Profile;

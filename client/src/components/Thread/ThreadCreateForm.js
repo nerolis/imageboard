@@ -23,6 +23,7 @@ class ThreadCreateForm extends React.Component {
     onSubmit(e) {
       // validation
       e.preventDefault();
+      
         let errors = {};
         if (this.state.name === '') errors.name = "Can't be empty";
         if (this.state.text === '') errors.text = "Can't be empty";

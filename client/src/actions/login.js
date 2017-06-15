@@ -9,7 +9,6 @@ export function setCurrentUser(login) {
     login
   };
 }
-
 export function logout() {
   return dispatch => {
     localStorage.removeItem('jwtToken');
@@ -28,18 +27,3 @@ export function loginAuth(data) {
       });
     }
 }
-
-
-
-
-
-
-
-
-
-
-// export function isUserExists(login) {
-//   return dispatch => {
-//     return axios.get(`/api/users/${login}`);
-//   }
-// }

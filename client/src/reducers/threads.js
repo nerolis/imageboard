@@ -4,7 +4,7 @@ export default function threads(state = [], action = {}) {
   switch(action.type) {
     case ADD_THREAD:
       return [
-        ...state,
+        state,
         action.thread
       ];   
 

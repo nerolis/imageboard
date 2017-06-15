@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { SET_POSTS, ADD_POSTS} from '../constants/posts';
 import { SET_THREADS, ADD_THREADS} from '../constants/threads';
+// Временно. 
 export function setPosts(posts) {
   return {
     type: SET_POSTS,
@@ -13,8 +14,6 @@ export function setThreads(threads) {
     threads
   }
 }
-
-// .then - временно, потом сделаю отдельно компонент под лайки, где будет валидация и обновление.
 export function upvoteThread(thread) {
     return dispatch => {
         return axios.put(`https://yyychan.herokuapp.com/api/threads/${thread}`).then(res => {
