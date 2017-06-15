@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 import TextFieldGroup from '../features/TextFieldGroup';
-import {Form, Button, Container, Message} from 'semantic-ui-react';
+import {Form, Button, Container, Message, Grid, Segment, Label} from 'semantic-ui-react';
 import { loginAuth} from '../../actions/login';
 import { Link, Route, browserHistory } from 'react-router-dom';
 import validateInput from '../features/signin';
@@ -19,7 +19,6 @@ class LoginPage extends Component { // В принципе, для аноним�
             isLoading: false,
             invalid: false,
             redirectToReferrer: false
-             
         }
             this.onSubmit = this.onSubmit.bind(this);
         }
@@ -52,12 +51,24 @@ class LoginPage extends Component { // В принципе, для аноним�
           if (redirectToReferrer) { return (<Redirect to={from}/>)}  // https://reacttraining.com/react-router/web/example/auth-workflow)
   return ( 
  <Form onSubmit={this.onSubmit}>
- { errors.form && <Message color='red' className="alert">{errors.form}</Message> }  
-         <section>
-      <Input error={errors.login} label='Username' type='text' name='login' value={login} onChange={this.onChange.bind(this, 'login')} />
-      <Input error={errors.password} label='Password' type='password' name='password' value={password} onChange={this.onChange.bind(this, 'password')} />
-      <Button color='blue' disabled={isLoading || invalid}>Sign up</Button>
-         </section>
+ <Grid textAlign='center' columns={3}>
+    <Grid.Row> 
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+       { errors.form && <Message as='h1' negative>{errors.form}</Message> }  
+    <Input error={errors.login} label='Username' type='text' name='login' value={login} onChange={this.onChange.bind(this, 'login')} /> 
+    <Input error={errors.password} label='Password'  type='password' name='password' value={password} onChange={this.onChange.bind(this, 'password')} />
+      <Button size='large' inverted disabled={isLoading || invalid}>Sign in</Button>
+        <Message size='small'>
+        <p>Don't have an account yet? <Link to='/register'>Register</Link></p>
+        <p>Lost password or username? <Link to='/restore'>Restore</Link></p>
+        </Message>
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
  </Form>
     );
   }

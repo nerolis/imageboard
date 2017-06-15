@@ -30,7 +30,7 @@ class NavigationBar extends React.Component {
 
  render() {  
     const { isAuthenticated } = this.props.auth;
-    // Navigation bar for auth users
+    // Navigationbar for auth users
     const userLinks = (
      <Dropdown  icon='user' item text={`${this.props.auth.login.login}`}>
         <Dropdown.Menu >
@@ -40,7 +40,7 @@ class NavigationBar extends React.Component {
        </Dropdown.Menu>
     </Dropdown>
     )
-    // Navigation bar for guest
+    // Navigationbar for guest
    const guestLinks = (
      <Dropdown item  text='Sign in' icon='sign in'>
         <Dropdown.Menu >

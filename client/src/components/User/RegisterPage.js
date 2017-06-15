@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 
 import TextFieldGroup from '../features/TextFieldGroup';
-import {Form, Button, Container, Message} from 'semantic-ui-react';
+import {Form, Button, Container, Message, Grid} from 'semantic-ui-react';
 import Input from 'react-toolbox/lib/input';
 import { register } from '../../actions/register';
 import { addFlashMessage } from '../../actions/flashMessages';
@@ -56,17 +56,26 @@ class RegisterPage extends Component { // В принципе, для анони
        
     return ( 
     <Container>
-     <Form onSubmit={this.onSubmit}>
-      { errors.form && <Message color='red' className="alert">{errors.form}</Message> }  
-            <section>
+
+ <Form onSubmit={this.onSubmit}>
+ <Grid textAlign='center' columns={3}>
+    <Grid.Row> 
+      <Grid.Column>
+      </Grid.Column>
+      <Grid.Column>
+         { errors.form && <Message negative>{errors.form}</Message> }  
       <Input required error={errors.login} label='Username' type='text' name='login' value={login} onChange={this.onChange.bind(this, 'login')} />
       <Input required error={errors.email} label='E-mail' type='text' name='email' value={email} onChange={this.onChange.bind(this, 'email')} />
       <Input required error={errors.password} label='Password' type='password' name='password' value={password} onChange={this.onChange.bind(this, 'password')} />
       <Input required error={errors.passwordConfirmation} label='Confirm password' type='password' name='passwordConfirmation' 
                                         value={passwordConfirmation} onChange={this.onChange.bind(this, 'passwordConfirmation')} />
-      <Button color='blue' disabled={isLoading || invalid}>Sign up</Button>
-            </section>
-      </Form>
+      <Button inverted size='large' disabled={isLoading || invalid}>Sign up</Button>
+      </Grid.Column>
+      <Grid.Column>
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
+ </Form>
      </Container>
     );
   }

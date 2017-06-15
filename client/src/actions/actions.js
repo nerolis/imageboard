@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SET_THREADS, ADD_THREADS, THREAD_DELETED} from '../constants/threads';
+import react from 'react';
 
 function handleResponse(response) {
   if (response.ok) {
@@ -55,7 +56,11 @@ export function deleteThread(thread) {
     .then(data => dispatch(threadDeleted(thread)))
   }
 }
-//todo: через аксиос переделать всё.
+
+
+// https://facebook.github.io/react/docs/update.html
+// Слайс не >array.slice() which does not mutate the original array 
+// Ещё раз, это временно. Полноценная пагинация/инфинити скролл будет реализован иначе.
 export function fetchThread() {
     return dispatch => {
          axios.get('https://yyychan.herokuapp.com/api/threads', {mode: 'cors'})
@@ -70,7 +75,6 @@ export function FetchMoreThreads() {
     return dispatch => {
          axios.get('https://yyychan.herokuapp.com/api/threads', {mode: 'cors'})
             .then(response => {
-               console.log(response.data.threads)
                dispatch(setThreads(response.data.threads))   
       })
     }

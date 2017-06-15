@@ -46,9 +46,7 @@ class PostView extends React.Component {
                 <Message color='black' size='small' >
                 {post.text} 
                 </Message>
-                  {post.YoutubeLink && <Button floated='right'  color='black' basic icon onClick={this.handleClick}> 
-                  {this.state.isToggleOn ? <ReactPlayer url={post.YoutubeLink} width={400} height={200} controls={true}/> : <Icon size='big' name='youtube play' />}
-                 </Button>}
+                  {post.YoutubeLink && <ReactPlayer url={post.YoutubeLink} width={400} height={200} controls={true}/>}
               </Item.Description>
         </Item.Content>
       </Item>

@@ -13,6 +13,7 @@ import ThreadList from './ThreadList';
 import SingleThread from './SingleThread';
 class Threads extends React.Component {
          componentWillMount() {
+          // atm = first 5 threads in array. 
           this.props.fetchThread()
           this.props.fetchPost()
        }
