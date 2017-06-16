@@ -54,7 +54,7 @@ function validate(data) {
   
   app.put('/api/userUpdate/:login', checkToken, (req, res) => {
     const {userName, userImage} = req.body;
-   db.collection('users').findOneAndUpdate({login: String(req.params.login)}, {$update: {userImage, userName}})
+   db.collection('users').findOneAndUpdate({login: String(req.params.login)}, {$set: {userImage, userName}})
   .then(user => res.send(user))
     .catch(console.error)
 }); 
