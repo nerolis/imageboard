@@ -5,6 +5,8 @@ const UserSchema = new Schema({
   login: { type: String, unique: true, lowercase: true, index: true },
   password: String,
   email: { type: String, unique: true, index: true},
+  userImage: { type: String},
+  userName: { type: String},
 });
 
 UserSchema.pre('save', async function(next) {

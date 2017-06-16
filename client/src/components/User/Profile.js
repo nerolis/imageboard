@@ -5,7 +5,7 @@ import {Form, Message, Label} from 'semantic-ui-react';
 import Messages from './Messages';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import {Button} from 'react-toolbox/lib/button';
-
+import ProfileSettings from './ProfileSettings';
 class Profile extends React.Component {
     state = {
         drawerActive: false,
@@ -35,28 +35,21 @@ class Profile extends React.Component {
             <Messages />
              </NavDrawer>
                 <Panel>
-                
                     <div style={{ flex: 1, overflowY: 'auto', padding: '1.8rem' }}>
                         <Checkbox label='Messages: 1' checked={this.state.drawerPinned} onChange={this.toggleDrawerPinned} />
                         <Checkbox label="Settings" checked={this.state.sidebarPinned} onChange={this.toggleSidebar}  />
                     </div>
-
                 <Card style={{width: '350px'}}>
                 <CardTitle
                 avatar={Data.image}
                 title={Data.name}/>
                 </Card>
                 </Panel>
-
                 <Sidebar pinned={ this.state.sidebarPinned } width={ 10  }>
                     <div><IconButton icon='close' onClick={ this.toggleSidebar }/></div>
                     <div style={{ flex: 2 }}>
                         <p>Settings</p>
-                        <Form>
-                        <Input placeholder='Default image'></Input>
-                        <Input placeholder='Default name'></Input>
-                        <Button>Submit settings</Button>
-                        </Form>
+                        <ProfileSettings />
                     </div>
                 </Sidebar>
             </Layout>
