@@ -52,11 +52,12 @@ function validate(data) {
 
   app.use('/api',  authRoute);
   
-  app.put('/userUpdate/:login', checkToken, (req, res) => {
-db.collection('users').findOneAndUpdate({login: String(req.params.login)}, {userName: '', userImage: ''})
+  app.put('/api/userUpdate/:login', checkToken, (req, res) => {
+db.collection('users').findOneAndUpdate({login: String(req.params.login)}, {$set: {userName: ""}, userImage: ""})
   .then(user => res.send(user))
     .catch(console.error)
 }); 
+
   // threads
   // todo: refactor через роутер
   app.get('/api/threads', (req, res) => {
