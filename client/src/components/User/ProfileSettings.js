@@ -1,6 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux';
+// actions
+import {updateSettings} from '../../actions/user';
+// components
 import {Form, Container, Message, Grid} from 'semantic-ui-react';
 import {Layout, NavDrawer, Panel, Sidebar, Input, Button} from 'react-toolbox';
+
 class ProfileSettings extends React.Component {
     constructor() {
       super()
@@ -9,10 +14,11 @@ class ProfileSettings extends React.Component {
           userImage: ''}
       this.onSubmit = this.onSubmit.bind(this);
     }
-
     onSubmit(e) {
     e.preventDefault();
-    console.log('Image:', this.state.userImage, 'Name:', this.state.userName)
+    this.props.updateSettings(this.props.auth.login.login).then(() => {
+    console.log('Submited')
+    })
     }
     onChange = (name, value) => {
     this.setState({...this.state, [name]: value} 
@@ -28,4 +34,9 @@ class ProfileSettings extends React.Component {
   );
  }
 }
-export default ProfileSettings;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  };
+}
+export default connect(mapStateToProps, {updateSettings})(ProfileSettings)

@@ -32,11 +32,7 @@ export function upvotePost(post) {
             console.log(post)
         }).then(() => {
              axios.get('https://yyychan.herokuapp.com/api/posts', {mode: 'cors'})
-            .then(response => {
-               const postsObj = response.data.posts[0];
-               const data = {
-               }
-               dispatch(setPosts(response.data.posts));
+            .then(response => {   dispatch(setPosts(response.data.posts));
               } );
         })
     }

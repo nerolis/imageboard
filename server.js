@@ -11,6 +11,7 @@ import bluebird from 'bluebird';
 import authRoute from './server/routes/auth';
 import config from './server/config';
 import checkToken from './server/middlewares/checkToken';
+import authenticate from './server/middlewares/authenticate';
 import errorHandler from './server/middlewares/errorHandler'; // must be last
 
 var cool = require('cool-ascii-faces');
@@ -52,7 +53,7 @@ function validate(data) {
 
   app.use('/api',  authRoute);
   
-  app.put('/api/userUpdate/:login', checkToken, (req, res) => {
+  app.put('/api/userUpdate/:login', authenticate, (req, res) => {
     const {userName, userImage} = req.body;
    db.collection('users').findOneAndUpdate({login: String(req.params.login)}, {$set: {userImage, userName}})
   .then(user => res.send(user))
