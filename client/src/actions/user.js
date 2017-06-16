@@ -1,18 +1,34 @@
 import axios from 'axios';
+
+function handleResponse(response) {
+  if (response.ok) {
+    return response.json();
+  } else {
+    let error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+}
+
 export function setUser(user) {
   return {
-    type: SET_THREADS,
+    type: SET_USER,
     user
   }
 }
-export function updateSettings(login) {
-    return dispatch => {
-        return axios.put(`https://yyychan.herokuapp.com/api/userUpdate/${login}`).then(res => {
-        }).then(() => {
-               axios.get(`https://yyychan.herokuapp.com/api/userUpdate/${login}`, {mode: 'cors'})
-            .then(response => {
-               dispatch(setUser(response.data.user))      
-          });
-        })
-    }
+export function userFetched(login) {
+  return {
+    type: USER_FETCHED,
+    user
+  }
 }
+
+
+export function updateSettings(login, data) {
+    return dispatch => {
+        return axios.put(`https://yyychan.herokuapp.com/api/userUpdate/${login}`, data).then(res => {
+        })
+          
+        }
+    }
+

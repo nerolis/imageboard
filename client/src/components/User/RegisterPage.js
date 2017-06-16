@@ -63,7 +63,7 @@ class RegisterPage extends Component { // В принципе, для анони
       <Grid.Column>
       </Grid.Column>
       <Grid.Column>
-         { errors.form && <Message negative>{errors.form}</Message> }  
+         { errors.form && <Message >{errors.form}</Message> }  
       <Input required error={errors.login} label='Username' type='text' name='login' value={login} onChange={this.onChange.bind(this, 'login')} />
       <Input required error={errors.email} label='E-mail' type='text' name='email' value={email} onChange={this.onChange.bind(this, 'email')} />
       <Input required error={errors.password} label='Password' type='password' name='password' value={password} onChange={this.onChange.bind(this, 'password')} />

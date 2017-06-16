@@ -5,7 +5,7 @@ export default function posts(state = [], action = {}) {
     case ADD_POST:
     return [
         ...state,
-        action.game
+        action.posts
       ];
    case POST_DELETED:
       return state.filter(post => post.id !== action.postsId)

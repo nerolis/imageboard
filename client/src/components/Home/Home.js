@@ -4,13 +4,13 @@ import {connect} from 'react-redux';
 import {Feed, Icon, List, Content, Header, Container, Button, Message} from 'semantic-ui-react';
 import HomeList from './HomeList';
 // actions
-import {fetchThread} from '../../actions/actions';
+import {FetchMoreThreads} from '../../actions/actions';
 import {fetchPost} from '../../actions/posts';
 import { addFlashMessage } from '../../actions/flashMessages';
 
 class Home extends Component {
            componentWillMount() {
-            this.props.fetchThread()   
+            this.props.FetchMoreThreads()   
             this.props.fetchPost()  
   }
   render() {
@@ -34,6 +34,6 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps, 
 {    fetchPost,
-     fetchThread,
+     FetchMoreThreads,
 } 
 )(Home)
