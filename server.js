@@ -53,7 +53,8 @@ function validate(data) {
   app.use('/api',  authRoute);
   
   app.put('/api/userUpdate/:login', checkToken, (req, res) => {
-   db.collection('users').update({login: String(req.params.login)}, {$update: {userName}})
+    const {userName, userImage} = req.body;
+   db.collection('users').findOneAndUpdate({login: String(req.params.login)}, {$update: {userImage, userName}})
   .then(user => res.send(user))
     .catch(console.error)
 }); 
