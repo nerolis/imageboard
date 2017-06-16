@@ -10,7 +10,9 @@ import morgan from 'morgan';
 import bluebird from 'bluebird';
 import authRoute from './server/routes/auth';
 import config from './server/config';
+import checkToken from './server/middlewares/checkToken';
 import errorHandler from './server/middlewares/errorHandler'; // must be last
+
 var cool = require('cool-ascii-faces');
 mongoose.Promise = bluebird;
 mongoose.connect(config.database, err => {
@@ -50,6 +52,11 @@ function validate(data) {
 
   app.use('/api',  authRoute);
   
+  app.put('/userUpdate/:login', checkToken, (req, res) => {
+db.collection('users').findOneAndUpdate({login: String(req.params.login)}, {userName: '', userImage: ''})
+  .then(user => res.send(user))
+    .catch(console.error)
+}); 
   // threads
   // todo: refactor через роутер
   app.get('/api/threads', (req, res) => {
