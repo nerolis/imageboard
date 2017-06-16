@@ -11,7 +11,6 @@ import bluebird from 'bluebird';
 import authRoute from './server/routes/auth';
 import config from './server/config';
 import errorHandler from './server/middlewares/errorHandler'; // must be last
-import checkToken from './server/middlewares/checkToken';
 var cool = require('cool-ascii-faces');
 mongoose.Promise = bluebird;
 mongoose.connect(config.database, err => {
@@ -49,8 +48,7 @@ function validate(data) {
 
   mongodb.MongoClient.connect(dbUrl, function(err, db) {
 
-  app.use('/api', authRoute);
-  
+  app.use('/api',  authRoute);
   
   // threads
   // todo: refactor через роутер
