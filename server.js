@@ -53,7 +53,7 @@ function validate(data) {
 
   app.use('/api',  authRoute);
   
-  app.put('/api/userUpdate/:login', authenticate, (req, res) => {
+  app.put('/api/userUpdate/:login', (req, res) => {
     const {userName, userImage} = req.body;
    db.collection('users').findOneAndUpdate({login: String(req.params.login)}, {$set: {userImage, userName}})
   .then(user => res.send(user))

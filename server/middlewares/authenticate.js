@@ -15,10 +15,8 @@ export default (req, res, next) => {
       if (err) {
         res.status(401).json({ error: 'Failed to authenticate' });
       } else {
-        User.query({
-          where: { id: decoded.id },
-          select: ['id', 'login' ]
-        }).fetch().then(user => {
+        console.log('123')
+        fetch().then(user => {
           if (!user) {
             res.status(404).json({ error: 'No such user' });
           } else {
