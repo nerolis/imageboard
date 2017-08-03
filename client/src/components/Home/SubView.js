@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Feed, Item, Icon, List, Content, Header, Container, Message, Button, Table} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
-
 class SubView extends Component {
   render() {
      const {post, posts, threads, thread} = this.props;

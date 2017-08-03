@@ -21,7 +21,7 @@ class ThreadView extends React.Component {
         <Modal.Content image>
           <Item.Image src={thread.image} />
         </Modal.Content>
-      </Modal></Item.Meta>
+      </Modal>  </Item.Meta>
   <Item.Content>
         <Item.Meta className='button group'>
       <Link to={`/b/${thread.id}`}>  <Button content='Open' icon='chevron down' size='small' compact floated='right' inverted/> </Link>

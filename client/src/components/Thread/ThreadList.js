@@ -33,7 +33,7 @@ class ThreadList extends React.Component {
      <Item.Group divided>
     {threads.map(thread => <ThreadView key={thread.id} thread={thread} {...this.props}/>)}
      </Item.Group>
-       <Button inverted onClick={() => FetchMoreThreads()}>Load more</Button>
+       <Button inverted onClick={() => FetchMoreThreads()}>Load more  </Button>
     </Container>
   )   
  }

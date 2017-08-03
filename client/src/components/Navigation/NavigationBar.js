@@ -15,7 +15,7 @@ import Board from './Board';
 import RegisterPage from '../User/RegisterPage'
 import Profile from '../User/Profile'
 import Messages from '../User/Messages'
-
+import Slider from '../features/Slider/Slider';
 
 const ActiveLink = ({ label, to, activeOnlyWhenExact }) => (
   <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
@@ -30,7 +30,7 @@ class NavigationBar extends React.Component {
 
  render() {  
     const { isAuthenticated } = this.props.auth;
-    // Navigationbar for auth users
+    // Navigation bar for auth users
     const userLinks = (
      <Dropdown  icon='user' item text={`${this.props.auth.login.login}`}>
         <Dropdown.Menu >
@@ -40,7 +40,7 @@ class NavigationBar extends React.Component {
        </Dropdown.Menu>
     </Dropdown>
     )
-    // Navigationbar for guest
+    // Navigation bar for guest
    const guestLinks = (
      <Dropdown item  text='Sign in' icon='sign in'>
         <Dropdown.Menu >
@@ -58,16 +58,17 @@ class NavigationBar extends React.Component {
      <div className="ui basic small stackable teal four item tabular  menu">
       <Menu.Item >
           <img size='large' src='http://static2.fjcdn.com/comments/You+shoul+make+out+with+the+same+guy+op+to+_17d2ddd197fa4dbf17ea46fcde43ad22.png' />
-          In dev
       </Menu.Item>
         <ActiveLink activeOnlyWhenExact to="/" label="Home" /> 
         <ActiveLink activeOnlyWhenExact to="/board" label={`Board`} /> 
+        <ActiveLink activeOnlyWhenExact to="/dev" label={`Dev`} /> 
         {isAuthenticated ? userLinks : guestLinks}
     </div>
 
         <Route exact path="/" component={Home}/>
         <Route path="/dev" component={RequireAuth(Dev)} />
         <Route path='/board' component={Board} />
+        <Route path='/dev/slider' component={Slider} />
         <Route path="/b/" component={Threads}/>
         <Route path="/to/" component={Threads}/>
         <Route path="/login" component={LoginPage} />

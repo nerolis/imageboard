@@ -11,7 +11,7 @@ class ThreadCreateForm extends React.Component {
             text: '', 
             like: 0,
             image: '',
-            errors: {},
+            errors: {},  
             isLoading: false,
             invalid: false,
             showThreadCreateForm: false,
@@ -79,4 +79,4 @@ class ThreadCreateForm extends React.Component {
     );
   }
 }
-export default ThreadCreateForm;
+  export default ThreadCreateForm;

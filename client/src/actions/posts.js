@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { SET_POSTS, ADD_POSTS, POST_DELETED, POST_FETCHED} from '../constants/posts';
-
 function handleResponse(response) {
   if (response.ok) {
     return response.json();
@@ -74,9 +73,6 @@ export function fetchPost() {
     return dispatch => {
          axios.get('https://yyychan.herokuapp.com/api/posts', {mode: 'cors'})
             .then(response => {
-               const postsObj = response.data.posts[0];
-               const data = {
-               }
                dispatch(setPosts(response.data.posts));
               } )
     }

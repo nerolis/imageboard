@@ -12,12 +12,12 @@ function handleResponse(response) {
   }
 }
 
-export function setThreads(threads) {
-  return {
-    type: SET_THREADS,
-    threads
+  export function setThreads(threads) {
+    return {
+      type: SET_THREADS,
+      threads
+    }
   }
-}
 
 export function addThread(threads) {
   return {
