@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_THREADS, ADD_THREADS, THREAD_DELETED} from '../constants/threads';
+import { SET_THREADS, ADD_THREADS, THREAD_DELETED, SET_TASKS} from '../constants/threads';
 import react from 'react';
 
 function handleResponse(response) {
@@ -16,6 +16,13 @@ function handleResponse(response) {
     return {
       type: SET_THREADS,
       threads
+    }
+  }
+
+  export function setTasks(tasks) {
+    return {
+      type: SET_TASKS,
+      tasks
     }
   }
 
@@ -78,6 +85,15 @@ export function FetchMoreThreads() {
                dispatch(setThreads(response.data.threads))   
       })
     }
+}
+
+export function fetchMoreTasklist(type) {
+  return dispatch => {
+    axios.get('http://localhost:3000/api/tasklist/?type=test2')
+      .then(response => {
+        dispatch(setTasks(response.data.tasks))
+      })
+  }
 }
 
 export function fetchOneThread(id) {

@@ -40,7 +40,6 @@ const dbUrl = 'mongodb://nerolis:1583123f@ds161041.mlab.com:61041/yyychan';
 
 
 
-
 function validate(data) {
   let errors = {};
   if (data.name === '') errors.name = "Can't be empty";
@@ -60,6 +59,73 @@ function validate(data) {
     .catch(console.error)
 }); 
 
+const tasks = [
+      {    
+      id: 1,
+          title: 'Какой-то таск №1',
+          description: 'Описание таска №1',
+          important: true,
+          my: true,
+          date: Date.now(),
+      },
+      {
+      id: 2,
+          title: 'Какой-то таск №2',
+          description: 'Описание таска №2',
+          important: true,
+          my: true,
+          date: Date.now(),
+      },
+      {
+      id: 3,
+          title: 'Какой-то таск №3',
+          description: 'Описание таска №3',
+          important: true,
+          my: true,
+          date: Date.now(),
+      },
+      {
+      id: 4,
+          title: 'Какой-то таск №4',
+          description: 'Описание таска №4',
+          important: false,
+          my: true,
+          date: Date.now(),
+      },
+      {
+      id: 5,
+          title: 'Какой-то таск №5',
+          description: 'Описание таска №5',
+          important: false,
+          my: false,
+          date: Date.now(),
+      },
+      {
+      id: 6,
+          title: 'Какой-то таск №6',
+          description: 'Описание таска №6',
+          important: false,
+          my: false,
+          date: Date.now(),
+      },
+      ]
+  app.get('/api/tasklist/', testFitler, (req, res) => {
+    res.json({tasks});
+  });
+
+  function testFitler(req, res, next) {
+    let filter = [];
+    const type = req.param("type");
+    if (type === 'test') {
+       filter = tasks.filter(task => task.my === true)
+       res.json(filter);
+    } else if (type === 'test2') {
+       filter = tasks.filter(task => task.important === true)
+       res.json(filter);
+    }
+    else return next();
+  };
+
   // threads
   // todo: refactor через роутер
   app.get('/api/threads', (req, res) => {
@@ -75,7 +141,7 @@ function validate(data) {
     });
 
     app.put('/api/threads/:threadsId', (req, res) => {
-      db.collection('threads').findOneAndUpdate({id: Number(req.params.threadsId)}, {$inc: {like: +1}})
+      db.collection('threads').findOneAndUpdate({id: Number(req.params.threadsId)}, {$inc: {like: 1}})
         .then(threads => res.send(threads))
           .catch(console.error)
       }); 
@@ -125,7 +191,7 @@ function validate(data) {
     const { errors, isValid } = validate(req.body);
     if (isValid) {  
       const { id, date, title, name, text, image, reply_id, YoutubeLink, like} = req.body;
-      db.collection('posts').insert({reply_id, id: autoIndex, title, name, text, image, like, YoutubeLink, date:  }, (err, result) => {
+      db.collection('posts').insert({reply_id, id: autoIndex, title, name, text, image, like, YoutubeLink, date}, (err, result) => {
         if (err) {
           res.status(500).json({ errors: { global: "500" }});
         } else {

@@ -14,6 +14,7 @@ class ProfileSettings extends React.Component {
           userImage: ''}
       this.onSubmit = this.onSubmit.bind(this);
     }
+   
     onSubmit(e) {          // Оставлю временно коммент. Чтоб запомнить фейл.
     e.preventDefault(); // Затрачено: 1 час на this.state вторым в качестве даты.
     this.props.updateSettings(this.props.auth.login.login, this.state)
